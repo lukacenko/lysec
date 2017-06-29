@@ -12,65 +12,13 @@ use App\Model\Homepage;
 class HomepagePresenter extends \BasePresenter {
 
 
-    private $data = array();
     private $model;
     
 
     public function __construct(\Model\Repository\Homepage $model) {
         $this->model = $model;
         parent::__construct();
-        $this->data =
-            array(
-                array(
-                    'company'=>'National Glad Ltd',
-                    'state'=>'DE',
-                    'number'=>'20150024867',
-                    'loadedPerc'=>'0',
-                    'loadedCount'=>'0',
-                    'wrappedPerc'=>'20',
-                    'wrappedCount'=>4,
-                    'markedPerc'=>'80',
-                    'markedCount'=>'14',
-                    'totalCount'=>'16',
-                    'date'=>'08/2016',
-                    'days'=>'265 dní',
-                    'date2'=>'20.9.2015',
-                    'color'=>'red'
-                ),
-                array(
-                    'company'=>'National Glad Ltd',
-                    'state'=>'DE',
-                    'number'=>'20150024868',
-                    'loadedPerc'=>'33',
-                    'loadedCount'=>'10',
-                    'wrappedPerc'=>'66',
-                    'wrappedCount'=>20,
-                    'markedPerc'=>'50',
-                    'markedCount'=>'15',
-                    'totalCount'=>'30',
-                    'date'=>'05/2016',
-                    'days'=>'130 dní',
-                    'date2'=>'20.2.2016',
-                    'color'=>'blue'
-                ),
-                array(
-                    'company'=>'National Glad Ltd',
-                    'state'=>'DE',
-                    'number'=>'20150024869',
-                    'loadedPerc'=>'100',
-                    'loadedCount'=>'20',
-                    'wrappedPerc'=>'100',
-                    'wrappedCount'=>20,
-                    'markedPerc'=>'100',
-                    'markedCount'=>'20',
-                    'totalCount'=>'20',
-                    'date'=>'07/2016',
-                    'days'=>'152 dní',
-                    'date2'=>'20.1.2016',
-                    'color'=>'green'
-                )
-            );
-        }
+    }
 
         
     public function renderDefault(){

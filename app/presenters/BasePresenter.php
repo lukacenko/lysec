@@ -25,7 +25,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
         }
         if (!$this->user->isAllowed($this->name, $this->action)) {
             if(!$this->user->isLoggedIn()){
-                $this->redirect('Homepage:default');
+                $this->redirect('Sign:prihlasenie');
             }else{
                 $this->flashMessage('Do tejto sekcie nemáte prístup', 'error');
                 $this->redirect('Homepage:default');
