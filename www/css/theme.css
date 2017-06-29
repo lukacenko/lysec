@@ -1,0 +1,49 @@
+body {
+    padding-bottom: 30px;
+    padding-top: 70px;
+    font-size: 12px;
+}
+.theme-dropdown .dropdown-menu {
+    display: block;
+    margin-bottom: 20px;
+    position: static;
+}
+.theme-showcase > p > .btn {
+    margin: 5px 0;
+}
+.theme-showcase .navbar .container {
+    width: auto;
+}
+
+.table-fixed {
+    table-layout: fixed;
+}
+
+.margin-0{
+    margin: 0px;
+}
+
+.margin-5{
+    margin: 5px;
+}
+
+.label-as-badge {
+    border-radius: 1em;
+    font-size: 100%;
+    font-weight: normal;
+}
+
+.label-as-table {
+    border-radius: 0;
+    font-size: 100%;
+    font-weight: normal;
+    display: block;
+    padding: 3px !important;
+}
+.panel-heading, .panel-body{
+    padding: 5px 10px;
+}
+
+.form-group{
+    margin-bottom: 5px;
+}

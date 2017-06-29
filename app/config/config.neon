@@ -1,0 +1,69 @@
+# WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+# https://nette.org/security-warning
+
+parameters:
+
+    companyData:
+            firma_nazov: 'Nov, s.r.o.'
+            firma_adresa: 'Vretenová 7'
+            firma_psc: '841 04'
+            firma_mesto: 'Bratislava'
+            firma_www: 'http://www.nov.sk/'
+
+    #pocasie
+    wunderground:
+            enable: true
+            apikey: 737ed05c464cb2b1
+            state: S1
+            location: zmw:00000.5.11856
+            basePath: %wwwDir%/gen_img
+            baseUri: gen_img
+            refresh: 60 minutes
+            language: SK
+
+php:
+	date.timezone: Europe/Bratislava
+
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days
+
+
+services:
+        #- Context
+        - Model\Repository\Homepage
+        #- Model\Repository\Repository
+        - Model\Repository\UserManager
+        router: App\RouterFactory::createRouter
+
+        authorizator:
+                class: Nette\Security\Permission
+                setup:
+                        - addRole('guest')
+                        - addRole('user', 'guest')
+                        - addRole('superuser', 'user')
+                        - addRole('admin', 'superuser')	
+                        
+                        - addResource('Sign') #prihlasenie
+                        - addResource('Homepage') #domovska stranka
+
+                        - allow('guest', 'Sign')
+                        #user
+                        - allow('user', 'Homepage')
+                        
+                        #povolit vsetko
+                        - allow('admin')
+
+extensions:
+        translation: Kdyby\Translation\DI\TranslationExtension
+		
+translation:
+        whitelist: [sk, en]
+        default: sk
+        fallback: [sk_SK]

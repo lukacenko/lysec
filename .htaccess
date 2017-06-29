@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_URI} ^/(.*)$
+
+RewriteCond %{REQUEST_URI} !^/www/.*$
+RewriteRule ^(.*)$ /Lisec/Lisec/www/$1 [QSA,L]

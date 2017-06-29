@@ -1,0 +1,328 @@
+{block content}
+
+<h1>{_}Detail zákazky{/_}: {$order['number']}</h1>
+
+<div class="row well well-sm" style="border: 5px solid {$order['color']}; border-radius: 20px !important;">
+    <div class="col-xs-6">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{_}Zákazka{/_}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <h4 style="margin: 5px 0px;"><u>{_}Údaje o zákazke{/_}:</u></h4>
+                                <div class="margin-5">
+                                    National Glad Ltd, India<br>
+                                    {$order['number']}
+                                </div>                                
+                            </div>
+                            <div class="col-xs-6">
+                                <h4 style="margin: 5px 0px;"><u>{_}Adresa dodania{/_}:</u></h4>
+                                <address class="margin-5">
+                                    <strong>Nov, s.r.o.</strong><br>
+                                    Továrenská 58/A<br>
+                                    Zlaté Moravce, SK 95301<br>
+                                    <abbr title="Telefón">Tel:</abbr> (123) 456-7890
+                                </address>                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h4 style="margin: 5px 0px;"><u>{_}Dátum dodania{/_}:</u></h4>                                
+                                <table class="table table-fixed table-bordered margin-0">
+                                    <tr>
+                                        <td>
+                                            8/2016
+                                        </td>
+                                        <td>
+                                            235
+                                        </td>
+                                        <td>
+                                            12
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">{_}Tabuľka o prehľade balenia{/_}</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-fixed">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>{_}Naložené{/_}</th>
+                            <th>{_}Zabalené{/_}</th>
+                            <th>{_}Označené{/_}</th>
+                            <th>{_}Celkovo{/_}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>{_}Diely{/_}</th>
+                            <td>0</td>
+                            <td>5</td>
+                            <td>43</td>
+                            <td>62</td>
+                        </tr>
+                        <tr>
+                            <th>{_}Zariadenia{/_}</th>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>12</td>
+                            <td>14</td>
+                        </tr>
+                        <tr>
+                            <th>{_}Palety{/_}</th>
+                            <td>0</td>
+                            <td>2</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                        
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-fixed table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        {_}Dátum dodania{/_}
+                    </th>
+                    <th>
+                        {_}Pozícia{/_}
+                    </th>
+                    <th>
+                        {_}Seriové číslo{/_}
+                    </th>
+                    <th>
+                        {_}Označenie{/_}
+                    </th>
+                    <th>
+                        {_}P.č. dielu{/_}
+                    </th>
+                    <th>
+                        {_}Názov dielu{/_}
+                    </th>
+                    <th>
+                        {_}Hmotnosť dielov{/_}
+                    </th>
+                    <th>
+                        {_}Posledná činnosť{/_} /<br>
+                        {_}stav balenia{/_}
+                    </th>
+                    <th>
+                        {_}Posledný pracovník{/_}
+                    </th>
+                    <th>
+                        {_}Číslo palety{/_}
+                    </th>
+                    <th>
+                        {_}Balenie{/_}
+                    </th>
+                    <th>
+                        {_}Preprava{/_}
+                    </th>
+                    <th>
+                        {_}Číslo kontajnera{/_} /<br>
+                        {_}ŠPZ vozidla{/_}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>12.2.2016</td>
+                    <td data-to-expand="1005" style="cursor: pointer;"><i class="fa fa-plus fa-1"></i> 1005</td>
+                    <td>801-087051</td>
+                    <td>FREMD/MA</td>
+                    <td>1</td>
+                    <td>TISH</td>
+                    <td>700kg</td>
+                    <td>Nakládka</td>
+                    <td>Štefan Kršák</td>
+                    <td>2</td>
+                    <td>ALU/BL</td>
+                    <td>Kontajner</td>
+                    <td>326-457-82</td>
+                </tr>
+                <tr data-expand="1005" style="display: none;">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>2</td>
+                    <td>ELV</td>
+                    <td>1250kg</td>
+                    <td>Nakládka</td>
+                    <td>Štefan Kršák</td>
+                    <td>2</td>
+                    <td>ALU/BL</td>
+                    <td>Kontajner</td>
+                    <td>326-457-82</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td data-to-expand="1010" style="cursor: pointer;"><i class="fa fa-plus fa-1"></i> 1010</td>
+                    <td>380-083970</td>
+                    <td>RTUB</td>
+                    <td>1</td>
+                    <td>PANEL</td>
+                    <td>890kg</td>
+                    <td>Preprava palety</td>
+                    <td>Ján Pekný</td>
+                    <td>1</td>
+                    <td>CU/MD</td>
+                    <td>Kontajner</td>
+                    <td>326-457-82</td>
+                </tr>
+                <tr data-expand="1010" style="display: none;">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>2</td>
+                    <td>PODÁVAČ</td>
+                    <td>560kg</td>
+                    <td>Balenie</td>
+                    <td>Peter Hrozný</td>
+                    <td>3</td>
+                    <td>CU/MD</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr data-expand="1010" style="display: none;">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>3</td>
+                    <td>KABELÁŽ</td>
+                    <td>280kg</td>
+                    <td>Balenie</td>
+                    <td>Peter Hrozný</td>
+                    <td>3</td>
+                    <td>CU/MD</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>20.2.2016</td>
+                    <td data-to-expand="1020" style="cursor: pointer;"><i class="fa fa-plus fa-1"></i> 1020</td>
+                    <td>380-057708</td>
+                    <td>RTB/GEB</td>
+                    <td>1</td>
+                    <td>Dopravník</td>
+                    <td>1810kg</td>
+                    <td>Ustav.</td>
+                    <td>Ivan Malý</td>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr data-expand="1020" style="display: none;">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>2</td>
+                    <td>Skriňa 230/380V</td>
+                    <td>650kg</td>
+                    <td>Označovanie</td>
+                    <td>Štefan Biely</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr data-expand="1020" style="display: none;">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>3</td>
+                    <td>Príslušenstvo</td>
+                    <td>200kg</td>
+                    <td>Označovanie</td>
+                    <td>Vladimír Mach</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td data-to-expand="1035" style="cursor: pointer;"><i class="fa fa-plus fa-1"></i> 1035</td>
+                    <td>315-035929</td>
+                    <td>VAM/FA</td>
+                    <td>1</td>
+                    <td>Rezač</td>
+                    <td>620kg</td>
+                    <td>Nakládka</td>
+                    <td>Pavol Široký</td>
+                    <td>5</td>
+                    <td>ALU/BL</td>
+                    <td>LKW</td>
+                    <td>A-323AT</td>
+                </tr>
+                <tr data-expand="1035" style="display: none;">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>2</td>
+                    <td>Podávač</td>
+                    <td>480kg</td>
+                    <td>Nakládka</td>
+                    <td>Pavol Široký</td>
+                    <td>5</td>
+                    <td>ALU/BL</td>
+                    <td>LKW</td>
+                    <td>A-323AT</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>1015</td>
+                    <td>380-083570</td>
+                    <td>RTV-OMBAV</td>
+                    <td>1</td>
+                    <td>Elektronika</td>
+                    <td>1200kg</td>
+                    <td>Balenie</td>
+                    <td>Roman Úzky</td>
+                    <td>6</td>
+                    <td>OVMDS</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{/block}
+{block scripts}
+<script>
+    $(function(){
+        $('td[data-to-expand]').on('click', function(){
+            $(this).children('i').toggleClass('fa-minus');
+            $('tr[data-expand="'+$(this).attr('data-to-expand')+'"]').toggle();
+        });
+    });
+</script>
+{/block}

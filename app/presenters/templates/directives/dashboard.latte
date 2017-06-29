@@ -1,0 +1,87 @@
+<div class="col-xs-4 hoverDiv">
+    <div class="overlayed" style="position: absolute; border: 5px solid {$order['color']}; border-radius: 10px;">
+        <table class="table table-condensed table-bordered table-striped" style="margin-top: 5px;">
+            <tbody>
+                <tr>
+                    <td>
+                        <i class="fa fa-tasks"></i> {$order['number']}
+                        <br>
+                        <i class="fa fa-building"></i> {$order['company']}
+                    </td>
+                    <td>
+                        <i class="fa fa-globe"></i> {$order['state']}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                         <table class="table table-bordered table-fixed margin-0">
+                            <tr>
+                                <th>
+                                    {_}Naložených{/_}:
+                                </th>
+                                <td class="text-center">
+                                    <span class="label {$order['loadedPerc'] < 50 ? 'label-danger' : ($order['loadedPerc'] <= 99 ? 'label-warning' : 'label-success')} label-as-badge">
+                                        <b>{$order['loadedPerc']}%</b> ( {$order['loadedCount']} {_}ks{/_} )
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    {_}Zabalených{/_}:
+                                </th>
+                                <td class="text-center">
+                                    <span class="label {$order['wrappedPerc'] < 50 ? 'label-danger' : ($order['wrappedPerc'] <= 99 ? 'label-warning' : 'label-success')} label-as-badge">
+                                        <b>{$order['wrappedPerc']}%</b> ( {$order['wrappedCount']} {_}ks{/_} )
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    {_}Označených{/_}:
+                                </th>
+                                <td class="text-center">
+                                    <span class="label {$order['markedPerc'] < 50 ? 'label-danger' : ($order['markedPerc'] <= 75 ? 'label-warning' : 'label-success')} label-as-badge">
+                                        <b>{$order['markedPerc']}%</b> ( {$order['markedCount']} {_}ks{/_} )
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    {_}Celkovo{/_}:
+                                </th>
+                                <td class="text-center">
+                                    <span class="label label-info label-as-badge">{$order['totalCount']} {_}ks{/_}</span>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table class="table table-bordered table-fixed margin-0">
+                            <tr>
+                                <td>
+                                    {$order['date']}
+                                </td>
+                                <td>
+                                    {$order['days']}
+                                </td>
+                                <td>
+                                    {$order['date2']}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="overlay text-center" style="display: none; position: absolute; width: 100%; top: 80px;">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3>{_}Zákazka{/_}: {$order['number']}</h3>
+            </div>
+            <div class="col-xs-12">
+                <a n:href="Homepage:order, id=>$order['number']" class="btn btn-primary" type="button"><span aria-hidden="true" class="fa fa-pencil-square-o"></span> {_}Editovať{/_}</a>            
+                <button class="btn btn-success" type="button"><span aria-hidden="true" class="fa fa-check-square-o"></span> {_}Ukončiť{/_}</button>            
+            </div>
+        </div>
+    </div>
+</div>

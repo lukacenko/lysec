@@ -1,0 +1,30 @@
+{block content}
+<div class="row">
+    <div class="col-xs-8">
+        <h1 n:block=title>{_}Rozpracované zakázky{/_}</h1>
+    </div>
+    <div class="col-xs-4 text-right">
+        <a n:href="Homepage:addOrder" type="button" class="btn btn-success btn-lg">
+            <span class="fa fa-plus-square-o" aria-hidden="true"></span> {_}Pridať zákazku{/_}
+        </a>
+    </div>
+</div>
+<div class="row">
+    {foreach $orders as $order}
+        {include '../directives/dashboard.latte', order=>$order}
+    {/foreach}
+</div>
+{/block}
+{block scripts}
+<script>
+    $(document).ready(function(){
+        $(".hoverDiv").hover(function(){
+            $(this).children('.overlayed').css("opacity", "0.1");
+            $(this).children('.overlay').fadeIn(0);
+        }, function(){
+            $(this).children('.overlayed').css("opacity", "1");
+            $(this).children('.overlay').fadeOut(0);
+        });
+    });
+</script>
+{/block}

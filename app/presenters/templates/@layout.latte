@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="{$lang}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="NOV, s.r.o.">
+        <link rel="stylesheet" href="{$basePath}/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{$basePath}/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{$basePath}/css/theme.css">
+        <link rel="stylesheet" href="{$basePath}/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{$basePath}/css/languages.min.css">
+        <link rel="stylesheet" href="{$basePath}/css/jquery.tablesorter.pager.css">
+        <link rel="stylesheet" href="{$basePath}/css/app.css">
+        <script src="{$basePath}/js/jquery.min.js"></script>
+        <script src="{$basePath}/js/jquery.tablesorter.min.js"></script>
+        <script src="{$basePath}/js/bootstrap.min.js"></script>
+        <script src="{$basePath}/js/netteForms.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/bs/jq-2.2.0,dt-1.10.11/datatables.min.css"/>
+        <script type="text/javascript" src="https://cdn.datatables.net/t/bs/jq-2.2.0,dt-1.10.11/datatables.min.js"></script>
+        <title>{ifset title}{include title|striptags} | {/ifset}Lisec | NOV, s.r.o.</title>
+    </head>
+
+    <body role="document">
+        {include 'navbar.latte'}        
+        <div class="container theme-showcase" role="main">
+            <div n:foreach="$flashes as $flash" class="alert alert-{$flash->type} fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {$flash->message}
+            </div>
+
+            {include content}
+        </div>
+        {block scripts}{/block}
+    </body>
+</html>
