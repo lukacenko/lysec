@@ -41,7 +41,7 @@
         <link rel="stylesheet" href="{$basePath}/css/flexslider.css" type="text/css" media="screen" />
 
 
-        <title>{ifset title}{include title|striptags} | {/ifset}Lisec | NOV, s.r.o.</title>
+        <title>{ifset title}{include title|striptags} | {/ifset}Lysec | Luko, s.r.o.</title>
     </head>
     <body role="document">
         <!-- header-section-starts -->
@@ -50,8 +50,12 @@
                 <div class="container">
                     <div class="header-top-left">
                         <ul>
-                            <li><a href="account.html"><span class="glyphicon glyphicon-user"> </span>Login</a></li>
-                            <li><a href="register.html"><span class="glyphicon glyphicon-lock"> </span>Create an Account</a></li>			
+                            {if $user->loggedIn}
+                                <li><a n:href="Sign:out">{$user->getIdentity()->login}  <span class="glyphicon glyphicon-user"> </span>{_}Odhlásiť sa{/_} </a></li>
+                                {else}
+                                <li><a n:href="Sign:prihlasenie"><span class="glyphicon glyphicon-user"> </span>Prihlásiť sa</a></li>
+                                <li><a n:href="Sign:registracia">   <span class="glyphicon glyphicon-lock"> </span>Vytvoriť účet</a></li>			
+                                {/if}                            
                         </ul>
                     </div>
                     <div class="header-right">
@@ -206,7 +210,7 @@
                 <!--/.navbar-->
             </div>
         </div>
-        <div class="banner">
+        <!--div class="banner">
             <div class="container">
                 <div class="banner-bottom">
                     <div class="banner-bottom-left">
@@ -235,128 +239,125 @@
                                 </li>
                             </ul>
                         </div>
-                        <!--banner-->
-                        <script src="js/responsiveslides.min.js"></script>
-                        <script>
+        <!--banner-->
+        <script src="js/responsiveslides.min.js"></script>
+        <script>
 // You can also use "$(window).load(function() {"
-$(function () {
-    // Slideshow 4
-    $("#slider4").responsiveSlides({
-        auto: true,
-        pager: true,
-        nav: false,
-        speed: 500,
-        namespace: "callbacks",
-        before: function () {
-            $('.events').append("<li>before event fired.</li>");
-        },
-        after: function () {
-            $('.events').append("<li>after event fired.</li>");
-        }
-    });
+            $(function () {
+// Slideshow 4
+                $("#slider4").responsiveSlides({
+                    auto: true,
+                    pager: true,
+                    nav: false,
+                    speed: 500,
+                    namespace: "callbacks",
+                    before: function () {
+                        $('.events').append("<li>before event fired.</li>");
+                    },
+                    after: function () {
+                        $('.events').append("<li>after event fired.</li>");
+                    }
+                });
 
-});
-                        </script>
+            });
+            * /
+        </script>
+        <!--/div>
+        <div class="clearfix"> </div>
+    </div>
+    <div class="shop">
+        <a href="single.html">SHOP COLLECTION NOW</a>
+    </div>
+</div>
+</div-->
+        <div n:foreach="$flashes as $flash" class="alert alert-{$flash->type} fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {$flash->message}
+        </div>         
+        {include content}
+    </div>
+    <!-- content-section-ends-here -->
+    <div class="news-letter">
+        <div class="container">
+            <div class="join">
+                <h6>JOIN OUR MAILING LIST</h6>
+                <div class="sub-left-right">
+                    <form>
+                        <input type="text" value="Enter Your Email Here" onfocus="this.value = '';"/>
+                        <input type="submit" value="SUBSCRIBE" />
+                    </form>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="footer_top">
+                <div class="span_of_4">
+                    <div class="col-md-3 span1_of_4">
+                        <h4>Shop</h4>
+                        <ul class="f_nav">
+                            <li><a href="#">new arrivals</a></li>
+                            <li><a href="#">men</a></li>
+                            <li><a href="#">women</a></li>
+                            <li><a href="#">accessories</a></li>
+                            <li><a href="#">kids</a></li>
+                            <li><a href="#">brands</a></li>
+                            <li><a href="#">trends</a></li>
+                            <li><a href="#">sale</a></li>
+                            <li><a href="#">style videos</a></li>
+                        </ul>	
                     </div>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="shop">
-                    <a href="single.html">SHOP COLLECTION NOW</a>
-                </div>
-            </div>
-        </div>
-
-        {include 'navbar.latte'}        
-        <div class="container theme-showcase" role="main">
-            <div n:foreach="$flashes as $flash" class="alert alert-{$flash->type} fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                {$flash->message}
-            </div>
-
-            {include content}
-        </div>
-        <!-- content-section-ends-here -->
-        <div class="news-letter">
-            <div class="container">
-                <div class="join">
-                    <h6>JOIN OUR MAILING LIST</h6>
-                    <div class="sub-left-right">
-                        <form>
-                            <input type="text" value="Enter Your Email Here" onfocus="this.value = '';"/>
-                            <input type="submit" value="SUBSCRIBE" />
-                        </form>
+                    <div class="col-md-3 span1_of_4">
+                        <h4>help</h4>
+                        <ul class="f_nav">
+                            <li><a href="#">frequently asked  questions</a></li>
+                            <li><a href="#">men</a></li>
+                            <li><a href="#">women</a></li>
+                            <li><a href="#">accessories</a></li>
+                            <li><a href="#">kids</a></li>
+                            <li><a href="#">brands</a></li>
+                        </ul>	
                     </div>
-                    <div class="clearfix"> </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer">
-            <div class="container">
-                <div class="footer_top">
-                    <div class="span_of_4">
-                        <div class="col-md-3 span1_of_4">
-                            <h4>Shop</h4>
-                            <ul class="f_nav">
-                                <li><a href="#">new arrivals</a></li>
-                                <li><a href="#">men</a></li>
-                                <li><a href="#">women</a></li>
-                                <li><a href="#">accessories</a></li>
-                                <li><a href="#">kids</a></li>
-                                <li><a href="#">brands</a></li>
-                                <li><a href="#">trends</a></li>
-                                <li><a href="#">sale</a></li>
-                                <li><a href="#">style videos</a></li>
-                            </ul>	
-                        </div>
-                        <div class="col-md-3 span1_of_4">
-                            <h4>help</h4>
-                            <ul class="f_nav">
-                                <li><a href="#">frequently asked  questions</a></li>
-                                <li><a href="#">men</a></li>
-                                <li><a href="#">women</a></li>
-                                <li><a href="#">accessories</a></li>
-                                <li><a href="#">kids</a></li>
-                                <li><a href="#">brands</a></li>
-                            </ul>	
-                        </div>
-                        <div class="col-md-3 span1_of_4">
-                            <h4>account</h4>
-                            <ul class="f_nav">
-                                <li><a href="account.html">login</a></li>
-                                <li><a href="register.html">create an account</a></li>
-                                <li><a href="#">create wishlist</a></li>
-                                <li><a href="checkout.html">my shopping bag</a></li>
-                                <li><a href="#">brands</a></li>
-                                <li><a href="#">create wishlist</a></li>
-                            </ul>				
-                        </div>
-                        <div class="col-md-3 span1_of_4">
-                            <h4>popular</h4>
-                            <ul class="f_nav">
-                                <li><a href="#">new arrivals</a></li>
-                                <li><a href="#">men</a></li>
-                                <li><a href="#">women</a></li>
-                                <li><a href="#">accessories</a></li>
-                                <li><a href="#">kids</a></li>
-                                <li><a href="#">brands</a></li>
-                                <li><a href="#">trends</a></li>
-                                <li><a href="#">sale</a></li>
-                                <li><a href="#">style videos</a></li>
-                                <li><a href="#">login</a></li>
-                                <li><a href="#">brands</a></li>
-                            </ul>			
-                        </div>
-                        <div class="clearfix"></div>
+                    <div class="col-md-3 span1_of_4">
+                        <h4>account</h4>
+                        <ul class="f_nav">
+                            <li><a href="account.html">prihlásiť sa</a></li>
+                            <li><a href="register.html">vytvoriť účet</a></li>
+                            <li><a href="#">create wishlist</a></li>
+                            <li><a href="checkout.html">my shopping bag</a></li>
+                            <li><a href="#">brands</a></li>
+                            <li><a href="#">create wishlist</a></li>
+                        </ul>				
                     </div>
-                </div>
-                <div class="cards text-center">
-                    <img src="images/cards.jpg" alt="" />
-                </div>
-                <div class="copyright text-center">
-                    <p>© 2015 Eshop. All Rights Reserved | Design by   <a href="http://w3layouts.com">  W3layouts</a></p>
+                    <div class="col-md-3 span1_of_4">
+                        <h4>popular</h4>
+                        <ul class="f_nav">
+                            <li><a href="#">new arrivals</a></li>
+                            <li><a href="#">men</a></li>
+                            <li><a href="#">women</a></li>
+                            <li><a href="#">accessories</a></li>
+                            <li><a href="#">kids</a></li>
+                            <li><a href="#">brands</a></li>
+                            <li><a href="#">trends</a></li>
+                            <li><a href="#">sale</a></li>
+                            <li><a href="#">style videos</a></li>
+                            <li><a href="#">login</a></li>
+                            <li><a href="#">brands</a></li>
+                        </ul>			
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
+            <div class="cards text-center">
+                <img src="images/cards.jpg" alt="" />
+            </div>
+            <div class="copyright text-center">
+                <p>© 2015 Eshop. All Rights Reserved | Design by   <a href="http://w3layouts.com">  W3layouts</a></p>
+            </div>
         </div>
-        {block scripts}{/block}
-    </body>    
+    </div>
+    {block scripts}{/block}
+</body>    
 </html>

@@ -17,7 +17,7 @@ class UserManager extends \Nette\Object implements \Nette\Security\IAuthenticato
             COLUMN_PASSWORD_HASH = 'password',
             COLUMN_ROLE = 'role',
             COLUMN_EMAIL = 'email',
-            COLUMN_TEL = 'telefon';
+            COLUMN_NEWSLETTER = 'newsletter';
     
 
     /** @var Nette\Database\Context */
@@ -55,13 +55,14 @@ class UserManager extends \Nette\Object implements \Nette\Security\IAuthenticato
      * @param  string
      * @return void
      */
-    public function add($username, $password, $role) {
+    public function add($email, $username, $password, $role, $newsletter ) {
         try {
             $this->database->table(self::TABLE_NAME)->insert([
+                self::COLUMN_EMAIL => $email,
                 self::COLUMN_NAME => $username,
                 self::COLUMN_PASSWORD_HASH => Passwords::hash($password),
-                selft::COLUMN_ROLE => 'user',
-                
+                self::COLUMN_ROLE => $role,
+                self::COLUMN_NEWSLETTER => $newsletter
             ]);
         } catch (\Nette\Database\UniqueConstraintViolationException $e) {
             throw new DuplicateNameException;

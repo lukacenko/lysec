@@ -11,37 +11,55 @@ use Nette\Application\UI,
  * Sign in/out presenters.
  */
 class SignPresenter extends \BasePresenter {
+    
+    private $model;
 
-
-
+    
+    public function __construct(\Model\Repository\UserManager $model) {
+        $this->model = $model;
+    }
 
     protected function createComponentRegisForm() {
 
-        $role = [
+        $role = array(
             'user' => 'Predajca',
             'superuser' => 'Predajca + Kupujúci',
-        ];
+        );
         $form = new UI\Form;
         $form->setRenderer(new BootstrapVerticalRenderer());
         $form->setTranslator($this->translator);
-        $form->addText('username', '')->setAttribute('placeholder', $this->translator->translate('E-mailová adresa'))
+        $form->addText('email', $this->translator->translate('E-mailová adresa:'))->setAttribute('placeholder', $this->translator->translate('E-mailová adresa'))
                 ->setRequired('Prosím vložte Vaše používateľské meno.');
-        $form->addText('username', '')->setAttribute('placeholder', $this->translator->translate('Užívateľské meno'))
+        $form->addText('username', $this->translator->translate('Užívateľské meno:'))->setAttribute('placeholder', $this->translator->translate('Užívateľské meno'))
                 ->setRequired('Prosím vložte Vaše používateľské meno.');
-        $form->addPassword('password', '')->setAttribute('placeholder', $this->translator->translate('Heslo'))
+        $form->addPassword('password', $this->translator->translate('Heslo:'))->setAttribute('placeholder', $this->translator->translate('Heslo'))
                 ->setRequired('Prosím vložte Vaše heslo.');
-        $form->addPassword('password', '')->setAttribute('placeholder', $this->translator->translate('Zopakovanie hesla'))
+        $form->addPassword('password2', $this->translator->translate('Zopakovanie hesla:'))->setAttribute('placeholder', $this->translator->translate('Zopakovanie hesla'))
                 ->setRequired('Prosím vložte Vaše heslo.');
-        $form->addSelect('role', 'Typ registrácie::', $role)
-            ->setPrompt('Zvolte typ registrácie:');        
+        $form->addSelect('rola', 'Typ registrácie:', $role);
         $form->addCheckbox('newsletter', 'Chcem dostávať emailom personalizovaný newsletter');
         $form->addCheckbox('actept', 'Chcem dostávať emailom personalizovaný newsletter');
         $form->addSubmit('send', 'Registruj sa');
+
+        // call method signInFormSubmitted() on success
+        $form->onSuccess[] = $this->RegisFormSubmitted;
+        $form->addProtection();
+        return $form;
     }
 
-    
-
-
+    public function RegisFormSubmitted(UI\Form $form) {
+        if ($this->isAjax()) {
+            $this->invalidateControl('RegisForm');
+        }
+        $values = $form->getValues();
+        try {
+            $this->model->add($values->email, $values->username, $values->password, $values->rola, $values->newsletter);
+            $this->flashMessage('Boli ste úspešne zaregistrovaný', 'success');
+            $this->redirect('Homepage:default');
+        } catch (\Nette\Security\AuthenticationException $e) {
+            $form->addError($this->translator->translate($e->getMessage()));
+        }
+    }
 
     /**
      * Sign-in form factory.
@@ -52,10 +70,10 @@ class SignPresenter extends \BasePresenter {
         $form->setRenderer(new BootstrapVerticalRenderer());
         $form->setTranslator($this->translator);
 
-        $form->addText('username', '')->setAttribute('placeholder', $this->translator->translate('Užívateľské meno'))
+        $form->addText('username', $this->translator->translate('Užívateľské meno'))->setAttribute('placeholder', $this->translator->translate('Užívateľské meno'))
                 ->setRequired('Prosím vložte Vaše používateľské meno.');
 
-        $form->addPassword('password', '')->setAttribute('placeholder', $this->translator->translate('Heslo'))
+        $form->addPassword('password', $this->translator->translate('Heslo'))->setAttribute('placeholder', $this->translator->translate('Heslo'))
                 ->setRequired('Prosím vložte Vaše heslo.');
 
         $form->addCheckbox('remember', 'Zapamätať si ma');
@@ -82,6 +100,7 @@ class SignPresenter extends \BasePresenter {
 
         try {
             $this->user->login($values->username, $values->password);
+            $this->flashMessage('Boli ste úspešne prihlásený', 'success');
             $this->redirect('Homepage:default');
         } catch (\Nette\Security\AuthenticationException $e) {
             $form->addError($this->translator->translate($e->getMessage()));
@@ -91,7 +110,7 @@ class SignPresenter extends \BasePresenter {
     public function actionOut() {
         $this->getUser()->logout();
         $this->flashMessage('Boli ste úspešne odhlásený', 'success');
-        $this->redirect('in');
+        $this->redirect('prihlasenie');
     }
 
 }

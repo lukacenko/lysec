@@ -1,17 +1,17 @@
 <?php
-// source: C:\xampp\htdocs\lysec\app\presenters/templates/Sign/in.latte
+// source: C:\xampp\htdocs\lysec\app\presenters/templates/Sign/prihlasenie.latte
 
-class Template1bddca0ca03826170fa4f61fc2e6e431 extends Latte\Template {
+class Templatec4565f22418834f15dc564acae65f7cd extends Latte\Template {
 function render() {
 foreach ($this->params as $__k => $__v) $$__k = $__v; unset($__k, $__v);
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('54d9491c49', 'html')
+list($_b, $_g, $_l) = $template->initialize('da927b8ecf', 'html')
 ;
 // prolog Latte\Macros\BlockMacros
 //
 // block content
 //
-if (!function_exists($_b->blocks['content'][] = '_lb987559f7d8_content')) { function _lb987559f7d8_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+if (!function_exists($_b->blocks['content'][] = '_lb979aeae89d_content')) { function _lb979aeae89d_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
 ?><!-- content-section-starts -->
 <div class="content">
     <div class="container">
@@ -41,7 +41,6 @@ if (!function_exists($_b->blocks['content'][] = '_lb987559f7d8_content')) { func
                 <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
                     <h3>REGISTROVANÍ ZÁKAZNÍCI</h3>
                     <p>Ak máte vytvorený účet, prosím prihláste sa.</p>
-                    <form>
                         <?php echo Nette\Bridges\FormsLatte\Runtime::renderFormBegin($form = $_form = $_control["signInForm"], array()) ?>
 
                             <div>
@@ -55,8 +54,8 @@ if (!function_exists($_b->blocks['content'][] = '_lb987559f7d8_content')) { func
 
                             </div>                            
                             <div>
-                                <span><?php if ($_label = $_form["remember"]->getLabel()) echo $_label  ?></span>
-                                <?php echo $_form["remember"]->getControl() ?>
+                                <span> <?php if ($_label = $_form["remember"]->getLabel()) echo $_label  ?>  </span>
+                                 <?php echo $_form["remember"]->getControl() ?>
 
                             </div>                            
                             <a class="forgot" href="#">Zabudol si heslo ?</a>

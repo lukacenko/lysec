@@ -1,0 +1,53 @@
+{block content}
+
+<!-- content-section-starts -->
+<div class="content">
+    <div class="container">
+        <div class="login-page">
+            <div class="dreamcrub">
+                <ul class="breadcrumbs">
+                    <li class="home">
+                        <a href="index.html" title="Go to Home Page">Home</a>&nbsp;
+                        <span>&gt;</span>
+                    </li>
+                    <li class="women">
+                        Login
+                    </li>
+                </ul>
+                <ul class="previous">
+                    <li><a href="index.html">Back to Previous Page</a></li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="account_grid">
+                <div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
+                    <h2>NOVÝ ZÁKAZNÍCI</h2>
+                    <p>Vytvorením účtu v našom obchode budete môcť rýchlejšie prechádzať procesom platby, ukladať viaceré dodacie adresy, zobrazovať a sledovať vaše objednávky vo vašom účte a ďalšie.</p>
+                    <a class="acount-btn" n:href="Sign:registracia">Vytvoriť účet</a>
+                </div>
+                <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
+                    <h3>REGISTROVANÍ ZÁKAZNÍCI</h3>
+                    <p>Ak máte vytvorený účet, prosím prihláste sa.</p>
+                        {form signInForm}
+                            <div>
+                                <span>{label username /}</span>
+                                {input username}
+                            </div>
+                            <div>
+                                <span>{label password /}</span>
+                                {input password}
+                            </div>                            
+                            <div>
+                                <span> {label remember /}  </span>
+                                 {input remember}
+                            </div>                            
+                            <a class="forgot" href="#">Zabudol si heslo ?</a>
+                            {input send}
+                        {/form}
+                </div>	
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -80,7 +80,7 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
 
 
         <title><?php if (isset($_b->blocks["title"])) { ob_start(); Latte\Macros\BlockMacrosRuntime::callBlock($_b, 'title', $template->getParameters()); echo $template->striptags(ob_get_clean()) ?>
- | <?php } ?>Lisec | NOV, s.r.o.</title>
+ | <?php } ?>Lysec | Luko, s.r.o.</title>
     </head>
     <body role="document">
         <!-- header-section-starts -->
@@ -89,8 +89,16 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
                 <div class="container">
                     <div class="header-top-left">
                         <ul>
-                            <li><a href="account.html"><span class="glyphicon glyphicon-user"> </span>Login</a></li>
-                            <li><a href="register.html"><span class="glyphicon glyphicon-lock"> </span>Create an Account</a></li>			
+<?php if ($user->loggedIn) { ?>
+                                <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Sign:out"), ENT_COMPAT) ?>
+"><?php echo Latte\Runtime\Filters::escapeHtml($user->getIdentity()->login, ENT_NOQUOTES) ?>
+  <span class="glyphicon glyphicon-user"> </span><?php ob_start() ?>Odhlásiť sa<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </a></li>
+<?php } else { ?>
+                                <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Sign:prihlasenie"), ENT_COMPAT) ?>
+"><span class="glyphicon glyphicon-user"> </span>Prihlásiť sa</a></li>
+                                <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Sign:registracia"), ENT_COMPAT) ?>
+">   <span class="glyphicon glyphicon-lock"> </span>Vytvoriť účet</a></li>			
+<?php } ?>
                         </ul>
                     </div>
                     <div class="header-right">
@@ -245,7 +253,7 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
                 <!--/.navbar-->
             </div>
         </div>
-        <div class="banner">
+        <!--div class="banner">
             <div class="container">
                 <div class="banner-bottom">
                     <div class="banner-bottom-left">
@@ -274,134 +282,130 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
                                 </li>
                             </ul>
                         </div>
-                        <!--banner-->
-                        <script src="js/responsiveslides.min.js"></script>
-                        <script>
+        <!--banner-->
+        <script src="js/responsiveslides.min.js"></script>
+        <script>
 // You can also use "$(window).load(function() {"
-$(function () {
-    // Slideshow 4
-    $("#slider4").responsiveSlides({
-        auto: true,
-        pager: true,
-        nav: false,
-        speed: 500,
-        namespace: "callbacks",
-        before: function () {
-            $('.events').append("<li>before event fired.</li>");
-        },
-        after: function () {
-            $('.events').append("<li>after event fired.</li>");
-        }
-    });
+            $(function () {
+// Slideshow 4
+                $("#slider4").responsiveSlides({
+                    auto: true,
+                    pager: true,
+                    nav: false,
+                    speed: 500,
+                    namespace: "callbacks",
+                    before: function () {
+                        $('.events').append("<li>before event fired.</li>");
+                    },
+                    after: function () {
+                        $('.events').append("<li>after event fired.</li>");
+                    }
+                });
 
-});
-                        </script>
+            });
+            * /
+        </script>
+        <!--/div>
+        <div class="clearfix"> </div>
+    </div>
+    <div class="shop">
+        <a href="single.html">SHOP COLLECTION NOW</a>
+    </div>
+</div>
+</div-->
+<?php $iterations = 0; foreach ($flashes as $flash) { ?>        <div class="alert alert-<?php echo Latte\Runtime\Filters::escapeHtml($flash->type, ENT_COMPAT) ?> fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <?php echo Latte\Runtime\Filters::escapeHtml($flash->message, ENT_NOQUOTES) ?>
+
+        </div>         
+<?php $iterations++; } Latte\Macros\BlockMacrosRuntime::callBlock($_b, 'content', $template->getParameters()) ?>
+    </div>
+    <!-- content-section-ends-here -->
+    <div class="news-letter">
+        <div class="container">
+            <div class="join">
+                <h6>JOIN OUR MAILING LIST</h6>
+                <div class="sub-left-right">
+                    <form>
+                        <input type="text" value="Enter Your Email Here" onfocus="this.value = '';">
+                        <input type="submit" value="SUBSCRIBE">
+                    </form>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="footer_top">
+                <div class="span_of_4">
+                    <div class="col-md-3 span1_of_4">
+                        <h4>Shop</h4>
+                        <ul class="f_nav">
+                            <li><a href="#">new arrivals</a></li>
+                            <li><a href="#">men</a></li>
+                            <li><a href="#">women</a></li>
+                            <li><a href="#">accessories</a></li>
+                            <li><a href="#">kids</a></li>
+                            <li><a href="#">brands</a></li>
+                            <li><a href="#">trends</a></li>
+                            <li><a href="#">sale</a></li>
+                            <li><a href="#">style videos</a></li>
+                        </ul>	
                     </div>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="shop">
-                    <a href="single.html">SHOP COLLECTION NOW</a>
-                </div>
-            </div>
-        </div>
-
-<?php $_b->templates['ffc54706b1']->renderChildTemplate('navbar.latte', $template->getParameters()) ?>
-        <div class="container theme-showcase" role="main">
-<?php $iterations = 0; foreach ($flashes as $flash) { ?>            <div class="alert alert-<?php echo Latte\Runtime\Filters::escapeHtml($flash->type, ENT_COMPAT) ?> fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <?php echo Latte\Runtime\Filters::escapeHtml($flash->message, ENT_NOQUOTES) ?>
-
-            </div>
-<?php $iterations++; } ?>
-
-<?php Latte\Macros\BlockMacrosRuntime::callBlock($_b, 'content', $template->getParameters()) ?>
-        </div>
-        <!-- content-section-ends-here -->
-        <div class="news-letter">
-            <div class="container">
-                <div class="join">
-                    <h6>JOIN OUR MAILING LIST</h6>
-                    <div class="sub-left-right">
-                        <form>
-                            <input type="text" value="Enter Your Email Here" onfocus="this.value = '';">
-                            <input type="submit" value="SUBSCRIBE">
-                        </form>
+                    <div class="col-md-3 span1_of_4">
+                        <h4>help</h4>
+                        <ul class="f_nav">
+                            <li><a href="#">frequently asked  questions</a></li>
+                            <li><a href="#">men</a></li>
+                            <li><a href="#">women</a></li>
+                            <li><a href="#">accessories</a></li>
+                            <li><a href="#">kids</a></li>
+                            <li><a href="#">brands</a></li>
+                        </ul>	
                     </div>
-                    <div class="clearfix"> </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer">
-            <div class="container">
-                <div class="footer_top">
-                    <div class="span_of_4">
-                        <div class="col-md-3 span1_of_4">
-                            <h4>Shop</h4>
-                            <ul class="f_nav">
-                                <li><a href="#">new arrivals</a></li>
-                                <li><a href="#">men</a></li>
-                                <li><a href="#">women</a></li>
-                                <li><a href="#">accessories</a></li>
-                                <li><a href="#">kids</a></li>
-                                <li><a href="#">brands</a></li>
-                                <li><a href="#">trends</a></li>
-                                <li><a href="#">sale</a></li>
-                                <li><a href="#">style videos</a></li>
-                            </ul>	
-                        </div>
-                        <div class="col-md-3 span1_of_4">
-                            <h4>help</h4>
-                            <ul class="f_nav">
-                                <li><a href="#">frequently asked  questions</a></li>
-                                <li><a href="#">men</a></li>
-                                <li><a href="#">women</a></li>
-                                <li><a href="#">accessories</a></li>
-                                <li><a href="#">kids</a></li>
-                                <li><a href="#">brands</a></li>
-                            </ul>	
-                        </div>
-                        <div class="col-md-3 span1_of_4">
-                            <h4>account</h4>
-                            <ul class="f_nav">
-                                <li><a href="account.html">login</a></li>
-                                <li><a href="register.html">create an account</a></li>
-                                <li><a href="#">create wishlist</a></li>
-                                <li><a href="checkout.html">my shopping bag</a></li>
-                                <li><a href="#">brands</a></li>
-                                <li><a href="#">create wishlist</a></li>
-                            </ul>				
-                        </div>
-                        <div class="col-md-3 span1_of_4">
-                            <h4>popular</h4>
-                            <ul class="f_nav">
-                                <li><a href="#">new arrivals</a></li>
-                                <li><a href="#">men</a></li>
-                                <li><a href="#">women</a></li>
-                                <li><a href="#">accessories</a></li>
-                                <li><a href="#">kids</a></li>
-                                <li><a href="#">brands</a></li>
-                                <li><a href="#">trends</a></li>
-                                <li><a href="#">sale</a></li>
-                                <li><a href="#">style videos</a></li>
-                                <li><a href="#">login</a></li>
-                                <li><a href="#">brands</a></li>
-                            </ul>			
-                        </div>
-                        <div class="clearfix"></div>
+                    <div class="col-md-3 span1_of_4">
+                        <h4>account</h4>
+                        <ul class="f_nav">
+                            <li><a href="account.html">prihlásiť sa</a></li>
+                            <li><a href="register.html">vytvoriť účet</a></li>
+                            <li><a href="#">create wishlist</a></li>
+                            <li><a href="checkout.html">my shopping bag</a></li>
+                            <li><a href="#">brands</a></li>
+                            <li><a href="#">create wishlist</a></li>
+                        </ul>				
                     </div>
-                </div>
-                <div class="cards text-center">
-                    <img src="images/cards.jpg" alt="">
-                </div>
-                <div class="copyright text-center">
-                    <p>© 2015 Eshop. All Rights Reserved | Design by   <a href="http://w3layouts.com">  W3layouts</a></p>
+                    <div class="col-md-3 span1_of_4">
+                        <h4>popular</h4>
+                        <ul class="f_nav">
+                            <li><a href="#">new arrivals</a></li>
+                            <li><a href="#">men</a></li>
+                            <li><a href="#">women</a></li>
+                            <li><a href="#">accessories</a></li>
+                            <li><a href="#">kids</a></li>
+                            <li><a href="#">brands</a></li>
+                            <li><a href="#">trends</a></li>
+                            <li><a href="#">sale</a></li>
+                            <li><a href="#">style videos</a></li>
+                            <li><a href="#">login</a></li>
+                            <li><a href="#">brands</a></li>
+                        </ul>			
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
+            <div class="cards text-center">
+                <img src="images/cards.jpg" alt="">
+            </div>
+            <div class="copyright text-center">
+                <p>© 2015 Eshop. All Rights Reserved | Design by   <a href="http://w3layouts.com">  W3layouts</a></p>
+            </div>
         </div>
-        <?php if ($_l->extends) { ob_end_clean(); return $template->renderChildTemplate($_l->extends, get_defined_vars()); }
+    </div>
+    <?php if ($_l->extends) { ob_end_clean(); return $template->renderChildTemplate($_l->extends, get_defined_vars()); }
 call_user_func(reset($_b->blocks['scripts']), $_b, get_defined_vars())  ?>
 
-    </body>    
+</body>    
 </html>
 <?php
 }}
