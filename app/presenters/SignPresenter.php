@@ -6,15 +6,14 @@ use Nette\Application\UI,
     Tomaj\Form\Renderer\BootstrapRenderer,
     Tomaj\Form\Renderer\BootstrapInlineRenderer,
     Tomaj\Form\Renderer\BootstrapVerticalRenderer;
-
+use Nette\Application\UI\Form;
 /**
  * Sign in/out presenters.
  */
 class SignPresenter extends \BasePresenter {
-    
+
     private $model;
 
-    
     public function __construct(\Model\Repository\UserManager $model) {
         $this->model = $model;
     }
@@ -35,13 +34,17 @@ class SignPresenter extends \BasePresenter {
         $form->addPassword('password', $this->translator->translate('Heslo:'))->setAttribute('placeholder', $this->translator->translate('Heslo'))
                 ->setRequired('Prosím vložte Vaše heslo.');
         $form->addPassword('password2', $this->translator->translate('Zopakovanie hesla:'))->setAttribute('placeholder', $this->translator->translate('Zopakovanie hesla'))
-                ->setRequired('Prosím vložte Vaše heslo.');
+                //->setRequired('Prosím vložte Vaše heslo.');
+                ->setOmitted(TRUE)
+            ->addConditionOn($form['password'], Form::FILLED)
+                ->addRule(Form::FILLED, 'Zadejte prosím heslo znovu pro ověření.')
+                ->addRule(Form::EQUAL, 'Zřejmě došlo k překlepu, zkuste prosím hesla zadat znovu.', $form['password']);
         $form->addSelect('rola', 'Typ registrácie:', $role);
         $form->addCheckbox('newsletter', 'Chcem dostávať emailom personalizovaný newsletter');
-        $form->addCheckbox('actept', 'Chcem dostávať emailom personalizovaný newsletter');
+        $form->addCheckbox('actept', 'Súhlasím s podmienkami používania')
+                ->setRequired('Je potrebné súhlasiť s podmienkami');
         $form->addSubmit('send', 'Registruj sa');
 
-        // call method signInFormSubmitted() on success
         $form->onSuccess[] = $this->RegisFormSubmitted;
         $form->addProtection();
         return $form;
@@ -51,11 +54,23 @@ class SignPresenter extends \BasePresenter {
         if ($this->isAjax()) {
             $this->invalidateControl('RegisForm');
         }
+
         $values = $form->getValues();
+
         try {
-            $this->model->add($values->email, $values->username, $values->password, $values->rola, $values->newsletter);
-            $this->flashMessage('Boli ste úspešne zaregistrovaný', 'success');
-            $this->redirect('Homepage:default');
+            // ak existuje dany email alebo username tak vrat chybu.
+            if ($this->model->overeniePouzivatela($values->username) != FALSE) {
+                $this->flashMessage('Používateľ s menom ' . $values->username . ' existuje prosím zvolte iné meno', 'danger');
+                //$this->redirect('this');
+
+                } else {
+                if($values->rola != 'user' || $values->rola != 'superuser'){
+                    $values->rola = 'user';
+                }
+                //$this->model->add($values->email, $values->username, $values->password, $values->rola, $values->newsletter);
+                $this->flashMessage('Boli ste úspešne zaregistrovaný', 'success');
+                //  $this->redirect('Homepage:default');
+            }
         } catch (\Nette\Security\AuthenticationException $e) {
             $form->addError($this->translator->translate($e->getMessage()));
         }

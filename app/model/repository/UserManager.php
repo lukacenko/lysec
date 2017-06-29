@@ -48,6 +48,13 @@ class UserManager extends \Nette\Object implements \Nette\Security\IAuthenticato
         unset($arr[self::COLUMN_PASSWORD_HASH]);
         return new \Nette\Security\Identity($row[self::COLUMN_ID], $row[self::COLUMN_ROLE], $arr);
     }
+    
+    public function overeniePouzivatela($user){
+
+        $row = $this->database->table(self::TABLE_NAME)->where(self::COLUMN_NAME, $user)->fetch();
+        return $row;
+        
+    }
 
     /**
      * Adds new user.

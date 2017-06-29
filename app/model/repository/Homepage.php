@@ -21,6 +21,5 @@ class Homepage extends Repository
 
     public function getPublicArticles()
     {
-        return "ddd";
     }
 }

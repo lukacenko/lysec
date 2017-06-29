@@ -44,22 +44,10 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="NOV, s.r.o.">
-        <!--link rel="stylesheet" href="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/css/bootstrap.min.css">
-        <link rel="stylesheet" href="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/css/theme.css">
-        <link rel="stylesheet" href="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/css/font-awesome.min.css">
-        <link rel="stylesheet" href="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/css/languages.min.css">
-        <link rel="stylesheet" href="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/css/jquery.tablesorter.pager.css">
-        <link rel="stylesheet" href="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/css/app.css">
-        <script src="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/js/jquery.min.js"></script>
-        <script src="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/js/jquery.tablesorter.min.js"></script>
-        <script src="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/js/bootstrap.min.js"></script>
-        <script src="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/js/netteForms.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/bs/jq-2.2.0,dt-1.10.11/datatables.min.css"/>
-        <script type="text/javascript" src="https://cdn.datatables.net/t/bs/jq-2.2.0,dt-1.10.11/datatables.min.js"></script-->
         <link href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/bootstrap.css" rel='stylesheet' type='text/css'>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/jquery.min.js"></script>
+        <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/netteForms.min.js"></script>
         <!-- Custom Theme files -->
         <link href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/style.css" rel="stylesheet" type="text/css" media="all">
         <!-- Custom Theme files -->
@@ -313,12 +301,8 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
     </div>
 </div>
 </div-->
-<?php $iterations = 0; foreach ($flashes as $flash) { ?>        <div class="alert alert-<?php echo Latte\Runtime\Filters::escapeHtml($flash->type, ENT_COMPAT) ?> fade in">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <?php echo Latte\Runtime\Filters::escapeHtml($flash->message, ENT_NOQUOTES) ?>
-
-        </div>         
-<?php $iterations++; } Latte\Macros\BlockMacrosRuntime::callBlock($_b, 'content', $template->getParameters()) ?>
+        
+<?php Latte\Macros\BlockMacrosRuntime::callBlock($_b, 'content', $template->getParameters()) ?>
     </div>
     <!-- content-section-ends-here -->
     <div class="news-letter">

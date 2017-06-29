@@ -23,51 +23,51 @@
                 <div class="reg">
                     <p>Vitajte, prosím, zadajte nasledujúce údaje a pokračujte.</p>
                     <p>Ak ste sa už zaregistrovali, <a n:href="Sign:prihlasenie">kliknite sem</a></p>
-                    {form regisForm}
-                        <ul>
-                            <li class="text-info">{label email /} </li>
-                            <li>{input email}</li>
-                        </ul>
-                        <ul>
-                            <li class="text-info">{label username /} </li>
-                            <li>{input username}</li>
-                        </ul>				 
-                        <ul>
-                            <li class="text-info">{label password /} </li>
-                            <li>{input password}</li>
-                        </ul>
-                        <ul>
-                            <li class="text-info">{label password2 /} </li>
-                            <li>{input password2}</li>
-                        </ul>
-                        <ul>
-                            <li class="text-info">{label rola /} </li>
-                            <li>{input rola}</li>
-                        </ul>
-                        <ul>
-                            <li class="text-info">{label newsletter /} </li>
-                            <li>{input newsletter}</li>
-                        </ul>
-                        <ul>
-                            <li class="text-info">{label actept /} </li>
-                            <li>{input actept}</li>
-                        </ul>
-                       {input send}    
-                        <p class="click">By clicking this button, you are agree to my  <a href="#">Policy Terms and Conditions.</a></p> 
+                    <div n:foreach="$flashes as $flash" class="alert alert-{$flash->type} fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {$flash->message}
+                    </div>                     {form regisForm}
+                    <ul>
+                        <li class="text-info">{label email /} </li>
+                        <li>{input email}</li>
+                    </ul>
+                    <ul>
+                        <li class="text-info">{label username /} </li>
+                        <li>{input username}</li>
+                    </ul>				 
+                    <ul>
+                        <li class="text-info">{label password /} </li>
+                        <li>{input password}</li>
+                    </ul>
+                    <ul>
+                        <li class="text-info">{label password2 /} </li>
+                        <li>{input password2}</li>
+                    </ul>
+                    <ul>
+                        <li class="text-info"> {label rola /} </li>
+                        <li>{input rola}</li>
+                    </ul>
+                    <ul>
+                        <li class="text-info">{label newsletter /} </li>
+                        <li>{input newsletter}</li>
+                    </ul>
+                    <ul>
+                        <li class="text-info">{label actept /} </li>
+                        <li> {input actept}</li>
+                    </ul>
+                    {input send}    
+                    <p class="click">By clicking this button, you are agree to my  <a href="#">Policy Terms and Conditions.</a></p> 
                     {/form}
-                        
+
+                    </div>
                 </div>
+                <div class="reg-right">
+                    <h3>Bezplatný účet</h3>
+                    <div class="strip"></div>
+                    <p>Pellentesque neque leo, dictum sit amet accumsan non, dignissim ac mauris. Mauris rhoncus, lectus tincidunt tempus aliquam, odio 
+                        libero tincidunt metus, sed euismod elit enim ut mi. Nulla porttitor et dolor sed condimentum. Praesent porttitor lorem dui, in pulvinar enim rhoncus vitae. Curabitur tincidunt, turpis ac lobortis hendrerit, ex elit vestibulum est, at faucibus erat ligula non neque.</p>
+                </div>
+                <div class="clearfix"></div>
             </div>
-            <div class="reg-right">
-                <h3>Completely Free Account</h3>
-                <div class="strip"></div>
-                <p>Pellentesque neque leo, dictum sit amet accumsan non, dignissim ac mauris. Mauris rhoncus, lectus tincidunt tempus aliquam, odio 
-                    libero tincidunt metus, sed euismod elit enim ut mi. Nulla porttitor et dolor sed condimentum. Praesent porttitor lorem dui, in pulvinar enim rhoncus vitae. Curabitur tincidunt, turpis ac lobortis hendrerit, ex elit vestibulum est, at faucibus erat ligula non neque.</p>
-                <h3 class="lorem">Lorem ipsum dolor.</h3>
-                <div class="strip"></div>
-                <p>Tincidunt metus, sed euismod elit enim ut mi. Nulla porttitor et dolor sed condimentum. Praesent porttitor lorem dui, in pulvinar enim rhoncus vitae. Curabitur tincidunt, turpis ac lobortis hendrerit, ex elit vestibulum est, at faucibus erat ligula non neque.</p>
-            </div>
-            <div class="clearfix"></div>
         </div>
     </div>
-</div>

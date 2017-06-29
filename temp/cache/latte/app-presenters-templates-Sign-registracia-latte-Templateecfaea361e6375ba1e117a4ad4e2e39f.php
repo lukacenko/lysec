@@ -36,57 +36,59 @@ if (!function_exists($_b->blocks['content'][] = '_lbd31966b395_content')) { func
                     <p>Vitajte, prosím, zadajte nasledujúce údaje a pokračujte.</p>
                     <p>Ak ste sa už zaregistrovali, <a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Sign:prihlasenie"), ENT_COMPAT) ?>
 ">kliknite sem</a></p>
-                    <?php echo Nette\Bridges\FormsLatte\Runtime::renderFormBegin($form = $_form = $_control["regisForm"], array()) ?>
+<?php $iterations = 0; foreach ($flashes as $flash) { ?>                    <div class="alert alert-<?php echo Latte\Runtime\Filters::escapeHtml($flash->type, ENT_COMPAT) ?> fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <?php echo Latte\Runtime\Filters::escapeHtml($flash->message, ENT_NOQUOTES) ?>
 
-                        <ul>
-                            <li class="text-info"><?php if ($_label = $_form["email"]->getLabel()) echo $_label  ?> </li>
-                            <li><?php echo $_form["email"]->getControl() ?></li>
-                        </ul>
-                        <ul>
-                            <li class="text-info"><?php if ($_label = $_form["username"]->getLabel()) echo $_label  ?> </li>
-                            <li><?php echo $_form["username"]->getControl() ?></li>
-                        </ul>				 
-                        <ul>
-                            <li class="text-info"><?php if ($_label = $_form["password"]->getLabel()) echo $_label  ?> </li>
-                            <li><?php echo $_form["password"]->getControl() ?></li>
-                        </ul>
-                        <ul>
-                            <li class="text-info"><?php if ($_label = $_form["password2"]->getLabel()) echo $_label  ?> </li>
-                            <li><?php echo $_form["password2"]->getControl() ?></li>
-                        </ul>
-                        <ul>
-                            <li class="text-info"><?php if ($_label = $_form["rola"]->getLabel()) echo $_label  ?> </li>
-                            <li><?php echo $_form["rola"]->getControl() ?></li>
-                        </ul>
-                        <ul>
-                            <li class="text-info"><?php if ($_label = $_form["newsletter"]->getLabel()) echo $_label  ?> </li>
-                            <li><?php echo $_form["newsletter"]->getControl() ?></li>
-                        </ul>
-                        <ul>
-                            <li class="text-info"><?php if ($_label = $_form["actept"]->getLabel()) echo $_label  ?> </li>
-                            <li><?php echo $_form["actept"]->getControl() ?></li>
-                        </ul>
-                       <?php echo $_form["send"]->getControl() ?>
+                    </div><?php $iterations++; } ?>
+                     <?php echo Nette\Bridges\FormsLatte\Runtime::renderFormBegin($form = $_form = $_control["regisForm"], array()) ?>
 
-                        <p class="click">By clicking this button, you are agree to my  <a href="#">Policy Terms and Conditions.</a></p> 
+                    <ul>
+                        <li class="text-info"><?php if ($_label = $_form["email"]->getLabel()) echo $_label  ?> </li>
+                        <li><?php echo $_form["email"]->getControl() ?></li>
+                    </ul>
+                    <ul>
+                        <li class="text-info"><?php if ($_label = $_form["username"]->getLabel()) echo $_label  ?> </li>
+                        <li><?php echo $_form["username"]->getControl() ?></li>
+                    </ul>				 
+                    <ul>
+                        <li class="text-info"><?php if ($_label = $_form["password"]->getLabel()) echo $_label  ?> </li>
+                        <li><?php echo $_form["password"]->getControl() ?></li>
+                    </ul>
+                    <ul>
+                        <li class="text-info"><?php if ($_label = $_form["password2"]->getLabel()) echo $_label  ?> </li>
+                        <li><?php echo $_form["password2"]->getControl() ?></li>
+                    </ul>
+                    <ul>
+                        <li class="text-info"> <?php if ($_label = $_form["rola"]->getLabel()) echo $_label  ?> </li>
+                        <li><?php echo $_form["rola"]->getControl() ?></li>
+                    </ul>
+                    <ul>
+                        <li class="text-info"><?php if ($_label = $_form["newsletter"]->getLabel()) echo $_label  ?> </li>
+                        <li><?php echo $_form["newsletter"]->getControl() ?></li>
+                    </ul>
+                    <ul>
+                        <li class="text-info"><?php if ($_label = $_form["actept"]->getLabel()) echo $_label  ?> </li>
+                        <li> <?php echo $_form["actept"]->getControl() ?></li>
+                    </ul>
+                    <?php echo $_form["send"]->getControl() ?>
+
+                    <p class="click">By clicking this button, you are agree to my  <a href="#">Policy Terms and Conditions.</a></p> 
                     <?php echo Nette\Bridges\FormsLatte\Runtime::renderFormEnd($_form) ?>
 
-                        
+
+                    </div>
                 </div>
+                <div class="reg-right">
+                    <h3>Bezplatný účet</h3>
+                    <div class="strip"></div>
+                    <p>Pellentesque neque leo, dictum sit amet accumsan non, dignissim ac mauris. Mauris rhoncus, lectus tincidunt tempus aliquam, odio 
+                        libero tincidunt metus, sed euismod elit enim ut mi. Nulla porttitor et dolor sed condimentum. Praesent porttitor lorem dui, in pulvinar enim rhoncus vitae. Curabitur tincidunt, turpis ac lobortis hendrerit, ex elit vestibulum est, at faucibus erat ligula non neque.</p>
+                </div>
+                <div class="clearfix"></div>
             </div>
-            <div class="reg-right">
-                <h3>Completely Free Account</h3>
-                <div class="strip"></div>
-                <p>Pellentesque neque leo, dictum sit amet accumsan non, dignissim ac mauris. Mauris rhoncus, lectus tincidunt tempus aliquam, odio 
-                    libero tincidunt metus, sed euismod elit enim ut mi. Nulla porttitor et dolor sed condimentum. Praesent porttitor lorem dui, in pulvinar enim rhoncus vitae. Curabitur tincidunt, turpis ac lobortis hendrerit, ex elit vestibulum est, at faucibus erat ligula non neque.</p>
-                <h3 class="lorem">Lorem ipsum dolor.</h3>
-                <div class="strip"></div>
-                <p>Tincidunt metus, sed euismod elit enim ut mi. Nulla porttitor et dolor sed condimentum. Praesent porttitor lorem dui, in pulvinar enim rhoncus vitae. Curabitur tincidunt, turpis ac lobortis hendrerit, ex elit vestibulum est, at faucibus erat ligula non neque.</p>
-            </div>
-            <div class="clearfix"></div>
         </div>
     </div>
-</div>
 <?php
 }}
 
