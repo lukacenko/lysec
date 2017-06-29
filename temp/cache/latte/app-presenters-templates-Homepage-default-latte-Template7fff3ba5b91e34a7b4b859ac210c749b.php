@@ -1,11 +1,27 @@
-{block content}
-<div class="row">
+<?php
+// source: C:\xampp\htdocs\lysec\app\presenters/templates/Homepage/default.latte
+
+class Template7fff3ba5b91e34a7b4b859ac210c749b extends Latte\Template {
+function render() {
+foreach ($this->params as $__k => $__v) $$__k = $__v; unset($__k, $__v);
+// prolog Latte\Macros\CoreMacros
+list($_b, $_g, $_l) = $template->initialize('5329741f08', 'html')
+;
+// prolog Latte\Macros\BlockMacros
+//
+// block content
+//
+if (!function_exists($_b->blocks['content'][] = '_lb8dc8339bbe_content')) { function _lb8dc8339bbe_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+?><div class="row">
     <div class="col-xs-8">
-        <h1 n:block=title>{_}Rozpracované zakázky{/_}</h1>
+<?php call_user_func(reset($_b->blocks['title']), $_b, get_defined_vars())  ?>
     </div>
     <div class="col-xs-4 text-right">
-        <a n:href="Homepage:addOrder" type="button" class="btn btn-success btn-lg">
-            <span class="fa fa-plus-square-o" aria-hidden="true"></span> {_}Pridať zákazku{/_}
+        <a type="button" class="btn btn-success btn-lg" href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Homepage:addOrder"), ENT_COMPAT) ?>
+">
+            <span class="fa fa-plus-square-o" aria-hidden="true"></span> <?php ob_start() ?>
+Pridať zákazku<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?>
+
         </a>
     </div>
 </div>
@@ -18,7 +34,7 @@
             </div>
             <div class="col-md-4 shipping-grid">
                 <div class="shipping">
-                    <img src="images/shipping.png" alt="" />
+                    <img src="images/shipping.png" alt="">
                 </div>
                 <div class="shipping-text">
                     <h3>Free Shipping</h3>
@@ -37,7 +53,7 @@
                 <h3 class="head text-center">Latest Products</h3>
             </header>
             <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="images/p1.jpg" alt="" /></a>
+                <a href="single.html"><img src="images/p1.jpg" alt=""></a>
                 <div class="mask">
                     <a href="single.html">Quick View</a>
                 </div>
@@ -45,7 +61,7 @@
                 <p><a class="item_add" href="#"><i></i> <span class="item_price">$329</span></a></p>
             </div>
             <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="images/p2.jpg" alt="" /></a>
+                <a href="single.html"><img src="images/p2.jpg" alt=""></a>
                 <div class="mask">
                     <a href="single.html">Quick View</a>
                 </div>
@@ -53,7 +69,7 @@
                 <p><a class="item_add" href="#"><i></i> <span class="item_price">$599.8</span></a></p>
             </div>
             <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="images/p3.jpg" alt="" /></a>
+                <a href="single.html"><img src="images/p3.jpg" alt=""></a>
                 <div class="mask">
                     <a href="single.html">Quick View</a>
                 </div>
@@ -61,7 +77,7 @@
                 <p><a class="item_add" href="#"><i></i> <span class="item_price">$359.6</span></a></p>
             </div>
             <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="images/p4.jpg" alt="" /></a>
+                <a href="single.html"><img src="images/p4.jpg" alt=""></a>
                 <div class="mask">
                     <a href="single.html">Quick View</a>
                 </div>
@@ -69,7 +85,7 @@
                 <p><a class="item_add" href="#"><i></i> <span class="item_price">$649.99</span></a></p>
             </div>
             <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="images/p5.jpg" alt="" /></a>
+                <a href="single.html"><img src="images/p5.jpg" alt=""></a>
                 <div class="mask">
                     <a href="single.html">Quick View</a>
                 </div>
@@ -77,7 +93,7 @@
                 <p><a class="item_add" href="#"><i></i> <span class="item_price">$750</span></a></p>
             </div>
             <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="images/p6.jpg" alt="" /></a>
+                <a href="single.html"><img src="images/p6.jpg" alt=""></a>
                 <div class="mask">
                     <a href="single.html">Quick View</a>
                 </div>
@@ -85,7 +101,7 @@
                 <p><a class="item_add" href="#"><i></i> <span class="item_price">$295.59</span></a></p>
             </div>
             <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="images/p7.jpg" alt="" /></a>
+                <a href="single.html"><img src="images/p7.jpg" alt=""></a>
                 <div class="mask">
                     <a href="single.html">Quick View</a>
                 </div>
@@ -93,7 +109,7 @@
                 <p><a class="item_add" href="#"><i></i> <span class="item_price">$380</span></a></p>
             </div>
             <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="images/p8.jpg" alt="" /></a>
+                <a href="single.html"><img src="images/p8.jpg" alt=""></a>
                 <div class="mask">
                     <a href="single.html">Quick View</a>
                 </div>
@@ -101,7 +117,7 @@
                 <p><a class="item_add" href="#"><i></i> <span class="item_price">$540.6</span></a></p>
             </div>
             <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="images/p9.jpg" alt="" /></a>
+                <a href="single.html"><img src="images/p9.jpg" alt=""></a>
                 <div class="mask">
                     <a href="single.html">Quick View</a>
                 </div>
@@ -117,31 +133,31 @@
     <div class="container">
         <h3 class="like text-center">Featured Collection</h3>        			
         <ul id="flexiselDemo3">
-            <li><a href="single.html"><img src="images/l1.jpg" class="img-responsive" alt="" /></a>
+            <li><a href="single.html"><img src="images/l1.jpg" class="img-responsive" alt=""></a>
                 <div class="product liked-product simpleCart_shelfItem">
                     <a class="like_name" href="single.html">perfectly simple</a>
                     <p><a class="item_add" href="#"><i></i> <span class=" item_price">$759</span></a></p>
                 </div>
             </li>
-            <li><a href="single.html"><img src="images/l2.jpg" class="img-responsive" alt="" /></a>						
+            <li><a href="single.html"><img src="images/l2.jpg" class="img-responsive" alt=""></a>						
                 <div class="product liked-product simpleCart_shelfItem">
                     <a class="like_name" href="single.html">praising pain</a>
                     <p><a class="item_add" href="#"><i></i> <span class=" item_price">$699</span></a></p>
                 </div>
             </li>
-            <li><a href="single.html"><img src="images/l3.jpg" class="img-responsive" alt="" /></a>
+            <li><a href="single.html"><img src="images/l3.jpg" class="img-responsive" alt=""></a>
                 <div class="product liked-product simpleCart_shelfItem">
                     <a class="like_name" href="single.html">Neque porro</a>
                     <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
                 </div>
             </li>
-            <li><a href="single.html"><img src="images/l4.jpg" class="img-responsive" alt="" /></a>
+            <li><a href="single.html"><img src="images/l4.jpg" class="img-responsive" alt=""></a>
                 <div class="product liked-product simpleCart_shelfItem">
                     <a class="like_name" href="single.html">equal blame</a>
                     <p><a class="item_add" href="#"><i></i> <span class=" item_price">$499</span></a></p>
                 </div>
             </li>
-            <li><a href="single.html"><img src="images/l5.jpg" class="img-responsive" alt="" /></a>
+            <li><a href="single.html"><img src="images/l5.jpg" class="img-responsive" alt=""></a>
                 <div class="product liked-product simpleCart_shelfItem">
                     <a class="like_name" href="single.html">perfectly simple</a>
                     <p><a class="item_add" href="#"><i></i> <span class=" item_price">$649</span></a></p>
@@ -178,9 +194,22 @@
         <script type="text/javascript" src="js/jquery.flexisel.js"></script>
     </div>
 </div>            
-{/block}
-{block scripts}
-<script>
+<?php
+}}
+
+//
+// block title
+//
+if (!function_exists($_b->blocks['title'][] = '_lbb1a2e1a1d2_title')) { function _lbb1a2e1a1d2_title($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+?>        <h1><?php ob_start() ?>Rozpracované zakázky<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?></h1>
+<?php
+}}
+
+//
+// block scripts
+//
+if (!function_exists($_b->blocks['scripts'][] = '_lb173c410e5e_scripts')) { function _lb173c410e5e_scripts($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+?><script>
     $(document).ready(function () {
         $(".hoverDiv").hover(function () {
             $(this).children('.overlayed').css("opacity", "0.1");
@@ -191,4 +220,29 @@
         });
     });
 </script>
-{/block}
+<?php
+}}
+
+//
+// end of blocks
+//
+
+// template extending
+
+$_l->extends = empty($_g->extended) && isset($_control) && $_control instanceof Nette\Application\UI\Presenter ? $_control->findLayoutTemplateFile() : NULL; $_g->extended = TRUE;
+
+if ($_l->extends) { ob_start();}
+
+// prolog Nette\Bridges\ApplicationLatte\UIMacros
+
+// snippets support
+if (empty($_l->extends) && !empty($_control->snippetMode)) {
+	return Nette\Bridges\ApplicationLatte\UIRuntime::renderSnippets($_control, $_b, get_defined_vars());
+}
+
+//
+// main template
+//
+if ($_l->extends) { ob_end_clean(); return $template->renderChildTemplate($_l->extends, get_defined_vars()); }
+call_user_func(reset($_b->blocks['content']), $_b, get_defined_vars()) ; call_user_func(reset($_b->blocks['scripts']), $_b, get_defined_vars()) ; 
+}}

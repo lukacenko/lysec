@@ -1,47 +1,86 @@
+<?php
+// source: C:\xampp\htdocs\lysec\app\presenters/templates/@layout.latte
+
+class Template76771dd22c9fc6fed663d204ff1ef00c extends Latte\Template {
+function render() {
+foreach ($this->params as $__k => $__v) $$__k = $__v; unset($__k, $__v);
+// prolog Latte\Macros\CoreMacros
+list($_b, $_g, $_l) = $template->initialize('ffc54706b1', 'html')
+;
+// prolog Latte\Macros\BlockMacros
+//
+// block scripts
+//
+if (!function_exists($_b->blocks['scripts'][] = '_lbe21278d03b_scripts')) { function _lbe21278d03b_scripts($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+;
+}}
+
+//
+// end of blocks
+//
+
+// template extending
+
+$_l->extends = empty($_g->extended) && isset($_control) && $_control instanceof Nette\Application\UI\Presenter ? $_control->findLayoutTemplateFile() : NULL; $_g->extended = TRUE;
+
+if ($_l->extends) { ob_start();}
+
+// prolog Nette\Bridges\ApplicationLatte\UIMacros
+
+// snippets support
+if (empty($_l->extends) && !empty($_control->snippetMode)) {
+	return Nette\Bridges\ApplicationLatte\UIRuntime::renderSnippets($_control, $_b, get_defined_vars());
+}
+
+//
+// main template
+//
+?>
 <!DOCTYPE html>
-<html lang="{$lang}">
+<html lang="<?php echo Latte\Runtime\Filters::escapeHtml($lang, ENT_COMPAT) ?>">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="NOV, s.r.o.">
-        <!--link rel="stylesheet" href="{$basePath}/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{$basePath}/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{$basePath}/css/theme.css">
-        <link rel="stylesheet" href="{$basePath}/css/font-awesome.min.css">
-        <link rel="stylesheet" href="{$basePath}/css/languages.min.css">
-        <link rel="stylesheet" href="{$basePath}/css/jquery.tablesorter.pager.css">
-        <link rel="stylesheet" href="{$basePath}/css/app.css">
-        <script src="{$basePath}/js/jquery.min.js"></script>
-        <script src="{$basePath}/js/jquery.tablesorter.min.js"></script>
-        <script src="{$basePath}/js/bootstrap.min.js"></script>
-        <script src="{$basePath}/js/netteForms.min.js"></script>
+        <!--link rel="stylesheet" href="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/css/theme.css">
+        <link rel="stylesheet" href="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/css/font-awesome.min.css">
+        <link rel="stylesheet" href="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/css/languages.min.css">
+        <link rel="stylesheet" href="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/css/jquery.tablesorter.pager.css">
+        <link rel="stylesheet" href="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/css/app.css">
+        <script src="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/js/jquery.min.js"></script>
+        <script src="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/js/jquery.tablesorter.min.js"></script>
+        <script src="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/js/bootstrap.min.js"></script>
+        <script src="<?php echo Latte\Runtime\Filters::escapeHtmlComment($basePath) ?>/js/netteForms.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/bs/jq-2.2.0,dt-1.10.11/datatables.min.css"/>
         <script type="text/javascript" src="https://cdn.datatables.net/t/bs/jq-2.2.0,dt-1.10.11/datatables.min.js"></script-->
-        <link href="{$basePath}/css/bootstrap.css" rel='stylesheet' type='text/css' />
+        <link href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/bootstrap.css" rel='stylesheet' type='text/css'>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="{$basePath}/js/jquery.min.js"></script>
+        <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/jquery.min.js"></script>
         <!-- Custom Theme files -->
-        <link href="{$basePath}/css/style.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/style.css" rel="stylesheet" type="text/css" media="all">
         <!-- Custom Theme files -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="keywords" content="Eshop Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-              Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+              Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design">
         <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
         <!--webfont-->
         <!-- for bootstrap working -->
-        <script type="{$basePath}/text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
+        <script type="<?php echo Latte\Runtime\Filters::escapeHtml($basePath, ENT_COMPAT) ?>/text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
         <!-- //for bootstrap working -->
         <!-- cart -->
-        <script src="{$basePath}/js/simpleCart.min.js"></script>
+        <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/simpleCart.min.js"></script>
         <!-- cart -->
-        <link rel="stylesheet" href="{$basePath}/css/flexslider.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/flexslider.css" type="text/css" media="screen">
 
 
-        <title>{ifset title}{include title|striptags} | {/ifset}Lisec | NOV, s.r.o.</title>
+        <title><?php if (isset($_b->blocks["title"])) { ob_start(); Latte\Macros\BlockMacrosRuntime::callBlock($_b, 'title', $template->getParameters()); echo $template->striptags(ob_get_clean()) ?>
+ | <?php } ?>Lisec | NOV, s.r.o.</title>
     </head>
     <body role="document">
         <!-- header-section-starts -->
@@ -266,14 +305,16 @@ $(function () {
             </div>
         </div>
 
-        {include 'navbar.latte'}        
+<?php $_b->templates['ffc54706b1']->renderChildTemplate('navbar.latte', $template->getParameters()) ?>
         <div class="container theme-showcase" role="main">
-            <div n:foreach="$flashes as $flash" class="alert alert-{$flash->type} fade in">
+<?php $iterations = 0; foreach ($flashes as $flash) { ?>            <div class="alert alert-<?php echo Latte\Runtime\Filters::escapeHtml($flash->type, ENT_COMPAT) ?> fade in">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                {$flash->message}
-            </div>
+                <?php echo Latte\Runtime\Filters::escapeHtml($flash->message, ENT_NOQUOTES) ?>
 
-            {include content}
+            </div>
+<?php $iterations++; } ?>
+
+<?php Latte\Macros\BlockMacrosRuntime::callBlock($_b, 'content', $template->getParameters()) ?>
         </div>
         <!-- content-section-ends-here -->
         <div class="news-letter">
@@ -282,8 +323,8 @@ $(function () {
                     <h6>JOIN OUR MAILING LIST</h6>
                     <div class="sub-left-right">
                         <form>
-                            <input type="text" value="Enter Your Email Here" onfocus="this.value = '';"/>
-                            <input type="submit" value="SUBSCRIBE" />
+                            <input type="text" value="Enter Your Email Here" onfocus="this.value = '';">
+                            <input type="submit" value="SUBSCRIBE">
                         </form>
                     </div>
                     <div class="clearfix"> </div>
@@ -350,13 +391,17 @@ $(function () {
                     </div>
                 </div>
                 <div class="cards text-center">
-                    <img src="images/cards.jpg" alt="" />
+                    <img src="images/cards.jpg" alt="">
                 </div>
                 <div class="copyright text-center">
                     <p>© 2015 Eshop. All Rights Reserved | Design by   <a href="http://w3layouts.com">  W3layouts</a></p>
                 </div>
             </div>
         </div>
-        {block scripts}{/block}
+        <?php if ($_l->extends) { ob_end_clean(); return $template->renderChildTemplate($_l->extends, get_defined_vars()); }
+call_user_func(reset($_b->blocks['scripts']), $_b, get_defined_vars())  ?>
+
     </body>    
 </html>
+<?php
+}}
