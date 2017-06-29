@@ -30,7 +30,6 @@ class SignPresenter extends \BasePresenter {
         $form->addText('email', $this->translator->translate('E-mailová adresa:'))->setAttribute('placeholder', $this->translator->translate('E-mailová adresa'))
                 ->setRequired('Prosím vložte Vaš E-mail.')
                 ->addRule(Form::EMAIL, 'Email muí obsahovať správny tvar');                
-                ;
         $form->addText('username', $this->translator->translate('Užívateľské meno:'))->setAttribute('placeholder', $this->translator->translate('Užívateľské meno'))
                 ->setRequired('Prosím vložte Vaše používateľské meno.');
         $form->addPassword('password', $this->translator->translate('Heslo:'))->setAttribute('placeholder', $this->translator->translate('Heslo'))
