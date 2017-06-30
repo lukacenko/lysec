@@ -38,7 +38,7 @@ session:
 services:
         #- Context
         - Model\Repository\Homepage
-        #- Model\Repository\Repository
+        - Model\Repository\Spravy
         - Model\Repository\UserManager
         router: App\RouterFactory::createRouter
 
@@ -52,10 +52,12 @@ services:
                         
                         - addResource('Sign') #prihlasenie
                         - addResource('Homepage') #domovska stranka
+                        - addResource('Spravy') #domovska stranka
 
                         - allow('guest', 'Sign')
                         #user
                         - allow('user', 'Homepage')
+                        - allow('user', 'Spravy')
                         
                         #povolit vsetko
                         - allow('admin')

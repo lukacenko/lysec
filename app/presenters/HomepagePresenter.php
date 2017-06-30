@@ -21,8 +21,8 @@ class HomepagePresenter extends \BasePresenter {
     }
 
         
-    public function renderDefault(){
-        $this->template->orders = $this->data;
+    public function renderPrehlad(){
+        //$this->template->orders = $this->data;
      }
     
     public function renderOrder($id){

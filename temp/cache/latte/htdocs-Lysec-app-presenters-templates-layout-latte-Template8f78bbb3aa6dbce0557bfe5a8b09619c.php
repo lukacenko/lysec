@@ -1,17 +1,17 @@
 <?php
-// source: C:\xampp\htdocs\lysec\app\presenters/templates/@layout.latte
+// source: C:\xampp\htdocs\Lysec\app\presenters/templates/@layout.latte
 
-class Template76771dd22c9fc6fed663d204ff1ef00c extends Latte\Template {
+class Template8f78bbb3aa6dbce0557bfe5a8b09619c extends Latte\Template {
 function render() {
 foreach ($this->params as $__k => $__v) $$__k = $__v; unset($__k, $__v);
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('ffc54706b1', 'html')
+list($_b, $_g, $_l) = $template->initialize('43e390bbc9', 'html')
 ;
 // prolog Latte\Macros\BlockMacros
 //
 // block scripts
 //
-if (!function_exists($_b->blocks['scripts'][] = '_lbe21278d03b_scripts')) { function _lbe21278d03b_scripts($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+if (!function_exists($_b->blocks['scripts'][] = '_lb0e31168c08_scripts')) { function _lb0e31168c08_scripts($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
 ;
 }}
 
@@ -78,9 +78,11 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
                     <div class="header-top-left">
                         <ul>
 <?php if ($user->loggedIn) { ?>
-                                <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Sign:out"), ENT_COMPAT) ?>
-"><?php echo Latte\Runtime\Filters::escapeHtml($user->getIdentity()->login, ENT_NOQUOTES) ?>
-  <span class="glyphicon glyphicon-user"> </span><?php ob_start() ?>Odhlásiť sa<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </a></li>
+                                <li>Ahoj <?php echo Latte\Runtime\Filters::escapeHtml($user->getIdentity()->login, ENT_NOQUOTES) ?>
+ <a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Sign:out"), ENT_COMPAT) ?>
+">  <span class="glyphicon glyphicon-user"> </span><?php ob_start() ?>Odhlásiť sa<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </a></li>
+                                <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Spravy:prehlad"), ENT_COMPAT) ?>
+">  <span class="glyphicon glyphicon-envelope"> </span><?php ob_start() ?> Správy<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </a></li>
 <?php } else { ?>
                                 <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Sign:prihlasenie"), ENT_COMPAT) ?>
 "><span class="glyphicon glyphicon-user"> </span>Prihlásiť sa</a></li>
@@ -121,7 +123,8 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Homepage:default"), ENT_COMPAT) ?>
+">Home</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Men <b class="caret"></b></a>
                                 <ul class="dropdown-menu multi-column columns-3">

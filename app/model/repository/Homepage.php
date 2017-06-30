@@ -4,22 +4,22 @@ namespace Model\Repository;
 
 use Nette;
 
-class Homepage extends Repository
-{
+class Homepage extends Repository {
+
     /**
      * @var Nette\Database\Context
      */
-    
     /*
-    private $database;
+      private $database;
 
-    public function __construct(Nette\Database\Context $database)
-    {
-        $this->database = $database;
-    }
-    */
+      public function __construct(Nette\Database\Context $database)
+      {
+      $this->database = $database;
+      }
+     */
 
-    public function getPublicArticles()
-    {
+    public function getPublicArticles() {
+        
     }
+
 }

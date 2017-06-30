@@ -1,7 +1,9 @@
 <?php
 
 namespace Model\Repository;
+
 use Nette\Utils\Strings;
+
 abstract class Repository extends \Nette\Object {
 
     /** @var \Nette\Database\Context */
@@ -13,7 +15,6 @@ abstract class Repository extends \Nette\Object {
     protected $dniKratke;
     private $wunderground = false;
 
-    
     public function __construct(\Nette\Database\Context $connection, \Nette\DI\Container $context = NULL) {
         $this->db = $connection;
         $this->company_data = array(
@@ -28,7 +29,7 @@ abstract class Repository extends \Nette\Object {
         $this->datumKoniec = mktime('23', '59', '59', '31', '12', '2030');
         $this->dniDlhe = array('Pondelok', 'Utorok', 'Streda', 'Štvrtok', 'Piatok', 'Sobota', 'Nedeľa');
         $this->dniKratke = array('Po', 'Ut', 'St', 'Št', 'Pia', 'So', 'Ne');
-       
+
         if ($context->parameters['wunderground']['enable'] == true) {
             $this->wunderground = array(
                 'apikey' => $context->parameters['wunderground']['apikey'],
@@ -42,13 +43,23 @@ abstract class Repository extends \Nette\Object {
         }
     }
 
-    public function test(){
-        $result = $connection>query('SELECT * FROM users WHERE id=?', 123);    
+    
+    public function issetUser($user){
+        $row = $this->db->table('users')->where('login', $user)->fetch();        
+        return $row;
+    }
+
+    public function getIdUser($user){
+        $row = $this->db->table('users')->where('login', $user)->fetch();        
+        return $row['id'];
+    }
+
+    public function test() {
+        $result = $connection > query('SELECT * FROM users WHERE id=?', 123);
         $rows = $result->fetchAll(); //vrátí všechny řádky jako pole
         return $rows;
     }
-    
-    
+
     public function inTransaction() {
         return $this->db->getConnection();
     }
@@ -112,46 +123,46 @@ abstract class Repository extends \Nette\Object {
         $d = $this->db->select('displej_nastavenie')->from('displej_typ')->where('id_displej_typ=2')->fetch();
         return unserialize($d['displej_nastavenie']);
     }
+
     /**
      * Weather underground api processing
      * @param type $lang
      * @return array / FALSE
      */
-    public function getWeather($lang = 'EN'){
-        try{
-            if($this->wunderground == FALSE){
+    public function getWeather($lang = 'EN') {
+        try {
+            if ($this->wunderground == FALSE) {
                 throw new \Exception();
             }
             $value = $this->cache->load('weathersk');
 
-            if($value === NULL){
+            if ($value === NULL) {
                 $urlFormat = 'http://api.wunderground.com/api/%s/conditions/lang:%s/q/%s/%s.json';
                 $url = sprintf($urlFormat, $this->wunderground['apikey'], $lang, $this->wunderground['state'], $this->wunderground['location']);
                 $json_string = file_get_contents($url);
                 $parsed_json = json_decode($json_string);
-                $this->cache->save('weather'.$lang, array('data' => $parsed_json, 'timestamp' => new Nette\DateTime), array(
+                $this->cache->save('weather' . $lang, array('data' => $parsed_json, 'timestamp' => new Nette\DateTime), array(
                     Nette\Caching\Cache::EXPIRE => $this->wunderground['refresh'], // akceptuje i sekundy nebo timestamp
                 ));
-                $value = $this->cache->load('weather'.$lang);
+                $value = $this->cache->load('weather' . $lang);
                 $data = $value['data'];
-                $i = Nette\Image::fromString(file_get_contents((string)$data->{'current_observation'}->{'icon_url'}));
-                $i->save($this->wunderground['basePath'].'/actual_weather'.$lang.'.png', 100, Nette\Image::PNG);
-
-            }else{
-                $value = $this->cache->load('weather'.$lang);
+                $i = Nette\Image::fromString(file_get_contents((string) $data->{'current_observation'}->{'icon_url'}));
+                $i->save($this->wunderground['basePath'] . '/actual_weather' . $lang . '.png', 100, Nette\Image::PNG);
+            } else {
+                $value = $this->cache->load('weather' . $lang);
                 $data = $value['data'];
             }
             return array(
-                'location' => (string)$data->{'current_observation'}->{'display_location'}->{'city'},
-                'temp_c' => (string)$data->{'current_observation'}->{'temp_c'},
-                'temp_f' => (string)$data->{'current_observation'}->{'temp_f'},
-                'humidity' => filter_var((string)$data->{'current_observation'}->{'relative_humidity'}, FILTER_SANITIZE_NUMBER_INT),
-                'weather' => Nette\Utils\Strings::lower((string)$data->{'current_observation'}->{'weather'}),
-                'icon' => $this->baseUri.$this->wunderground['baseUri'].'/actual_weather'.$lang.'.png?'.$value['timestamp']->format('U')
+                'location' => (string) $data->{'current_observation'}->{'display_location'}->{'city'},
+                'temp_c' => (string) $data->{'current_observation'}->{'temp_c'},
+                'temp_f' => (string) $data->{'current_observation'}->{'temp_f'},
+                'humidity' => filter_var((string) $data->{'current_observation'}->{'relative_humidity'}, FILTER_SANITIZE_NUMBER_INT),
+                'weather' => Nette\Utils\Strings::lower((string) $data->{'current_observation'}->{'weather'}),
+                'icon' => $this->baseUri . $this->wunderground['baseUri'] . '/actual_weather' . $lang . '.png?' . $value['timestamp']->format('U')
             );
         } catch (\Exception $ex) {
             return FALSE;
         }
     }
-    
+
 }

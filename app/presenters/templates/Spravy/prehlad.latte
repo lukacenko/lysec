@@ -1,0 +1,68 @@
+{block content}
+
+<div class="content">
+    <div class="container">			   
+        <div class="typrography">
+            <div class="dreamcrub">
+                <ul class="breadcrumbs">
+                    <li class="home">
+                        <a href="index.html" title="Go to Home Page">Home</a>&nbsp;
+                        <span>&gt;</span>
+                    </li>
+                    <li class="women">
+                        Typography
+                    </li>
+                </ul>
+                <ul class="previous">
+                    <li><a href="index.html">Back to Previous Page</a></li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <!--h2 class="heading text-center">Zoznam správ</h2-->
+            <a n:href="Spravy:nova"><button class="btn btn-primary" type="button"> Napísať novú správu </button></a>
+
+            <h3 class="bars"> Zoznam správ</h3>
+            <div class="list-group">
+                {foreach $prehlad as $row}
+                {if $row->user2read == 0}
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                {else}
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                {/if}                
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{$row->title}</h5>
+                        <small><span class="glyphicon glyphicon-time">{$row->timestamp}</span></small>
+                    </div>
+                    <p class="mb-1">{$row->message}</p>
+                </a>
+                {/foreach} 
+            </div>            
+            <div class="grid_3 grid_5">
+                <div class="col-md-6">
+                    <ul class="pagination pagination-lg">
+                        <li class="disabled"><a href="#"><span aria-hidden="true">«</span></a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                    </ul>
+
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{/block}
+{block scripts}
+<script>
+    $(document).ready(function () {
+        $("#myTable").DataTable();
+    });
+</script>
+{/block}
