@@ -1,17 +1,17 @@
 <?php
-// source: C:\xampp\htdocs\Lysec\app\presenters/templates/@layout.latte
+// source: C:\xampp\htdocs\lysec\app\presenters/templates/@layout.latte
 
-class Template8f78bbb3aa6dbce0557bfe5a8b09619c extends Latte\Template {
+class Template76771dd22c9fc6fed663d204ff1ef00c extends Latte\Template {
 function render() {
 foreach ($this->params as $__k => $__v) $$__k = $__v; unset($__k, $__v);
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('43e390bbc9', 'html')
+list($_b, $_g, $_l) = $template->initialize('ffc54706b1', 'html')
 ;
 // prolog Latte\Macros\BlockMacros
 //
 // block scripts
 //
-if (!function_exists($_b->blocks['scripts'][] = '_lb0e31168c08_scripts')) { function _lb0e31168c08_scripts($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+if (!function_exists($_b->blocks['scripts'][] = '_lbe21278d03b_scripts')) { function _lbe21278d03b_scripts($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
 ;
 }}
 
@@ -66,7 +66,6 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
         <!-- cart -->
         <link rel="stylesheet" href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/flexslider.css" type="text/css" media="screen">
 
-
         <title><?php if (isset($_b->blocks["title"])) { ob_start(); Latte\Macros\BlockMacrosRuntime::callBlock($_b, 'title', $template->getParameters()); echo $template->striptags(ob_get_clean()) ?>
  | <?php } ?>Lysec | Luko, s.r.o.</title>
     </head>
@@ -78,11 +77,11 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
                     <div class="header-top-left">
                         <ul>
 <?php if ($user->loggedIn) { ?>
-                                <li>Ahoj <?php echo Latte\Runtime\Filters::escapeHtml($user->getIdentity()->login, ENT_NOQUOTES) ?>
- <a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Sign:out"), ENT_COMPAT) ?>
-">  <span class="glyphicon glyphicon-user"> </span><?php ob_start() ?>Odhlásiť sa<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </a></li>
+                                <li style="color:white"> <span class="glyphicon glyphicon-user"> </span> Ahoj <?php echo Latte\Runtime\Filters::escapeHtml($user->getIdentity()->login, ENT_NOQUOTES) ?> </li>
                                 <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Spravy:prehlad"), ENT_COMPAT) ?>
 ">  <span class="glyphicon glyphicon-envelope"> </span><?php ob_start() ?> Správy<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </a></li>
+                                <li> <a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Sign:out"), ENT_COMPAT) ?>
+">  <span class="glyphicon glyphicon-share"> </span><?php ob_start() ?>Odhlásiť sa<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </a></li>
 <?php } else { ?>
                                 <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Sign:prihlasenie"), ENT_COMPAT) ?>
 "><span class="glyphicon glyphicon-user"> </span>Prihlásiť sa</a></li>
@@ -96,7 +95,8 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
                             <a href="checkout.html">
                                 <h3> <span class="simpleCart_total"> $0.00 </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span>)<img src="images/bag.png" alt=""></h3>
                             </a>	
-                            <p><a href="javascript:;" class="simpleCart_empty">Empty cart</a></p>
+                            <p><a class="simpleCart_empty" href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Basket:basket"), ENT_COMPAT) ?>
+">Empty cart</a></p>
                             <div class="clearfix"> </div>
                         </div>
                     </div>

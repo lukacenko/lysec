@@ -1,0 +1,68 @@
+{block content}
+<div class="content">
+    <div class="container">	
+
+        <div class="container-fluid">
+            <div class="row">
+                {include layout.latte}
+                <div class="col-md-9 current-chat">
+                    <div class="row chat-toolbar-row">
+                        <div class="col-sm-12">
+                            <div class="btn-group chat-toolbar" role="group" aria-label="...">
+                                <h3 class="bars"> Konverzácia s {$messageUser->login}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row current-chat-area">
+                        <div class="col-md-12">
+                            <ul class="media-list">
+                                {foreach $message as $row}
+                                    <li class="media">
+                                        <div class="media-body">
+                                            <div class="media">
+                                                <b>{$row->title}</b>
+                                                <a class="pull-left" href="#">
+                                                    <img class="media-object img-circle " src="https://app.teamsupport.com/dc/1078/UserAvatar/1839999/48/1470773165634">
+                                                </a>
+                                                <div class="media-body">
+                                                    {$row->sprava}
+                                                    <br>
+                                                    <small class="text-muted">{$row->login} | {$row->timesend}</small>
+                                                    <hr>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                {/foreach} 
+                            </ul>  
+                        </div>
+                    </div>
+                    <div class="row current-chat-footer">
+                        <div class="panel-footer">
+                            <div class="input-group">
+                                <input type="text" class="form-control">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">Send</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+{/block}
+{block scripts}
+<script>
+    $(document).ready(function () {
+        $("#myTable").DataTable();
+    });
+</script>
+{/block}

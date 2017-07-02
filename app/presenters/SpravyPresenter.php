@@ -9,6 +9,7 @@ use Nette,
 class SpravyPresenter extends \BasePresenter {
 
     private $model;
+    public $id;
 
     public function __construct(\Model\Repository\Spravy $model) {
         $this->model = $model;
@@ -19,23 +20,39 @@ class SpravyPresenter extends \BasePresenter {
         $this->template->prehlad = $this->model->getAllMessage($this->getUser()->getIdentity()->id);
     }
 
-    public function renderOrder($id) {
-        $hasData = false;
-        foreach ($this->data as $k => $v) {
-            foreach ($v as $k2 => $v2) {
-                if ($k2 == 'number') {
-                    if ($v2 == $id) {
-                        $hasData = $this->data[$k];
-                        break;
-                    }
-                }
-            }
+    public function renderOdoslane() {
+        $this->template->prehlad = $this->model->getAllSendMessage($this->getUser()->getIdentity()->id);
+    }
+
+    public function actionDetail($id) {
+
+        $this->id = $id;
+        $data = $this->model->getAllMessageUsers($this->id);
+        $this->template->message = $data;
+        $user = $this->model->getAllMessageUsersName($this->id);
+        $this->template->messageUser = $user;
+        $this->setView('detail');
+    }
+
+    // zmazanie správy
+    public function actionDelete($id) {
+
+        // overit ci sprava patri prihlasene pouzivatelovy alebo inemu
+        $user_id = $this->getUser()->getIdentity()->id;
+        $id_user = $this->model->getMessageUserId($id);
+        if ($user_id == $id_user->user2) {
+            $this->model->removeMessage($id);
+            $this->flashMessage('Vymazane', 'success');
+        } else {
+            $this->flashMessage('Sprava sa neda zmazať', 'danger');
         }
-        if ($hasData == false) {
-            $this->flashMessage($this->translator->translate('Zákazka neexistuje'), 'danger');
-            $this->redirect('Homepage:default');
-        }
-        $this->template->order = $hasData;
+        $this->redirect('Spravy:prehlad');
+    }
+
+    public function createComponentSimpleGrid($name) {
+        $grid = new \Ublaboo\DataGrid\DataGrid;
+        //$grid->setDataSource($this->model->getAllMessage($this->getUser()->getIdentity()->id));
+        //$grid->addColumnText('id', 'Idecko');
     }
 
     //FORMULÁR pre odoslanie správy

@@ -1,8 +1,8 @@
 <?php
-// source: C:\xampp\htdocs\Lysec\app/config/config.neon 
-// source: C:\xampp\htdocs\Lysec\app/config/config.local.neon 
+// source: C:\xampp\htdocs\lysec\app/config/config.neon 
+// source: C:\xampp\htdocs\lysec\app/config/config.local.neon 
 
-class Container_9a9c12eb62 extends Nette\DI\Container
+class Container_2243bb3d83 extends Nette\DI\Container
 {
 	protected $meta = array(
 		'types' => array(
@@ -40,6 +40,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 					'application.5',
 					'application.6',
 					'application.7',
+					'application.8',
 					'container',
 				),
 			),
@@ -243,44 +244,111 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 			),
 			'Nette\Security\IAuthorizator' => array(1 => array('authorizator')),
 			'Nette\Security\Permission' => array(1 => array('authorizator')),
+			'BasePresenter' => array(
+				array(
+					'application.1',
+					'application.4',
+					'application.5',
+					'application.6',
+				),
+			),
 			'Nette\Application\UI\Presenter' => array(
 				array(
 					'application.1',
-					'application.3',
+					'application.2',
 					'application.4',
 					'application.5',
+					'application.6',
 				),
 			),
 			'Nette\Application\UI\Control' => array(
 				array(
 					'application.1',
-					'application.3',
+					'application.2',
 					'application.4',
 					'application.5',
+					'application.6',
 				),
 			),
 			'Nette\Application\UI\PresenterComponent' => array(
 				array(
 					'application.1',
-					'application.3',
+					'application.2',
 					'application.4',
 					'application.5',
+					'application.6',
 				),
 			),
 			'Nette\ComponentModel\Container' => array(
 				array(
 					'application.1',
-					'application.3',
+					'application.2',
 					'application.4',
 					'application.5',
+					'application.6',
 				),
 			),
 			'Nette\ComponentModel\Component' => array(
 				array(
 					'application.1',
-					'application.3',
+					'application.2',
 					'application.4',
 					'application.5',
+					'application.6',
+				),
+			),
+			'Nette\Application\UI\IRenderable' => array(
+				array(
+					'application.1',
+					'application.2',
+					'application.4',
+					'application.5',
+					'application.6',
+				),
+			),
+			'Nette\ComponentModel\IContainer' => array(
+				array(
+					'application.1',
+					'application.2',
+					'application.4',
+					'application.5',
+					'application.6',
+				),
+			),
+			'Nette\ComponentModel\IComponent' => array(
+				array(
+					'application.1',
+					'application.2',
+					'application.4',
+					'application.5',
+					'application.6',
+				),
+			),
+			'Nette\Application\UI\ISignalReceiver' => array(
+				array(
+					'application.1',
+					'application.2',
+					'application.4',
+					'application.5',
+					'application.6',
+				),
+			),
+			'Nette\Application\UI\IStatePersistent' => array(
+				array(
+					'application.1',
+					'application.2',
+					'application.4',
+					'application.5',
+					'application.6',
+				),
+			),
+			'ArrayAccess' => array(
+				array(
+					'application.1',
+					'application.2',
+					'application.4',
+					'application.5',
+					'application.6',
 				),
 			),
 			'Nette\Application\IPresenter' => array(
@@ -292,83 +360,31 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 					'application.5',
 					'application.6',
 					'application.7',
+					'application.8',
 				),
 			),
-			'ArrayAccess' => array(
-				array(
-					'application.1',
-					'application.3',
-					'application.4',
-					'application.5',
-				),
-			),
-			'Nette\Application\UI\IStatePersistent' => array(
-				array(
-					'application.1',
-					'application.3',
-					'application.4',
-					'application.5',
-				),
-			),
-			'Nette\Application\UI\ISignalReceiver' => array(
-				array(
-					'application.1',
-					'application.3',
-					'application.4',
-					'application.5',
-				),
-			),
-			'Nette\ComponentModel\IComponent' => array(
-				array(
-					'application.1',
-					'application.3',
-					'application.4',
-					'application.5',
-				),
-			),
-			'Nette\ComponentModel\IContainer' => array(
-				array(
-					'application.1',
-					'application.3',
-					'application.4',
-					'application.5',
-				),
-			),
-			'Nette\Application\UI\IRenderable' => array(
-				array(
-					'application.1',
-					'application.3',
-					'application.4',
-					'application.5',
-				),
-			),
-			'App\Presenters\Error4xxPresenter' => array(array('application.1')),
-			'App\Presenters\ErrorPresenter' => array(array('application.2')),
-			'BasePresenter' => array(
-				array(
-					'application.3',
-					'application.4',
-					'application.5',
-				),
-			),
-			'App\Presenters\HomepagePresenter' => array(array('application.3')),
-			'App\Presenters\SignPresenter' => array(array('application.4')),
-			'App\Presenters\SpravyPresenter' => array(array('application.5')),
-			'NetteModule\ErrorPresenter' => array(array('application.6')),
-			'NetteModule\MicroPresenter' => array(array('application.7')),
+			'App\Presenters\BasketPresenter' => array(array('application.1')),
+			'App\Presenters\Error4xxPresenter' => array(array('application.2')),
+			'App\Presenters\ErrorPresenter' => array(array('application.3')),
+			'App\Presenters\HomepagePresenter' => array(array('application.4')),
+			'App\Presenters\SignPresenter' => array(array('application.5')),
+			'App\Presenters\SpravyPresenter' => array(array('application.6')),
+			'NetteModule\ErrorPresenter' => array(array('application.7')),
+			'NetteModule\MicroPresenter' => array(array('application.8')),
 			'Nette\DI\Container' => array(1 => array('container')),
 		),
 		'services' => array(
 			'61_Model_Repository_Homepage' => 'Model\Repository\Homepage',
 			'62_Model_Repository_Spravy' => 'Model\Repository\Spravy',
 			'63_Model_Repository_UserManager' => 'Model\Repository\UserManager',
-			'application.1' => 'App\Presenters\Error4xxPresenter',
-			'application.2' => 'App\Presenters\ErrorPresenter',
-			'application.3' => 'App\Presenters\HomepagePresenter',
-			'application.4' => 'App\Presenters\SignPresenter',
-			'application.5' => 'App\Presenters\SpravyPresenter',
-			'application.6' => 'NetteModule\ErrorPresenter',
-			'application.7' => 'NetteModule\MicroPresenter',
+			'application.1' => 'App\Presenters\BasketPresenter',
+			'application.2' => 'App\Presenters\Error4xxPresenter',
+			'application.3' => 'App\Presenters\ErrorPresenter',
+			'application.4' => 'App\Presenters\HomepagePresenter',
+			'application.5' => 'App\Presenters\SignPresenter',
+			'application.6' => 'App\Presenters\SpravyPresenter',
+			'application.7' => 'NetteModule\ErrorPresenter',
+			'application.8' => 'NetteModule\MicroPresenter',
 			'application.application' => 'Nette\Application\Application',
 			'application.linkGenerator' => 'Nette\Application\LinkGenerator',
 			'application.presenterFactory' => 'Nette\Application\IPresenterFactory',
@@ -441,6 +457,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 				'application.5' => TRUE,
 				'application.6' => TRUE,
 				'application.7' => TRUE,
+				'application.8' => TRUE,
 				'translation.catalogueCompiler' => FALSE,
 				'translation.catalogueFactory' => FALSE,
 				'translation.default' => FALSE,
@@ -478,13 +495,14 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 				'translation.writer' => FALSE,
 			),
 			'nette.presenter' => array(
-				'application.1' => 'App\Presenters\Error4xxPresenter',
-				'application.2' => 'App\Presenters\ErrorPresenter',
-				'application.3' => 'App\Presenters\HomepagePresenter',
-				'application.4' => 'App\Presenters\SignPresenter',
-				'application.5' => 'App\Presenters\SpravyPresenter',
-				'application.6' => 'NetteModule\ErrorPresenter',
-				'application.7' => 'NetteModule\MicroPresenter',
+				'application.1' => 'App\Presenters\BasketPresenter',
+				'application.2' => 'App\Presenters\Error4xxPresenter',
+				'application.3' => 'App\Presenters\ErrorPresenter',
+				'application.4' => 'App\Presenters\HomepagePresenter',
+				'application.5' => 'App\Presenters\SignPresenter',
+				'application.6' => 'App\Presenters\SpravyPresenter',
+				'application.7' => 'NetteModule\ErrorPresenter',
+				'application.8' => 'NetteModule\MicroPresenter',
 			),
 			'translation.dumper' => array(
 				'translation.dumper.csv' => 'csv',
@@ -541,14 +559,14 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 	public function __construct()
 	{
 		parent::__construct(array(
-			'appDir' => 'C:\xampp\htdocs\Lysec\app',
-			'wwwDir' => 'C:\xampp\htdocs\Lysec\www',
+			'appDir' => 'C:\xampp\htdocs\lysec\app',
+			'wwwDir' => 'C:\xampp\htdocs\lysec\www',
 			'debugMode' => TRUE,
 			'productionMode' => FALSE,
 			'environment' => 'development',
 			'consoleMode' => FALSE,
 			'container' => array('class' => NULL, 'parent' => NULL),
-			'tempDir' => 'C:\xampp\htdocs\Lysec\app/../temp',
+			'tempDir' => 'C:\xampp\htdocs\lysec\app/../temp',
 			'companyData' => array(
 				'firma_nazov' => 'Nov, s.r.o.',
 				'firma_adresa' => 'Vretenová 7',
@@ -561,7 +579,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 				'apikey' => '737ed05c464cb2b1',
 				'state' => 'S1',
 				'location' => 'zmw:00000.5.11856',
-				'basePath' => 'C:\xampp\htdocs\Lysec\www/gen_img',
+				'basePath' => 'C:\xampp\htdocs\lysec\www/gen_img',
 				'baseUri' => 'gen_img',
 				'refresh' => '60 minutes',
 				'language' => 'SK',
@@ -601,9 +619,24 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 
 
 	/**
-	 * @return App\Presenters\Error4xxPresenter
+	 * @return App\Presenters\BasketPresenter
 	 */
 	public function createServiceApplication__1()
+	{
+		$service = new App\Presenters\BasketPresenter;
+		$service->injectPrimary($this, $this->getService('application.presenterFactory'), $this->getService('routing.router'),
+			$this->getService('http.request'), $this->getService('http.response'), $this->getService('session.session'),
+			$this->getService('security.user'), $this->getService('latte.templateFactory'));
+		$service->translator = $this->getService('translation.default');
+		$service->invalidLinkMode = 5;
+		return $service;
+	}
+
+
+	/**
+	 * @return App\Presenters\Error4xxPresenter
+	 */
+	public function createServiceApplication__2()
 	{
 		$service = new App\Presenters\Error4xxPresenter;
 		$service->injectPrimary($this, $this->getService('application.presenterFactory'), $this->getService('routing.router'),
@@ -617,7 +650,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 	/**
 	 * @return App\Presenters\ErrorPresenter
 	 */
-	public function createServiceApplication__2()
+	public function createServiceApplication__3()
 	{
 		$service = new App\Presenters\ErrorPresenter($this->getService('tracy.logger'));
 		return $service;
@@ -627,7 +660,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 	/**
 	 * @return App\Presenters\HomepagePresenter
 	 */
-	public function createServiceApplication__3()
+	public function createServiceApplication__4()
 	{
 		$service = new App\Presenters\HomepagePresenter($this->getService('61_Model_Repository_Homepage'));
 		$service->injectPrimary($this, $this->getService('application.presenterFactory'), $this->getService('routing.router'),
@@ -642,7 +675,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 	/**
 	 * @return App\Presenters\SignPresenter
 	 */
-	public function createServiceApplication__4()
+	public function createServiceApplication__5()
 	{
 		$service = new App\Presenters\SignPresenter($this->getService('63_Model_Repository_UserManager'));
 		$service->injectPrimary($this, $this->getService('application.presenterFactory'), $this->getService('routing.router'),
@@ -657,7 +690,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 	/**
 	 * @return App\Presenters\SpravyPresenter
 	 */
-	public function createServiceApplication__5()
+	public function createServiceApplication__6()
 	{
 		$service = new App\Presenters\SpravyPresenter($this->getService('62_Model_Repository_Spravy'));
 		$service->injectPrimary($this, $this->getService('application.presenterFactory'), $this->getService('routing.router'),
@@ -672,7 +705,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 	/**
 	 * @return NetteModule\ErrorPresenter
 	 */
-	public function createServiceApplication__6()
+	public function createServiceApplication__7()
 	{
 		$service = new NetteModule\ErrorPresenter($this->getService('tracy.logger'));
 		return $service;
@@ -682,7 +715,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 	/**
 	 * @return NetteModule\MicroPresenter
 	 */
-	public function createServiceApplication__7()
+	public function createServiceApplication__8()
 	{
 		$service = new NetteModule\MicroPresenter($this, $this->getService('http.request'), $this->getService('routing.router'));
 		return $service;
@@ -730,7 +763,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 	 */
 	public function createServiceApplication__presenterFactory()
 	{
-		$service = new Nette\Application\PresenterFactory(new Nette\Bridges\ApplicationDI\PresenterFactoryCallback($this, 5, 'C:\xampp\htdocs\Lysec\app/../temp/cache/Nette%5CBridges%5CApplicationDI%5CApplicationExtension'));
+		$service = new Nette\Application\PresenterFactory(new Nette\Bridges\ApplicationDI\PresenterFactoryCallback($this, 5, 'C:\xampp\htdocs\lysec\app/../temp/cache/Nette%5CBridges%5CApplicationDI%5CApplicationExtension'));
 		$service->setMapping(array(
 			'*' => 'App\*Module\Presenters\*Presenter',
 		));
@@ -751,6 +784,8 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 		$service->addResource('Sign');
 		$service->addResource('Homepage');
 		$service->addResource('Spravy');
+		$service->addResource('Basket');
+		$service->allow('guest', 'Homepage');
 		$service->allow('guest', 'Sign');
 		$service->allow('user', 'Homepage');
 		$service->allow('user', 'Spravy');
@@ -764,7 +799,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 	 */
 	public function createServiceCache__journal()
 	{
-		$service = new Nette\Caching\Storages\SQLiteJournal('C:\xampp\htdocs\Lysec\app/../temp/cache/journal.s3db');
+		$service = new Nette\Caching\Storages\SQLiteJournal('C:\xampp\htdocs\lysec\app/../temp/cache/journal.s3db');
 		return $service;
 	}
 
@@ -774,7 +809,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 	 */
 	public function createServiceCache__storage()
 	{
-		$service = new Nette\Caching\Storages\FileStorage('C:\xampp\htdocs\Lysec\app/../temp/cache', $this->getService('cache.journal'));
+		$service = new Nette\Caching\Storages\FileStorage('C:\xampp\htdocs\lysec\app/../temp/cache', $this->getService('cache.journal'));
 		return $service;
 	}
 
@@ -880,7 +915,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 	 */
 	public function createServiceLatte__latteFactory()
 	{
-		return new Container_9a9c12eb62_Nette_Bridges_ApplicationLatte_ILatteFactoryImpl_latte_latteFactory($this);
+		return new Container_2243bb3d83_Nette_Bridges_ApplicationLatte_ILatteFactoryImpl_latte_latteFactory($this);
 	}
 
 
@@ -913,7 +948,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 		$service = new Latte\Engine;
 		trigger_error('Service nette.latte is deprecated, implement Nette\Bridges\ApplicationLatte\ILatteFactory.',
 			16384);
-		$service->setTempDirectory('C:\xampp\htdocs\Lysec\app/../temp/cache/latte');
+		$service->setTempDirectory('C:\xampp\htdocs\lysec\app/../temp/cache/latte');
 		$service->setAutoRefresh(TRUE);
 		$service->setContentType('html');
 		Nette\Utils\Html::$xhtml = FALSE;
@@ -1020,7 +1055,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 	 */
 	public function createServiceTranslation__catalogueCompiler()
 	{
-		$service = new Kdyby\Translation\CatalogueCompiler(new Kdyby\Translation\Caching\PhpFileStorage('C:\xampp\htdocs\Lysec\app/../temp/cache', $this->getService('cache.journal')),
+		$service = new Kdyby\Translation\CatalogueCompiler(new Kdyby\Translation\Caching\PhpFileStorage('C:\xampp\htdocs\lysec\app/../temp/cache', $this->getService('cache.journal')),
 			$this->getService('translation.fallbackResolver'), $this->getService('translation.catalogueFactory'));
 		$service->enableDebugMode();
 		return $service;
@@ -1050,8 +1085,8 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 		$service->setLocaleWhitelist(array('sk', 'en'));
 		$service->setFallbackLocales(array('sk_SK'));
 		$this->getService('translation.panel')->register($service);
-		$service->addResource('po', 'C:\xampp\htdocs\Lysec\app/lang\messages.en.po', 'en', 'messages');
-		$service->addResource('mo', 'C:\xampp\htdocs\Lysec\app/lang\messages.en.mo', 'en', 'messages');
+		$service->addResource('po', 'C:\xampp\htdocs\lysec\app/lang\messages.en.po', 'en', 'messages');
+		$service->addResource('mo', 'C:\xampp\htdocs\lysec\app/lang\messages.en.mo', 'en', 'messages');
 		return $service;
 	}
 
@@ -1338,7 +1373,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 	 */
 	public function createServiceTranslation__panel()
 	{
-		$service = new Kdyby\Translation\Diagnostics\Panel('C:\xampp\htdocs\Lysec');
+		$service = new Kdyby\Translation\Diagnostics\Panel('C:\xampp\htdocs\lysec');
 		$service->setLocaleWhitelist(array('sk', 'en'));
 		$service->setLocaleResolvers(array(
 			$this->getService('translation.userLocaleResolver.param'),
@@ -1436,12 +1471,12 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 
 
 
-final class Container_9a9c12eb62_Nette_Bridges_ApplicationLatte_ILatteFactoryImpl_latte_latteFactory implements Nette\Bridges\ApplicationLatte\ILatteFactory
+final class Container_2243bb3d83_Nette_Bridges_ApplicationLatte_ILatteFactoryImpl_latte_latteFactory implements Nette\Bridges\ApplicationLatte\ILatteFactory
 {
 	private $container;
 
 
-	public function __construct(Container_9a9c12eb62 $container)
+	public function __construct(Container_2243bb3d83 $container)
 	{
 		$this->container = $container;
 	}
@@ -1450,7 +1485,7 @@ final class Container_9a9c12eb62_Nette_Bridges_ApplicationLatte_ILatteFactoryImp
 	public function create()
 	{
 		$service = new Latte\Engine;
-		$service->setTempDirectory('C:\xampp\htdocs\Lysec\app/../temp/cache/latte');
+		$service->setTempDirectory('C:\xampp\htdocs\lysec\app/../temp/cache/latte');
 		$service->setAutoRefresh(TRUE);
 		$service->setContentType('html');
 		Nette\Utils\Html::$xhtml = FALSE;

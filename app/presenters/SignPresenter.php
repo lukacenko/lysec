@@ -62,15 +62,14 @@ class SignPresenter extends \BasePresenter {
             // ak existuje dany email alebo username tak vrat chybu.
             if ($this->model->overeniePouzivatela($values->username) != FALSE) {
                 $this->flashMessage('Používateľ s menom ' . $values->username . ' existuje prosím zvolte iné meno', 'danger');
-                //$this->redirect('this');
-
+                $this->redirect('this');
                 } else {
                 if($values->rola != 'user' || $values->rola != 'superuser'){
                     $values->rola = 'user';
                 }
-                //$this->model->add($values->email, $values->username, $values->password, $values->rola, $values->newsletter);
+                $this->model->add($values->email, $values->username, $values->password, $values->rola, $values->newsletter);
                 $this->flashMessage('Boli ste úspešne zaregistrovaný', 'success');
-                //  $this->redirect('Homepage:default');
+                $this->redirect('Homepage:default');
             }
         } catch (\Nette\Security\AuthenticationException $e) {
             $form->addError($this->translator->translate($e->getMessage()));

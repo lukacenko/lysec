@@ -28,7 +28,6 @@
         <!-- cart -->
         <link rel="stylesheet" href="{$basePath}/css/flexslider.css" type="text/css" media="screen" />
 
-
         <title>{ifset title}{include title|striptags} | {/ifset}Lysec | Luko, s.r.o.</title>
     </head>
     <body role="document">
@@ -39,12 +38,13 @@
                     <div class="header-top-left">
                         <ul>
                             {if $user->loggedIn}
-                                <li>Ahoj {$user->getIdentity()->login} <a n:href="Sign:out">  <span class="glyphicon glyphicon-user"> </span>{_}Odhlásiť sa{/_} </a></li>
+                                <li style="color:white"> <span class="glyphicon glyphicon-user"> </span> Ahoj {$user->getIdentity()->login} </li>
                                 <li><a n:href="Spravy:prehlad">  <span class="glyphicon glyphicon-envelope"> </span>{_} Správy{/_} </a></li>
+                                <li> <a n:href="Sign:out">  <span class="glyphicon glyphicon-share"> </span>{_}Odhlásiť sa{/_} </a></li>
                                 {else}
                                 <li><a n:href="Sign:prihlasenie"><span class="glyphicon glyphicon-user"> </span>Prihlásiť sa</a></li>
                                 <li><a n:href="Sign:registracia">   <span class="glyphicon glyphicon-lock"> </span>Vytvoriť účet</a></li>			
-                                {/if}                            
+                                {/if}  
                         </ul>
                     </div>
                     <div class="header-right">
@@ -52,7 +52,7 @@
                             <a href="checkout.html">
                                 <h3> <span class="simpleCart_total"> $0.00 </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span>)<img src="images/bag.png" alt=""></h3>
                             </a>	
-                            <p><a href="javascript:;" class="simpleCart_empty">Empty cart</a></p>
+                            <p><a n:href="Basket:basket" class="simpleCart_empty">Empty cart</a></p>
                             <div class="clearfix"> </div>
                         </div>
                     </div>

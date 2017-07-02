@@ -9,7 +9,7 @@
                     <div class="row chat-toolbar-row">
                         <div class="col-sm-12">
                             <div class="btn-group chat-toolbar" role="group" aria-label="...">
-                                <h3 class="bars"> Zoznam prijatých správ</h3>
+                                <h3 class="bars"> Zoznam odoslaných správ</h3>
                             </div>
                         </div>
                     </div>
@@ -19,8 +19,8 @@
                     </div> 
                     <button class="btn btn-primary" id="checkAll" type="button"> <input type="checkbox" name="vehicle" value="Bike"> Označ všetky </button>          
                     <button class="btn btn-primary" id="uncheckAll" type="button">  Odznačiť všetky </button>          
-                    {control simpleGrid}
-                    <table class="table ">
+
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -43,13 +43,12 @@
                                     <td><span class="glyphicon glyphicon-time"></span> {$row->timesend}</td>
                                     <td><a href="{link Spravy:delete $row->id}"><span class="glyphicon glyphicon-remove"></span> </a> </td>
                                 </tr>
-
-
                             {/foreach} 
                         </tbody>
-                    </table>            
+                    </table>           
 
                     <button class="btn btn-primary" type="button"> <span class="glyphicon glyphicon-remove"></span> Zmaž označené  </button> 
+
 
                 </div>
             </div>

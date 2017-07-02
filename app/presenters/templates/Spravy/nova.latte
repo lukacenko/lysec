@@ -1,16 +1,24 @@
-{* Latte template *}
-
 {block content}
-<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type} fade in">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    {$flash->message}
-</div>
-
 <div class="content">
-    <div class="container">
+    <div class="container">	
+
+        <div class="container-fluid">
+            <div class="row">
+                {include layout.latte}
+                <div class="col-md-9 current-chat">
+                    <div class="row chat-toolbar-row">
+                        <div class="col-sm-12">
+                            <div class="btn-group chat-toolbar" role="group" aria-label="...">
+                                <h3 class="bars"> Napísať novú správu </h3>
+                            </div>
+                        </div>
+                    </div>
         <div class="login-page">
             <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
-                <h1>Napísať novú správu</h1>
+                <div n:foreach="$flashes as $flash" class="alert alert-{$flash->type} fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {$flash->message}
+                </div>
                 <p>Napíšte a odošlite správu. Príjemca je notifikovaný na svoj email, príloha je obmedzená na 25MB.</p>
                 {form sendMessageForm}
                     <div>
@@ -39,7 +47,37 @@
             </div>	
             <div class="clearfix"> </div>
         </div>
+                    <div class="row current-chat-footer">
+                        <div class="panel-footer">
+                            <div class="input-group">
+                                <input type="text" class="form-control">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">Send</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
     </div>
 </div>
+
+{/block}
+{block scripts}
+<script>
+    $(document).ready(function () {
+        $("#myTable").DataTable();
+    });
+</script>
+{/block}
+
+
+
+
 
 

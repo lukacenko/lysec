@@ -53,7 +53,9 @@ services:
                         - addResource('Sign') #prihlasenie
                         - addResource('Homepage') #domovska stranka
                         - addResource('Spravy') #domovska stranka
+                        - addResource('Basket') #domovska stranka
 
+                        - allow('guest', 'Homepage')
                         - allow('guest', 'Sign')
                         #user
                         - allow('user', 'Homepage')
