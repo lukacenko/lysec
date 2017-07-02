@@ -5,6 +5,7 @@ namespace App\Presenters;
 use Nette\Security\Identity;
 use Nette,
     Nette\Application\UI;
+use Ublaboo\DataGrid\DataGrid;
 
 class SpravyPresenter extends \BasePresenter {
 
@@ -50,9 +51,16 @@ class SpravyPresenter extends \BasePresenter {
     }
 
     public function createComponentSimpleGrid($name) {
-        $grid = new \Ublaboo\DataGrid\DataGrid;
-        //$grid->setDataSource($this->model->getAllMessage($this->getUser()->getIdentity()->id));
-        //$grid->addColumnText('id', 'Idecko');
+        $grid = new DataGrid($this, $name);
+        //$grid->setSortable();
+        $grid->setDataSource($this->model->getAllMessage($this->getUser()->getIdentity()->id));
+        $grid->addColumnText('id', 'Id')->setAlign('left')
+		->setSortable();;
+        $grid->addColumnText('title', 'Predmet')->setSortable();
+        $grid->addColumnText('login', 'Od')->setSortable();
+        $grid->addColumnText('timesend', 'Dátum')->setSortable();
+        $grid->addGroupAction('Delete')->onSelect[] = [$this, 'deleteMany'];
+        //$grid->addGroupAction('Delete examples')->onSelect[] = [$this, 'deleteExamples'];
     }
 
     //FORMULÁR pre odoslanie správy

@@ -20,6 +20,7 @@
                     <button class="btn btn-primary" id="checkAll" type="button"> <input type="checkbox" name="vehicle" value="Bike"> Označ všetky </button>          
                     <button class="btn btn-primary" id="uncheckAll" type="button">  Odznačiť všetky </button>          
                     {control simpleGrid}
+                    {*
                     <table class="table ">
                         <thead>
                             <tr>
@@ -48,7 +49,7 @@
                             {/foreach} 
                         </tbody>
                     </table>            
-
+                    *}
                     <button class="btn btn-primary" type="button"> <span class="glyphicon glyphicon-remove"></span> Zmaž označené  </button> 
 
                 </div>
@@ -64,6 +65,27 @@
 {/block}
 
 {block scripts}
+<link href="{$basePath}/css/datagrid.css" rel='stylesheet' type='text/css' />
+<link href="{$basePath}/css/datagrid-spinners.css" rel='stylesheet' type='text/css' />
+
+
+<script src="{$basePath}/js/datagrid.js"></script>
+<script src="{$basePath}/js/datagrid-spinners.js"></script>
+<script src="{$basePath}/js/datagrid-instant-url-refresh.js"></script>
+
+
+<link href="{$basePath}/css/happy.css" rel='stylesheet' type='text/css' />
+<script src="{$basePath}/js/happy.js"></script>
+<script src="{$basePath}/js/bootstrap-datepicker.js"></script>
+<script src="{$basePath}/js/nette.ajax.js"></script>
+<script src="{$basePath}/js/netteForms.js"></script>
+<script src="{$basePath}/js/jquery.min.js"></script>
+
+<script src="{$basePath}/js/bootstrap-select.js"></script>
+
+
+
+
 <script>
 
     $('#checkAll').click(function () {

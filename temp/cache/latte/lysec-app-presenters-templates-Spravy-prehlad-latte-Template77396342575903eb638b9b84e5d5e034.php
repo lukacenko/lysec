@@ -35,36 +35,7 @@ if (!function_exists($_b->blocks['content'][] = '_lb23ffa57983_content')) { func
                     <button class="btn btn-primary" id="checkAll" type="button"> <input type="checkbox" name="vehicle" value="Bike"> Označ všetky </button>          
                     <button class="btn btn-primary" id="uncheckAll" type="button">  Odznačiť všetky </button>          
 <?php $_l->tmp = $_control->getComponent("simpleGrid"); if ($_l->tmp instanceof Nette\Application\UI\IRenderable) $_l->tmp->redrawControl(NULL, FALSE); $_l->tmp->render() ?>
-                    <table class="table ">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Predmet Name</th>
-                                <th>Od</th>
-                                <th>Dátum</th>
-                                <th>Možnosti</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-<?php $iterations = 0; foreach ($prehlad as $row) { if ($row->user2read == 0) { ?>
-                                    <tr class="info">
-<?php } else { ?>
-                                    <tr>
-<?php } ?>
-                                    <td scope="row">   <input type="checkbox" name="vehicle" value="Bike"></td>
-                                    <td> <a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Spravy:detail", array($row->user1)), ENT_COMPAT) ?>
-"><?php echo Latte\Runtime\Filters::escapeHtml($row->title, ENT_NOQUOTES) ?></a></td>
-                                    <td><?php echo Latte\Runtime\Filters::escapeHtml($row->login, ENT_NOQUOTES) ?></td>
-                                    <td><span class="glyphicon glyphicon-time"></span> <?php echo Latte\Runtime\Filters::escapeHtml($row->timesend, ENT_NOQUOTES) ?></td>
-                                    <td><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Spravy:delete", array($row->id)), ENT_COMPAT) ?>"><span class="glyphicon glyphicon-remove"></span> </a> </td>
-                                </tr>
-
-
-<?php $iterations++; } ?>
-                        </tbody>
-                    </table>            
-
-                    <button class="btn btn-primary" type="button"> <span class="glyphicon glyphicon-remove"></span> Zmaž označené  </button> 
+                                        <button class="btn btn-primary" type="button"> <span class="glyphicon glyphicon-remove"></span> Zmaž označené  </button> 
 
                 </div>
             </div>
@@ -83,7 +54,28 @@ if (!function_exists($_b->blocks['content'][] = '_lb23ffa57983_content')) { func
 // block scripts
 //
 if (!function_exists($_b->blocks['scripts'][] = '_lb10cac92316_scripts')) { function _lb10cac92316_scripts($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
-?><script>
+?><link href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/datagrid.css" rel='stylesheet' type='text/css'>
+<link href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/datagrid-spinners.css" rel='stylesheet' type='text/css'>
+
+
+<script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/datagrid.js"></script>
+<script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/datagrid-spinners.js"></script>
+<script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/datagrid-instant-url-refresh.js"></script>
+
+
+<link href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/happy.css" rel='stylesheet' type='text/css'>
+<script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/happy.js"></script>
+<script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/bootstrap-datepicker.js"></script>
+<script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/nette.ajax.js"></script>
+<script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/netteForms.js"></script>
+<script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/jquery.min.js"></script>
+
+<script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/bootstrap-select.js"></script>
+
+
+
+
+<script>
 
     $('#checkAll').click(function () {
         $('input:checkbox').each(function () {
