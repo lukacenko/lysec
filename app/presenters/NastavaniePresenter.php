@@ -66,21 +66,15 @@ class NastaveniaPresenter extends \BasePresenter {
         ];
         $form->addSelect('pohlavie', 'Pohlavie:', $pohlavie)
                 ->setValue($data->pohlavie);
-        $role = [
-            'user' => 'Kupujúci',
-            'superuser' => 'Predajca + Kupujúci',
-            'admin' => 'Admin'
-        ];
-        $form->addSelect('role', 'Typ registrácie:', $role)
-                ->setValue($data->role);
 
-        /*
-          $form->addTextArea('text', 'text')
-          ->setRequired(FALSE)
-          ->setAttribute('cols', 100)
-          ->setAttribute('rows', 12);
-         */
-
+        if ($data->role != 'admin') {
+            $role = [
+                'user' => 'Kupujúci',
+                'superuser' => 'Predajca + Kupujúci',
+            ];
+            $form->addSelect('role', 'Typ registrácie:', $role)
+                    ->setValue($data->role);
+        }
         $form->addSubmit('save', 'Uložiť');
         $form->addProtection();
         $form->onSuccess[] = array($this, 'addOrderFormSucceeded');
@@ -91,8 +85,8 @@ class NastaveniaPresenter extends \BasePresenter {
     public function addOrderFormSucceeded($form) {
         if ($form->isSuccess()) {
             // zisti ci je clanok editovany ale vytvarany
-                $data = $form->getValues();
-                $this->model->editUser($form->getValues());
+            $data = $form->getValues();
+            $this->model->editUser($form->getValues());
             $this->flashMessage('Úspešné uložený článok', 'success');
             $this->redirect('Nastavenia:default');
         } else {
