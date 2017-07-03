@@ -1,33 +1,72 @@
+<?php
+// source: C:\xampp\htdocs\Lysec\app\presenters/templates/@layout.latte
+
+class Template8f78bbb3aa6dbce0557bfe5a8b09619c extends Latte\Template {
+function render() {
+foreach ($this->params as $__k => $__v) $$__k = $__v; unset($__k, $__v);
+// prolog Latte\Macros\CoreMacros
+list($_b, $_g, $_l) = $template->initialize('43e390bbc9', 'html')
+;
+// prolog Latte\Macros\BlockMacros
+//
+// block scripts
+//
+if (!function_exists($_b->blocks['scripts'][] = '_lb0e31168c08_scripts')) { function _lb0e31168c08_scripts($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+;
+}}
+
+//
+// end of blocks
+//
+
+// template extending
+
+$_l->extends = empty($_g->extended) && isset($_control) && $_control instanceof Nette\Application\UI\Presenter ? $_control->findLayoutTemplateFile() : NULL; $_g->extended = TRUE;
+
+if ($_l->extends) { ob_start();}
+
+// prolog Nette\Bridges\ApplicationLatte\UIMacros
+
+// snippets support
+if (empty($_l->extends) && !empty($_control->snippetMode)) {
+	return Nette\Bridges\ApplicationLatte\UIRuntime::renderSnippets($_control, $_b, get_defined_vars());
+}
+
+//
+// main template
+//
+?>
 <!DOCTYPE html>
-<html lang="{$lang}">
+<html lang="<?php echo Latte\Runtime\Filters::escapeHtml($lang, ENT_COMPAT) ?>">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="NOV, s.r.o.">
-        <link href="{$basePath}/css/bootstrap.css" rel='stylesheet' type='text/css' />
+        <link href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/bootstrap.css" rel='stylesheet' type='text/css'>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="{$basePath}/js/jquery.min.js"></script>
-        <script src="{$basePath}/js/netteForms.min.js"></script>
+        <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/jquery.min.js"></script>
+        <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/netteForms.min.js"></script>
         <!-- Custom Theme files -->
-        <link href="{$basePath}/css/style.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/style.css" rel="stylesheet" type="text/css" media="all">
         <!-- Custom Theme files -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="keywords" content="Eshop Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-              Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+              Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design">
         <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
         <!--webfont-->
         <!-- for bootstrap working -->
-        <script src="{$basePath}/js/bootstrap.js"></script>
+        <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/bootstrap.js"></script>
         <!-- //for bootstrap working -->
         <!-- cart -->
-        <script src="{$basePath}/js/simpleCart.min.js"></script>
+        <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/simpleCart.min.js"></script>
         <!-- cart -->
-        <link rel="stylesheet" href="{$basePath}/css/flexslider.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/flexslider.css" type="text/css" media="screen">
 
-        <title>{ifset title}{include title|striptags} | {/ifset}Lysec | Luko, s.r.o.</title>
+        <title><?php if (isset($_b->blocks["title"])) { ob_start(); Latte\Macros\BlockMacrosRuntime::callBlock($_b, 'title', $template->getParameters()); echo $template->striptags(ob_get_clean()) ?>
+ | <?php } ?>Lysec | Luko, s.r.o.</title>
     </head>
     <body role="document">
         <!-- header-section-starts -->
@@ -36,14 +75,18 @@
                 <div class="container">
                     <div class="header-top-left">
                         <ul>
-                            {if $user->loggedIn}
-                                <li style="color:white"> <span class="glyphicon glyphicon-user"> </span> Ahoj {$user->getIdentity()->login} </li>
-                                <li><a n:href="Spravy:prehlad">  <span class="glyphicon glyphicon-envelope"> </span>{_} Správy{/_} </a></li>
-                                <li> <a n:href="Sign:out">  <span class="glyphicon glyphicon-share"> </span>{_}Odhlásiť sa{/_} </a></li>
-                                {else}
-                                <li><a n:href="Sign:prihlasenie"><span class="glyphicon glyphicon-user"> </span>Prihlásiť sa</a></li>
-                                <li><a n:href="Sign:registracia">   <span class="glyphicon glyphicon-lock"> </span>Vytvoriť účet</a></li>			
-                                {/if}  
+<?php if ($user->loggedIn) { ?>
+                                <li style="color:white"> <span class="glyphicon glyphicon-user"> </span> Ahoj <?php echo Latte\Runtime\Filters::escapeHtml($user->getIdentity()->login, ENT_NOQUOTES) ?> </li>
+                                <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Spravy:prehlad"), ENT_COMPAT) ?>
+">  <span class="glyphicon glyphicon-envelope"> </span><?php ob_start() ?> Správy<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </a></li>
+                                <li> <a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Sign:out"), ENT_COMPAT) ?>
+">  <span class="glyphicon glyphicon-share"> </span><?php ob_start() ?>Odhlásiť sa<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </a></li>
+<?php } else { ?>
+                                <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Sign:prihlasenie"), ENT_COMPAT) ?>
+"><span class="glyphicon glyphicon-user"> </span>Prihlásiť sa</a></li>
+                                <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Sign:registracia"), ENT_COMPAT) ?>
+">   <span class="glyphicon glyphicon-lock"> </span>Vytvoriť účet</a></li>			
+<?php } ?>
                         </ul>
                     </div>
                     <div class="header-right">
@@ -51,7 +94,8 @@
                             <a href="checkout.html">
                                 <h3> <span class="simpleCart_total"> $0.00 </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span>)<img src="images/bag.png" alt=""></h3>
                             </a>	
-                            <p><a n:href="Basket:basket" class="simpleCart_empty">Empty cart</a></p>
+                            <p><a class="simpleCart_empty" href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Basket:basket"), ENT_COMPAT) ?>
+">Empty cart</a></p>
                             <div class="clearfix"> </div>
                         </div>
                     </div>
@@ -78,7 +122,8 @@
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><a n:href="Homepage:default">Home</a></li>
+                            <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Homepage:default"), ENT_COMPAT) ?>
+">Home</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Men <b class="caret"></b></a>
                                 <ul class="dropdown-menu multi-column columns-3">
@@ -259,7 +304,7 @@
 </div>
 </div-->
         
-        {include content}
+<?php Latte\Macros\BlockMacrosRuntime::callBlock($_b, 'content', $template->getParameters()) ?>
     </div>
     <!-- content-section-ends-here -->
     <div class="news-letter">
@@ -268,8 +313,8 @@
                 <h6>JOIN OUR MAILING LIST</h6>
                 <div class="sub-left-right">
                     <form>
-                        <input type="text" value="Enter Your Email Here" onfocus="this.value = '';"/>
-                        <input type="submit" value="SUBSCRIBE" />
+                        <input type="text" value="Enter Your Email Here" onfocus="this.value = '';">
+                        <input type="submit" value="SUBSCRIBE">
                     </form>
                 </div>
                 <div class="clearfix"> </div>
@@ -336,13 +381,17 @@
                 </div>
             </div>
             <div class="cards text-center">
-                <img src="images/cards.jpg" alt="" />
+                <img src="images/cards.jpg" alt="">
             </div>
             <div class="copyright text-center">
                 <p>© 2017 Lysec. All Rights Reserved | Design by   <a href="http://w3layouts.com">  W3layouts</a></p>
             </div>
         </div>
     </div>
-    {block scripts}{/block}
+    <?php if ($_l->extends) { ob_end_clean(); return $template->renderChildTemplate($_l->extends, get_defined_vars()); }
+call_user_func(reset($_b->blocks['scripts']), $_b, get_defined_vars())  ?>
+
 </body>    
 </html>
+<?php
+}}

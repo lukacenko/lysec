@@ -35,6 +35,29 @@ class SpravyPresenter extends \BasePresenter {
         $this->setView('detail');
     }
 
+    public function handledelete($id) {
+
+        $this->id = $id;
+    }
+
+    public function handletest($id) {
+
+        $this->id = $id;
+    }
+
+    public function deleteExamples(array $ids) {
+        
+        if ($this->isAjax()) {
+            foreach ($ids as $id){
+                $this->model->removeMessage($id);
+            }
+            $this->flashMessage('Vymazane', 'success');
+            $this['simpleGrid']->reload();
+        } else {
+            $this->redirect('this');
+        }
+    }
+
     // zmazanie správy
     public function actionDelete($id) {
 
@@ -50,17 +73,25 @@ class SpravyPresenter extends \BasePresenter {
         $this->redirect('Spravy:prehlad');
     }
 
+    public $fooControlFactory;
+
     public function createComponentSimpleGrid($name) {
+
         $grid = new DataGrid($this, $name);
-        //$grid->setSortable();
         $grid->setDataSource($this->model->getAllMessage($this->getUser()->getIdentity()->id));
-        $grid->addColumnText('id', 'Id')->setAlign('left')
-		->setSortable();;
+        $grid->addColumnText('id', 'Id')->setAlign('left')->setSortable();
+        ;
         $grid->addColumnText('title', 'Predmet')->setSortable();
         $grid->addColumnText('login', 'Od')->setSortable();
         $grid->addColumnText('timesend', 'Dátum')->setSortable();
-        $grid->addGroupAction('Delete')->onSelect[] = [$this, 'deleteMany'];
-        //$grid->addGroupAction('Delete examples')->onSelect[] = [$this, 'deleteExamples'];
+
+        /**
+         * ACtions
+         */
+        $grid->addAction('Delete', '', 'delete!')->setClass('glyphicon glyphicon-remove')->setTitle('Odstrániť');
+        $grid->addAction('Favorite', '', 'delete!')->setClass('glyphicon glyphicon-star')->setTitle('Pridať k oblubeným');
+        $grid->addGroupAction('Odstrániť vybrané')->onSelect[] = [$this, 'deleteExamples'];
+        $grid->setPagination(TRUE);
     }
 
     //FORMULÁR pre odoslanie správy

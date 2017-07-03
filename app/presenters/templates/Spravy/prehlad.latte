@@ -17,91 +17,31 @@
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         {$flash->message}
                     </div> 
-                    <button class="btn btn-primary" id="checkAll" type="button"> <input type="checkbox" name="vehicle" value="Bike"> Označ všetky </button>          
-                    <button class="btn btn-primary" id="uncheckAll" type="button">  Odznačiť všetky </button>          
                     {control simpleGrid}
-                    {*
-                    <table class="table ">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Predmet Name</th>
-                                <th>Od</th>
-                                <th>Dátum</th>
-                                <th>Možnosti</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {foreach $prehlad as $row}
-                                {if $row->user2read == 0}
-                                    <tr class="info">
-                                    {else}
-                                    <tr>
-                                    {/if}  
-                                    <td scope="row">   <input type="checkbox" name="vehicle" value="Bike"></td>
-                                    <td> <a href="{link Spravy:detail $row->user1}">{$row->title}</a></td>
-                                    <td>{$row->login}</td>
-                                    <td><span class="glyphicon glyphicon-time"></span> {$row->timesend}</td>
-                                    <td><a href="{link Spravy:delete $row->id}"><span class="glyphicon glyphicon-remove"></span> </a> </td>
-                                </tr>
-
-
-                            {/foreach} 
-                        </tbody>
-                    </table>            
-                    *}
-                    <button class="btn btn-primary" type="button"> <span class="glyphicon glyphicon-remove"></span> Zmaž označené  </button> 
-
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
 </div>
-
 {/block}
 
 {block scripts}
-<link href="{$basePath}/css/datagrid.css" rel='stylesheet' type='text/css' />
-<link href="{$basePath}/css/datagrid-spinners.css" rel='stylesheet' type='text/css' />
-
-
-<script src="{$basePath}/js/datagrid.js"></script>
-<script src="{$basePath}/js/datagrid-spinners.js"></script>
-<script src="{$basePath}/js/datagrid-instant-url-refresh.js"></script>
-
-<link href="{$basePath}/css/happy.css" rel='stylesheet' type='text/css' />
+<link rel="stylesheet" type="text/css" href="{$basePath}/css/happy.css">
+<link rel="stylesheet" type="text/css" href="{$basePath}/css/bootstrap-datepicker3.css">
+<link rel="stylesheet" type="text/css" href="{$basePath}/css/datagrid.css">
+<link rel="stylesheet" type="text/css" href="{$basePath}/css/datagrid-spinners.css">
+<link rel="stylesheet" type="text/css" href="{$basePath}/css/bootstrap-select.css">
+<script src="{$basePath}/js/nette.ajax.js"></script>
+<!-- Use this tiny js for that pretty checkboxes (https://github.com/paveljanda/happy) -->
 <script src="{$basePath}/js/happy.js"></script>
 <script src="{$basePath}/js/bootstrap-datepicker.js"></script>
-<script src="{$basePath}/js/nette.ajax.js"></script>
-<script src="{$basePath}/js/netteForms.js"></script>
-<script src="{$basePath}/js/jquery.min.js"></script>
-<script src="{$basePath}/js/jquery-sortable.js"></script>
-
+<script src="{$basePath}/js/jquery-ui-sortable.js"></script>
+<script src="{$basePath}/js/datagrid.js"></script>
+<!-- It is recommended to include this JS file with just a few bits. It refreshes URL on non ajax request -->
+<script src="{$basePath}/js/datagrid-instant-url-refresh.js"></script>
+<!-- Use this little extension for ajax spinners -->
+<script src="{$basePath}/js/datagrid-spinners.js"></script>
+<!-- Include bootstrap.js for proper behaviour of ColumnStatus -->
+<!-- Include bootstrap-select.js when using FilterMultiSelect (silviomoreto.github.io/bootstrap-select) -->
 <script src="{$basePath}/js/bootstrap-select.js"></script>
-<link href="{$basePath}/css/bootstrap-select.css" rel='stylesheet' type='text/css' />
-
-<script src="{$basePath}/js/bootstrap.js"></script>
-
-
-
-
-<script>
-
-    $('#checkAll').click(function () {
-        $('input:checkbox').each(function () {
-            $(this).prop('checked', true);
-        })
-    });
-
-    $('#uncheckAll').click(function () {
-        $('input:checkbox').each(function () {
-            $(this).prop('checked', false);
-        })
-    });
-
-</script>
 {/block}

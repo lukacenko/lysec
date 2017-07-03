@@ -124,17 +124,12 @@
 	/**
 	 * Returns the effective value of form element.
 	 */
-	Nette.getEffectiveValue = function(elem, filter) {
+	Nette.getEffectiveValue = function(elem) {
 		var val = Nette.getValue(elem);
 		if (elem.getAttribute) {
 			if (val === elem.getAttribute('data-nette-empty-value')) {
 				val = '';
 			}
-		}
-		if (filter) {
-			var ref = {value: val};
-			Nette.validateControl(elem, null, true, ref);
-			val = ref.value;
 		}
 		return val;
 	};
@@ -167,7 +162,8 @@
 			}
 
 			curElem = curElem.tagName ? curElem : curElem[0]; // RadioNodeList
-			var success = Nette.validateRule(curElem, rule.op, rule.arg, elem === curElem ? value : undefined);
+			var curValue = elem === curElem ? value : {value: Nette.getEffectiveValue(curElem)},
+				success = Nette.validateRule(curElem, rule.op, rule.arg, curValue);
 
 			if (success === null) {
 				continue;
@@ -310,13 +306,27 @@
 	};
 
 
+	/**
+	 * Expand rule argument.
+	 */
+	Nette.expandRuleArgument = function(form, arg) {
+		if (arg && arg.control) {
+			var control = form.elements.namedItem(arg.control),
+				value = {value: Nette.getEffectiveValue(control)};
+			Nette.validateControl(control, null, true, value);
+			arg = value.value;
+		}
+		return arg;
+	};
+
+
 	var preventFiltering = false;
 
 	/**
 	 * Validates single rule.
 	 */
 	Nette.validateRule = function(elem, op, arg, value) {
-		value = value === undefined ? {value: Nette.getEffectiveValue(elem, true)} : value;
+		value = value === undefined ? {value: Nette.getEffectiveValue(elem)} : value;
 
 		if (op.charAt(0) === ':') {
 			op = op.substr(1);
@@ -328,10 +338,7 @@
 		if (!preventFiltering) {
 			preventFiltering = true;
 			for (var i = 0, len = arr.length; i < len; i++) {
-				if (arr[i] && arr[i].control) {
-					var control = elem.form.elements.namedItem(arr[i].control);
-					arr[i] = control === elem ? value.value : Nette.getEffectiveValue(control, true);
-				}
+				arr[i] = Nette.expandRuleArgument(elem.form, arr[i]);
 			}
 			preventFiltering = false;
 		}
@@ -583,7 +590,8 @@
 			if (success !== false) {
 				rule.neg = op[1];
 				rule.op = op[2];
-				curSuccess = Nette.validateRule(curElem, rule.op, rule.arg, elem === curElem ? value : undefined);
+				var curValue = elem === curElem ? value : {value: Nette.getEffectiveValue(curElem)};
+				curSuccess = Nette.validateRule(curElem, rule.op, rule.arg, curValue);
 				if (curSuccess === null) {
 					continue;
 
