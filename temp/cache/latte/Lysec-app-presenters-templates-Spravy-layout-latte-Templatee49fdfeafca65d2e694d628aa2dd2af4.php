@@ -20,12 +20,8 @@ if (!function_exists($_b->blocks['content'][] = '_lbb28def7297_content')) { func
 ">Napísať správu</a></p>
             </div>
             <div class="list-group-item open-request">
-                <p><i class="glyphicon glyphicon-pencil"></i> <a href="/chcem/rozpisana-posta">Rozpísané správy</a></p>
-            </div>
-            <div class="list-group-item open-request">
                 <p><i class="glyphicon glyphicon-user"></i> <a href="/chcem/kontakty">Kontakty</a></p>
             </div>
-
             <div class="list-group-item open-request">
                 <p><i class="glyphicon glyphicon-folder-open"></i> <a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Spravy:prehlad"), ENT_COMPAT) ?>
 "> Doručená pošta</a></p>
@@ -35,10 +31,12 @@ if (!function_exists($_b->blocks['content'][] = '_lbb28def7297_content')) { func
 "> Odoslaná pošta</a></p>
             </div>
             <div class="list-group-item open-request">
-                <p><i class="glyphicon glyphicon-flag"></i> <a href="/chcem/postu?stared"> Oblubené</a></p>
+                <p><i class="glyphicon glyphicon-flag"></i> <a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Spravy:oblubene"), ENT_COMPAT) ?>
+"> Oblubené</a></p>
             </div>
             <div class="list-group-item open-request">
-                <p><i class="glyphicon glyphicon-trash"></i> <a href="/chcem/postu?trash"> Kôš</a></p>
+                <p><i class="glyphicon glyphicon-trash"></i> <a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Spravy:zmazane"), ENT_COMPAT) ?>
+"> Kôš</a></p>
             </div>
         </div>
     </div>

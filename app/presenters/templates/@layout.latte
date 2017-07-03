@@ -39,6 +39,7 @@
                             {if $user->loggedIn}
                                 <li style="color:white"> <span class="glyphicon glyphicon-user"> </span> Ahoj {$user->getIdentity()->login} </li>
                                 <li><a n:href="Spravy:prehlad">  <span class="glyphicon glyphicon-envelope"> </span>{_} Správy{/_} </a></li>
+                                <li><a n:href="Nastavenia:default">  <span class="glyphicon glyphicon-wrench"> </span>{_} Nastavenia{/_} </a></li>
                                 <li> <a n:href="Sign:out">  <span class="glyphicon glyphicon-share"> </span>{_}Odhlásiť sa{/_} </a></li>
                                 {else}
                                 <li><a n:href="Sign:prihlasenie"><span class="glyphicon glyphicon-user"> </span>Prihlásiť sa</a></li>

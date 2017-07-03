@@ -9,7 +9,7 @@
                     <div class="row chat-toolbar-row">
                         <div class="col-sm-12">
                             <div class="btn-group chat-toolbar" role="group" aria-label="...">
-                                <h3 class="bars"> Zoznam odoslaných správ</h3>
+                                <h3 class="bars"> Zoznam oblubených správ</h3>
                             </div>
                         </div>
                     </div>
@@ -17,8 +17,7 @@
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         {$flash->message}
                     </div> 
-                    {var $maxItems = 6}
-                    {control simpleGridOdoslane}
+                    {control simpleGridOblubene}
                 </div>
             </div>
         </div>

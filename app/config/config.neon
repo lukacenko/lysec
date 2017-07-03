@@ -40,6 +40,7 @@ services:
         - Model\Repository\Homepage
         - Model\Repository\Spravy
         - Model\Repository\UserManager
+        - Model\Repository\Nastavenia
         router: App\RouterFactory::createRouter
 
         authorizator:
@@ -54,6 +55,7 @@ services:
                         - addResource('Homepage') #domovska stranka
                         - addResource('Spravy') #domovska stranka
                         - addResource('Basket') #domovska stranka
+                        - addResource('Nastavenia') #domovska stranka
 
                         - allow('guest', 'Homepage')
                         - allow('guest', 'Sign')

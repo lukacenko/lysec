@@ -1,28 +1,28 @@
 <?php
-// source: C:\xampp\htdocs\Lysec\app\presenters/templates/Spravy/prehlad.latte
+// source: C:\xampp\htdocs\Lysec\app\presenters/templates/Spravy/oblubene.latte
 
-class Template928d414cfa0618b4d4886b6d01912d79 extends Latte\Template {
+class Templateaa210476e96f71a284b0a50582225c31 extends Latte\Template {
 function render() {
 foreach ($this->params as $__k => $__v) $$__k = $__v; unset($__k, $__v);
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('5f81caeb86', 'html')
+list($_b, $_g, $_l) = $template->initialize('d9fc50fd06', 'html')
 ;
 // prolog Latte\Macros\BlockMacros
 //
 // block content
 //
-if (!function_exists($_b->blocks['content'][] = '_lb4006dc7e1d_content')) { function _lb4006dc7e1d_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+if (!function_exists($_b->blocks['content'][] = '_lb512535551c_content')) { function _lb512535551c_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
 ?><div class="content">
     <div class="container">	
 
         <div class="container-fluid">
             <div class="row">
-<?php $_b->templates['5f81caeb86']->renderChildTemplate("layout.latte", $template->getParameters()) ?>
+<?php $_b->templates['d9fc50fd06']->renderChildTemplate("layout.latte", $template->getParameters()) ?>
                 <div class="col-md-9 current-chat">
                     <div class="row chat-toolbar-row">
                         <div class="col-sm-12">
                             <div class="btn-group chat-toolbar" role="group" aria-label="...">
-                                <h3 class="bars"> Zoznam prijatých správ</h3>
+                                <h3 class="bars"> Zoznam oblubených správ</h3>
                             </div>
                         </div>
                     </div>
@@ -31,19 +31,24 @@ if (!function_exists($_b->blocks['content'][] = '_lb4006dc7e1d_content')) { func
                         <?php echo Latte\Runtime\Filters::escapeHtml($flash->message, ENT_NOQUOTES) ?>
 
                     </div> 
-<?php $iterations++; } $_l->tmp = $_control->getComponent("simpleGridDorucene"); if ($_l->tmp instanceof Nette\Application\UI\IRenderable) $_l->tmp->redrawControl(NULL, FALSE); $_l->tmp->render() ?>
+<?php $iterations++; } $_l->tmp = $_control->getComponent("simpleGridOblubene"); if ($_l->tmp instanceof Nette\Application\UI\IRenderable) $_l->tmp->redrawControl(NULL, FALSE); $_l->tmp->render() ?>
                 </div>
             </div>
         </div>
+
+
+
+
     </div>
 </div>
+
 <?php
 }}
 
 //
 // block scripts
 //
-if (!function_exists($_b->blocks['scripts'][] = '_lbb29ba52009_scripts')) { function _lbb29ba52009_scripts($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+if (!function_exists($_b->blocks['scripts'][] = '_lb4aad082af0_scripts')) { function _lb4aad082af0_scripts($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
 ?><link rel="stylesheet" type="text/css" href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/happy.css">
 <link rel="stylesheet" type="text/css" href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/bootstrap-datepicker3.css">
 <link rel="stylesheet" type="text/css" href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/datagrid.css">

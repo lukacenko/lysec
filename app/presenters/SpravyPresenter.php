@@ -35,31 +35,8 @@ class SpravyPresenter extends \BasePresenter {
         $this->setView('detail');
     }
 
-    public function handledelete($id) {
-
-        $this->id = $id;
-    }
-
-    public function handletest($id) {
-
-        $this->id = $id;
-    }
-
-    public function deleteExamples(array $ids) {
-        
-        if ($this->isAjax()) {
-            foreach ($ids as $id){
-                $this->model->removeMessage($id);
-            }
-            $this->flashMessage('Vymazane', 'success');
-            $this['simpleGrid']->reload();
-        } else {
-            $this->redirect('this');
-        }
-    }
-
     // zmazanie správy
-    public function actionDelete($id) {
+    public function handledelete($id) {
 
         // overit ci sprava patri prihlasene pouzivatelovy alebo inemu
         $user_id = $this->getUser()->getIdentity()->id;
@@ -73,25 +50,92 @@ class SpravyPresenter extends \BasePresenter {
         $this->redirect('Spravy:prehlad');
     }
 
-    public $fooControlFactory;
+    public function handlefavorite($id) {
 
-    public function createComponentSimpleGrid($name) {
+        $this->model->favoriteMessage($id);
+        $this->flashMessage('Sprava pridana do oblubených', 'success');
+        $this->redirect('Spravy:prehlad');
+    }
+
+    // prida spravu k oblubenym
+    public function handletest($id) {
+        $this->id = $id;
+    }
+
+    public function deleteExamples(array $ids) {
+        foreach ($ids as $id) {
+            $this->model->removeMessage($id);
+        }
+        $this->flashMessage('Správa bola zmazaná', 'success');
+        $this->redirect('this');
+    }
+
+    public function createComponentSimpleGrid($name, $odoslane = 'dorucene') {
 
         $grid = new DataGrid($this, $name);
-        $grid->setDataSource($this->model->getAllMessage($this->getUser()->getIdentity()->id));
-        $grid->addColumnText('id', 'Id')->setAlign('left')->setSortable();
-        ;
         $grid->addColumnText('title', 'Predmet')->setSortable();
-        $grid->addColumnText('login', 'Od')->setSortable();
+        if ($odoslane == 'dorucene') {
+            $grid->setDataSource($this->model->getAllMessage($this->getUser()->getIdentity()->id));
+            $grid->addColumnText('login', 'Od')->setSortable();
+        } elseif ($odoslane == 'odoslane') {
+            $grid->setDataSource($this->model->getAllSendMessage($this->getUser()->getIdentity()->id));
+            $grid->addColumnText('login', 'Komu')->setSortable();
+        } elseif ($odoslane == 'oblubene') {
+            $grid->setDataSource($this->model->getAllFavoriteMessage($this->getUser()->getIdentity()->id));
+            $grid->addColumnText('login', 'Komu')->setSortable();
+        } elseif ($odoslane == 'zmazane') {
+            $grid->setDataSource($this->model->getAllDeleteMessage($this->getUser()->getIdentity()->id));
+            $grid->addColumnText('login', 'Od')->setSortable();
+        }
         $grid->addColumnText('timesend', 'Dátum')->setSortable();
-
         /**
          * ACtions
          */
         $grid->addAction('Delete', '', 'delete!')->setClass('glyphicon glyphicon-remove')->setTitle('Odstrániť');
-        $grid->addAction('Favorite', '', 'delete!')->setClass('glyphicon glyphicon-star')->setTitle('Pridať k oblubeným');
+        if ($odoslane == 'dorucene') {
+            $grid->addAction('Favorite', '', 'favorite!')->setClass('glyphicon glyphicon-star')->setTitle('Pridať k oblubeným');
+        }
         $grid->addGroupAction('Odstrániť vybrané')->onSelect[] = [$this, 'deleteExamples'];
         $grid->setPagination(TRUE);
+        /**
+         * Localization
+         */
+        $translator = new \Ublaboo\DataGrid\Localization\SimpleTranslator([
+            'ublaboo_datagrid.no_item_found_reset' => 'Žádné položky nenalezeny. Filtr můžete vynulovat',
+            'ublaboo_datagrid.no_item_found' => 'Žádné položky nenalezeny.',
+            'ublaboo_datagrid.here' => 'zde',
+            'ublaboo_datagrid.items' => 'Položky',
+            'ublaboo_datagrid.all' => 'všechny',
+            'ublaboo_datagrid.from' => 'z',
+            'ublaboo_datagrid.reset_filter' => 'Resetovat filtr',
+            'ublaboo_datagrid.group_actions' => 'Hromadné akce',
+            'ublaboo_datagrid.show_all_columns' => 'Zobrazit všechny sloupce',
+            'ublaboo_datagrid.hide_column' => 'Skrýt sloupec',
+            'ublaboo_datagrid.action' => 'Akce',
+            'ublaboo_datagrid.previous' => 'Předchozí',
+            'ublaboo_datagrid.next' => 'Další',
+            'ublaboo_datagrid.choose' => 'Vyberte',
+            'ublaboo_datagrid.execute' => 'Provést',
+            'Name' => 'Jméno',
+            'Inserted' => 'Vloženo'
+        ]);
+        $grid->setTranslator($translator);
+    }
+
+    public function createComponentSimpleGridDorucene($name) {
+        $this->createComponentSimpleGrid($name, 'dorucene');
+    }
+
+    public function createComponentSimpleGridOdoslane($name) {
+        $this->createComponentSimpleGrid($name, 'odoslane');
+    }
+
+    public function createComponentSimpleGridOblubene($name) {
+        $this->createComponentSimpleGrid($name, 'oblubene');
+    }
+
+    public function createComponentSimpleGridZmazane($name) {
+        $this->createComponentSimpleGrid($name, 'zmazane');
     }
 
     //FORMULÁR pre odoslanie správy

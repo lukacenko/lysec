@@ -79,6 +79,8 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
                                 <li style="color:white"> <span class="glyphicon glyphicon-user"> </span> Ahoj <?php echo Latte\Runtime\Filters::escapeHtml($user->getIdentity()->login, ENT_NOQUOTES) ?> </li>
                                 <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Spravy:prehlad"), ENT_COMPAT) ?>
 ">  <span class="glyphicon glyphicon-envelope"> </span><?php ob_start() ?> Správy<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </a></li>
+                                <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Nastavenia:default"), ENT_COMPAT) ?>
+">  <span class="glyphicon glyphicon-wrench"> </span><?php ob_start() ?> Nastavenia<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </a></li>
                                 <li> <a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Sign:out"), ENT_COMPAT) ?>
 ">  <span class="glyphicon glyphicon-share"> </span><?php ob_start() ?>Odhlásiť sa<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </a></li>
 <?php } else { ?>
