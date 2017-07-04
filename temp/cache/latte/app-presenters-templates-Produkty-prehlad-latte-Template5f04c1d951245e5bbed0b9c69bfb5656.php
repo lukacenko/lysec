@@ -37,7 +37,7 @@ if (!function_exists($_b->blocks['content'][] = '_lbbb9eea9da0_content')) { func
         </div>
         <div class="products-grid">
             <header>
-                <h3 class="head text-center">Latest Products</h3>
+                <h3 class="head text-center"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate("Produkty"), ENT_NOQUOTES) ?></h3>
             </header>
 <?php $iterations = 0; foreach ($produkty as $row) { ?>
             
