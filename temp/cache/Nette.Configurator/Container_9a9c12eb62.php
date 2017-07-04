@@ -31,8 +31,9 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 					'translation.loader',
 					'61_Model_Repository_Homepage',
 					'62_Model_Repository_Nastavenia',
-					'63_Model_Repository_Spravy',
-					'64_Model_Repository_UserManager',
+					'63_Model_Repository_Produkty',
+					'64_Model_Repository_Spravy',
+					'65_Model_Repository_UserManager',
 					'authorizator',
 					'application.1',
 					'application.2',
@@ -43,6 +44,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 					'application.7',
 					'application.8',
 					'application.9',
+					'application.10',
 					'container',
 				),
 			),
@@ -230,7 +232,8 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 				1 => array(
 					'61_Model_Repository_Homepage',
 					'62_Model_Repository_Nastavenia',
-					'63_Model_Repository_Spravy',
+					'63_Model_Repository_Produkty',
+					'64_Model_Repository_Spravy',
 				),
 			),
 			'Model\Repository\Homepage' => array(
@@ -239,14 +242,17 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 			'Model\Repository\Nastavenia' => array(
 				1 => array('62_Model_Repository_Nastavenia'),
 			),
+			'Model\Repository\Produkty' => array(
+				1 => array('63_Model_Repository_Produkty'),
+			),
 			'Model\Repository\Spravy' => array(
-				1 => array('63_Model_Repository_Spravy'),
+				1 => array('64_Model_Repository_Spravy'),
 			),
 			'Nette\Security\IAuthenticator' => array(
-				1 => array('64_Model_Repository_UserManager'),
+				1 => array('65_Model_Repository_UserManager'),
 			),
 			'Model\Repository\UserManager' => array(
-				1 => array('64_Model_Repository_UserManager'),
+				1 => array('65_Model_Repository_UserManager'),
 			),
 			'Nette\Security\IAuthorizator' => array(1 => array('authorizator')),
 			'Nette\Security\Permission' => array(1 => array('authorizator')),
@@ -257,6 +263,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 					'application.5',
 					'application.6',
 					'application.7',
+					'application.8',
 				),
 			),
 			'Nette\Application\UI\Presenter' => array(
@@ -267,6 +274,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 					'application.5',
 					'application.6',
 					'application.7',
+					'application.8',
 				),
 			),
 			'Nette\Application\UI\Control' => array(
@@ -277,6 +285,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 					'application.5',
 					'application.6',
 					'application.7',
+					'application.8',
 				),
 			),
 			'Nette\Application\UI\PresenterComponent' => array(
@@ -287,6 +296,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 					'application.5',
 					'application.6',
 					'application.7',
+					'application.8',
 				),
 			),
 			'Nette\ComponentModel\Container' => array(
@@ -297,6 +307,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 					'application.5',
 					'application.6',
 					'application.7',
+					'application.8',
 				),
 			),
 			'Nette\ComponentModel\Component' => array(
@@ -307,6 +318,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 					'application.5',
 					'application.6',
 					'application.7',
+					'application.8',
 				),
 			),
 			'Nette\Application\UI\IRenderable' => array(
@@ -317,6 +329,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 					'application.5',
 					'application.6',
 					'application.7',
+					'application.8',
 				),
 			),
 			'Nette\ComponentModel\IContainer' => array(
@@ -327,6 +340,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 					'application.5',
 					'application.6',
 					'application.7',
+					'application.8',
 				),
 			),
 			'Nette\ComponentModel\IComponent' => array(
@@ -337,6 +351,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 					'application.5',
 					'application.6',
 					'application.7',
+					'application.8',
 				),
 			),
 			'Nette\Application\UI\ISignalReceiver' => array(
@@ -347,6 +362,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 					'application.5',
 					'application.6',
 					'application.7',
+					'application.8',
 				),
 			),
 			'Nette\Application\UI\IStatePersistent' => array(
@@ -357,6 +373,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 					'application.5',
 					'application.6',
 					'application.7',
+					'application.8',
 				),
 			),
 			'ArrayAccess' => array(
@@ -367,6 +384,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 					'application.5',
 					'application.6',
 					'application.7',
+					'application.8',
 				),
 			),
 			'Nette\Application\IPresenter' => array(
@@ -380,6 +398,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 					'application.7',
 					'application.8',
 					'application.9',
+					'application.10',
 				),
 			),
 			'App\Presenters\BasketPresenter' => array(array('application.1')),
@@ -387,26 +406,29 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 			'App\Presenters\ErrorPresenter' => array(array('application.3')),
 			'App\Presenters\HomepagePresenter' => array(array('application.4')),
 			'App\Presenters\NastaveniaPresenter' => array(array('application.5')),
-			'App\Presenters\SignPresenter' => array(array('application.6')),
-			'App\Presenters\SpravyPresenter' => array(array('application.7')),
-			'NetteModule\ErrorPresenter' => array(array('application.8')),
-			'NetteModule\MicroPresenter' => array(array('application.9')),
+			'App\Presenters\ProduktyPresenter' => array(array('application.6')),
+			'App\Presenters\SignPresenter' => array(array('application.7')),
+			'App\Presenters\SpravyPresenter' => array(array('application.8')),
+			'NetteModule\ErrorPresenter' => array(array('application.9')),
+			'NetteModule\MicroPresenter' => array(array('application.10')),
 			'Nette\DI\Container' => array(1 => array('container')),
 		),
 		'services' => array(
 			'61_Model_Repository_Homepage' => 'Model\Repository\Homepage',
 			'62_Model_Repository_Nastavenia' => 'Model\Repository\Nastavenia',
-			'63_Model_Repository_Spravy' => 'Model\Repository\Spravy',
-			'64_Model_Repository_UserManager' => 'Model\Repository\UserManager',
+			'63_Model_Repository_Produkty' => 'Model\Repository\Produkty',
+			'64_Model_Repository_Spravy' => 'Model\Repository\Spravy',
+			'65_Model_Repository_UserManager' => 'Model\Repository\UserManager',
 			'application.1' => 'App\Presenters\BasketPresenter',
+			'application.10' => 'NetteModule\MicroPresenter',
 			'application.2' => 'App\Presenters\Error4xxPresenter',
 			'application.3' => 'App\Presenters\ErrorPresenter',
 			'application.4' => 'App\Presenters\HomepagePresenter',
 			'application.5' => 'App\Presenters\NastaveniaPresenter',
-			'application.6' => 'App\Presenters\SignPresenter',
-			'application.7' => 'App\Presenters\SpravyPresenter',
-			'application.8' => 'NetteModule\ErrorPresenter',
-			'application.9' => 'NetteModule\MicroPresenter',
+			'application.6' => 'App\Presenters\ProduktyPresenter',
+			'application.7' => 'App\Presenters\SignPresenter',
+			'application.8' => 'App\Presenters\SpravyPresenter',
+			'application.9' => 'NetteModule\ErrorPresenter',
 			'application.application' => 'Nette\Application\Application',
 			'application.linkGenerator' => 'Nette\Application\LinkGenerator',
 			'application.presenterFactory' => 'Nette\Application\IPresenterFactory',
@@ -473,6 +495,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 		'tags' => array(
 			'inject' => array(
 				'application.1' => TRUE,
+				'application.10' => TRUE,
 				'application.2' => TRUE,
 				'application.3' => TRUE,
 				'application.4' => TRUE,
@@ -519,14 +542,15 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 			),
 			'nette.presenter' => array(
 				'application.1' => 'App\Presenters\BasketPresenter',
+				'application.10' => 'NetteModule\MicroPresenter',
 				'application.2' => 'App\Presenters\Error4xxPresenter',
 				'application.3' => 'App\Presenters\ErrorPresenter',
 				'application.4' => 'App\Presenters\HomepagePresenter',
 				'application.5' => 'App\Presenters\NastaveniaPresenter',
-				'application.6' => 'App\Presenters\SignPresenter',
-				'application.7' => 'App\Presenters\SpravyPresenter',
-				'application.8' => 'NetteModule\ErrorPresenter',
-				'application.9' => 'NetteModule\MicroPresenter',
+				'application.6' => 'App\Presenters\ProduktyPresenter',
+				'application.7' => 'App\Presenters\SignPresenter',
+				'application.8' => 'App\Presenters\SpravyPresenter',
+				'application.9' => 'NetteModule\ErrorPresenter',
 			),
 			'translation.dumper' => array(
 				'translation.dumper.csv' => 'csv',
@@ -633,9 +657,19 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 
 
 	/**
+	 * @return Model\Repository\Produkty
+	 */
+	public function createService__63_Model_Repository_Produkty()
+	{
+		$service = new Model\Repository\Produkty($this->getService('database.default.context'), $this);
+		return $service;
+	}
+
+
+	/**
 	 * @return Model\Repository\Spravy
 	 */
-	public function createService__63_Model_Repository_Spravy()
+	public function createService__64_Model_Repository_Spravy()
 	{
 		$service = new Model\Repository\Spravy($this->getService('database.default.context'), $this);
 		return $service;
@@ -645,7 +679,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 	/**
 	 * @return Model\Repository\UserManager
 	 */
-	public function createService__64_Model_Repository_UserManager()
+	public function createService__65_Model_Repository_UserManager()
 	{
 		$service = new Model\Repository\UserManager($this->getService('database.default.context'));
 		return $service;
@@ -663,6 +697,16 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 			$this->getService('security.user'), $this->getService('latte.templateFactory'));
 		$service->translator = $this->getService('translation.default');
 		$service->invalidLinkMode = 5;
+		return $service;
+	}
+
+
+	/**
+	 * @return NetteModule\MicroPresenter
+	 */
+	public function createServiceApplication__10()
+	{
+		$service = new NetteModule\MicroPresenter($this, $this->getService('http.request'), $this->getService('routing.router'));
 		return $service;
 	}
 
@@ -722,11 +766,26 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 
 
 	/**
-	 * @return App\Presenters\SignPresenter
+	 * @return App\Presenters\ProduktyPresenter
 	 */
 	public function createServiceApplication__6()
 	{
-		$service = new App\Presenters\SignPresenter($this->getService('64_Model_Repository_UserManager'));
+		$service = new App\Presenters\ProduktyPresenter($this->getService('63_Model_Repository_Produkty'));
+		$service->injectPrimary($this, $this->getService('application.presenterFactory'), $this->getService('routing.router'),
+			$this->getService('http.request'), $this->getService('http.response'), $this->getService('session.session'),
+			$this->getService('security.user'), $this->getService('latte.templateFactory'));
+		$service->translator = $this->getService('translation.default');
+		$service->invalidLinkMode = 5;
+		return $service;
+	}
+
+
+	/**
+	 * @return App\Presenters\SignPresenter
+	 */
+	public function createServiceApplication__7()
+	{
+		$service = new App\Presenters\SignPresenter($this->getService('65_Model_Repository_UserManager'));
 		$service->injectPrimary($this, $this->getService('application.presenterFactory'), $this->getService('routing.router'),
 			$this->getService('http.request'), $this->getService('http.response'), $this->getService('session.session'),
 			$this->getService('security.user'), $this->getService('latte.templateFactory'));
@@ -739,9 +798,9 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 	/**
 	 * @return App\Presenters\SpravyPresenter
 	 */
-	public function createServiceApplication__7()
+	public function createServiceApplication__8()
 	{
-		$service = new App\Presenters\SpravyPresenter($this->getService('63_Model_Repository_Spravy'));
+		$service = new App\Presenters\SpravyPresenter($this->getService('64_Model_Repository_Spravy'));
 		$service->injectPrimary($this, $this->getService('application.presenterFactory'), $this->getService('routing.router'),
 			$this->getService('http.request'), $this->getService('http.response'), $this->getService('session.session'),
 			$this->getService('security.user'), $this->getService('latte.templateFactory'));
@@ -754,19 +813,9 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 	/**
 	 * @return NetteModule\ErrorPresenter
 	 */
-	public function createServiceApplication__8()
-	{
-		$service = new NetteModule\ErrorPresenter($this->getService('tracy.logger'));
-		return $service;
-	}
-
-
-	/**
-	 * @return NetteModule\MicroPresenter
-	 */
 	public function createServiceApplication__9()
 	{
-		$service = new NetteModule\MicroPresenter($this, $this->getService('http.request'), $this->getService('routing.router'));
+		$service = new NetteModule\ErrorPresenter($this->getService('tracy.logger'));
 		return $service;
 	}
 
@@ -835,6 +884,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 		$service->addResource('Spravy');
 		$service->addResource('Basket');
 		$service->addResource('Nastavenia');
+		$service->addResource('Produkty');
 		$service->allow('guest', 'Homepage');
 		$service->allow('guest', 'Sign');
 		$service->allow('user', 'Homepage');
@@ -1033,7 +1083,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 	 */
 	public function createServiceSecurity__user()
 	{
-		$service = new Nette\Security\User($this->getService('security.userStorage'), $this->getService('64_Model_Repository_UserManager'),
+		$service = new Nette\Security\User($this->getService('security.userStorage'), $this->getService('65_Model_Repository_UserManager'),
 			$this->getService('authorizator'));
 		$this->getService('tracy.bar')->addPanel(new Nette\Bridges\SecurityTracy\UserPanel($service));
 		return $service;
@@ -1514,6 +1564,8 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 		Nette\Reflection\AnnotationsParser::setCacheStorage($this->getByType("Nette\Caching\IStorage"));
 		Nette\Reflection\AnnotationsParser::$autoRefresh = TRUE;
 		$this->getService('session.session')->exists() && $this->getService('session.session')->start();
+		Tracy\Debugger::$editorMapping = array();
+		if ($tmp = $this->getByType("Nette\Http\Session", FALSE)) { $tmp->start(); Tracy\Debugger::dispatch(); };
 		Kdyby\Translation\Diagnostics\Panel::registerBluescreen();
 	}
 

@@ -1,17 +1,17 @@
 <?php
-// source: C:\xampp\htdocs\lysec\app\presenters/templates/Homepage/default.latte
+// source: C:\xampp\htdocs\Lysec\app\presenters/templates/Produkty/prehlad.latte
 
-class Template7fff3ba5b91e34a7b4b859ac210c749b extends Latte\Template {
+class Template5f04c1d951245e5bbed0b9c69bfb5656 extends Latte\Template {
 function render() {
 foreach ($this->params as $__k => $__v) $$__k = $__v; unset($__k, $__v);
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('5329741f08', 'html')
+list($_b, $_g, $_l) = $template->initialize('dd285d225f', 'html')
 ;
 // prolog Latte\Macros\BlockMacros
 //
 // block content
 //
-if (!function_exists($_b->blocks['content'][] = '_lb8dc8339bbe_content')) { function _lb8dc8339bbe_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+if (!function_exists($_b->blocks['content'][] = '_lbbb9eea9da0_content')) { function _lbbb9eea9da0_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
 ?><!-- content-section-starts-here -->
 <div class="container">
     <div class="main-content">
@@ -39,78 +39,19 @@ if (!function_exists($_b->blocks['content'][] = '_lb8dc8339bbe_content')) { func
             <header>
                 <h3 class="head text-center">Latest Products</h3>
             </header>
+<?php $iterations = 0; foreach ($produkty as $row) { ?>
+            
             <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="images/p1.jpg" alt=""></a>
+                <a href="single.html"><img src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>
+/<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($row->title_photo), ENT_COMPAT) ?>" alt=""></a>
                 <div class="mask">
                     <a href="single.html">Quick View</a>
                 </div>
-                <a class="product_name" href="single.html">Sed ut perspiciatis</a>
-                <p><a class="item_add" href="#"><i></i> <span class="item_price">$329</span></a></p>
+                <a class="product_name" href="single.html"><?php echo Latte\Runtime\Filters::escapeHtml($row->product_name, ENT_NOQUOTES) ?></a>
+                <p><a class="item_add" href="#"><i></i> <span class="item_price"><?php echo Latte\Runtime\Filters::escapeHtml($row->price, ENT_NOQUOTES) ?> €</span></a></p>
             </div>
-            <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="images/p2.jpg" alt=""></a>
-                <div class="mask">
-                    <a href="single.html">Quick View</a>
-                </div>
-                <a class="product_name" href="single.html">great explorer</a>
-                <p><a class="item_add" href="#"><i></i> <span class="item_price">$599.8</span></a></p>
-            </div>
-            <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="images/p3.jpg" alt=""></a>
-                <div class="mask">
-                    <a href="single.html">Quick View</a>
-                </div>
-                <a class="product_name" href="single.html">similique sunt</a>
-                <p><a class="item_add" href="#"><i></i> <span class="item_price">$359.6</span></a></p>
-            </div>
-            <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="images/p4.jpg" alt=""></a>
-                <div class="mask">
-                    <a href="single.html">Quick View</a>
-                </div>
-                <a class="product_name" href="single.html">shrinking </a>
-                <p><a class="item_add" href="#"><i></i> <span class="item_price">$649.99</span></a></p>
-            </div>
-            <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="images/p5.jpg" alt=""></a>
-                <div class="mask">
-                    <a href="single.html">Quick View</a>
-                </div>
-                <a class="product_name" href="single.html">perfectly simple</a>
-                <p><a class="item_add" href="#"><i></i> <span class="item_price">$750</span></a></p>
-            </div>
-            <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="images/p6.jpg" alt=""></a>
-                <div class="mask">
-                    <a href="single.html">Quick View</a>
-                </div>
-                <a class="product_name" href="single.html">equal blame</a>
-                <p><a class="item_add" href="#"><i></i> <span class="item_price">$295.59</span></a></p>
-            </div>
-            <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="images/p7.jpg" alt=""></a>
-                <div class="mask">
-                    <a href="single.html">Quick View</a>
-                </div>
-                <a class="product_name" href="single.html">Neque porro</a>
-                <p><a class="item_add" href="#"><i></i> <span class="item_price">$380</span></a></p>
-            </div>
-            <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="images/p8.jpg" alt=""></a>
-                <div class="mask">
-                    <a href="single.html">Quick View</a>
-                </div>
-                <a class="product_name" href="single.html">perfectly simple</a>
-                <p><a class="item_add" href="#"><i></i> <span class="item_price">$540.6</span></a></p>
-            </div>
-            <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="images/p9.jpg" alt=""></a>
-                <div class="mask">
-                    <a href="single.html">Quick View</a>
-                </div>
-                <a class="product_name" href="single.html">praising pain</a>
-                <p><a class="item_add" href="#"><i></i> <span class="item_price">$229.5</span></a></p>
-            </div>
+<?php $iterations++; } ?>
+
             <div class="clearfix"></div>
         </div>
     </div>
@@ -187,7 +128,7 @@ if (!function_exists($_b->blocks['content'][] = '_lb8dc8339bbe_content')) { func
 //
 // block scripts
 //
-if (!function_exists($_b->blocks['scripts'][] = '_lb173c410e5e_scripts')) { function _lb173c410e5e_scripts($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+if (!function_exists($_b->blocks['scripts'][] = '_lbb91caf183f_scripts')) { function _lbb91caf183f_scripts($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
 ?><script>
     $(document).ready(function () {
         $(".hoverDiv").hover(function () {

@@ -34,38 +34,38 @@ class NastaveniaPresenter extends \BasePresenter {
                 ->setRequired('Prosím vložte Príjemcu.');
         //$form->addSelect('id_kat', 'Kategória', $this->model->ziskajdata2());
 
-        $form->addText('meno', 'Meno:')
-                ->setValue($data->meno)
+        $form->addText('name', 'Meno:')
+                ->setValue($data->name)
                 ->setRequired('Prosím vložte Príjemcu.');
-        $form->addText('priezvisko', 'Priezvisko:')
-                ->setValue($data->priezvisko)
+        $form->addText('surname', 'Priezvisko:')
+                ->setValue($data->surname)
                 ->setRequired('Prosím vložte Príjemcu.');
-        $form->addText('ulica', 'Ulica, č.domu:')
-                ->setValue($data->ulica)
+        $form->addText('street', 'Ulica, č.domu:')
+                ->setValue($data->street)
                 ->setRequired('Prosím vložte Príjemcu.');
-        $form->addText('psc', 'PSČ:')
-                ->setValue($data->psc)
+        $form->addText('postcode', 'PSČ:')
+                ->setValue($data->postcode)
                 ->setRequired('Prosím vložte Príjemcu.');
-        $form->addText('mesto', 'Mesto:')
-                ->setValue($data->mesto)
+        $form->addText('city', 'Mesto:')
+                ->setValue($data->city)
                 ->setRequired('Prosím vložte Príjemcu.');
-        $form->addText('telefon', 'Telefón:')
-                ->setValue($data->telefon)
+        $form->addText('phone', 'Telefón:')
+                ->setValue($data->phone)
                 ->setRequired('Prosím vložte Príjemcu.');
         $countries = [
             'SK' => 'Slovensko',
             'CZ' => 'Česká Republika',
             '' => 'Prosim vyberte'
         ];
-        $form->addSelect('krajina', 'Krajina:', $countries)
-                ->setValue($data->krajina);
+        $form->addSelect('country', 'Krajina:', $countries)
+                ->setValue($data->country);
         $pohlavie = [
             'Z' => 'Muž',
             'M' => 'Žena',
             '' => 'Prosim vyberte'
         ];
-        $form->addSelect('pohlavie', 'Pohlavie:', $pohlavie)
-                ->setValue($data->pohlavie);
+        $form->addSelect('sex', 'Pohlavie:', $pohlavie)
+                ->setValue($data->sex);
 
         if ($data->role != 'admin') {
             $role = [
