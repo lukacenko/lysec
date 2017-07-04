@@ -1,0 +1,27 @@
+{block content}
+{form form}
+    {input one, size => 3}
+    {snippet two}
+        {input two, size => 3}
+    {/snippet}
+    {input send}
+{/form}
+{/block}
+
+{block scripts}
+<script src="{$basePath}/js/nette.ajax.js"></script>
+<script>
+$(function(){
+    $.nette.init();
+
+    $('select[name=one]').change(function () {
+        $.nette.ajax({
+            url: {link invalidate!},
+            data: {
+                'value': $('select[name=one]').val(),
+            }
+        });
+    });
+});
+</script>
+{/block}

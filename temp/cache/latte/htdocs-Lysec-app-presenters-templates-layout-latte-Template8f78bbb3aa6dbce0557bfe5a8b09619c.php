@@ -58,6 +58,7 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
               Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design">
         <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
         <!--webfont-->
+
         <!-- for bootstrap working -->
         <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/bootstrap.js"></script>
         <!-- //for bootstrap working -->
