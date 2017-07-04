@@ -91,7 +91,9 @@ class SpravyPresenter extends \BasePresenter {
         /**
          * ACtions
          */
-        $grid->addAction('Delete', '', 'delete!')->setClass('glyphicon glyphicon-remove')->setTitle('Odstrániť');
+        if ($odoslane == 'dorucene' || $odoslane == 'odoslane') {
+            $grid->addAction('Delete', '', 'delete!')->setClass('glyphicon glyphicon-remove')->setTitle('Odstrániť');
+        }
         if ($odoslane == 'dorucene') {
             $grid->addAction('Favorite', '', 'favorite!')->setClass('glyphicon glyphicon-star')->setTitle('Pridať k oblubeným');
         }
