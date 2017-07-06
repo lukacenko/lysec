@@ -9,7 +9,7 @@ class Spravy extends Repository {
     // zobrazi vsetky prijate spravy daneho pouzivatela
     public function getAllMessage($user) {
         $result = $this->db->query('SELECT pm.user1,pm.timesend, pm.timestamp,pm.user2read, pm.id, pm.title, users.login FROM pm
-            INNER JOIN users ON pm.user1=users.id where user2 = ' . $user . ' AND remove = 0 ORDER BY timesend DESC');
+            INNER JOIN users ON pm.user1=users.id where user2 = ' . $user . ' AND remove = 0 AND favorite = 0 ORDER BY timesend DESC');
         $rows = $result->fetchAll();
         return $rows;
     }
@@ -35,7 +35,7 @@ class Spravy extends Repository {
     public function getAllFavoriteMessage($user) {
 
         $result = $this->db->query('SELECT pm.user1,pm.timesend, pm.timestamp,pm.user2read, pm.id, pm.title, users.login FROM pm
-            INNER JOIN users ON pm.user1=users.id where user2 = ' . $user . ' AND oblubena = 1 ORDER BY timesend DESC');
+            INNER JOIN users ON pm.user1=users.id where user2 = ' . $user . ' AND favorite = 1 ORDER BY timesend DESC');
         $rows = $result->fetchAll();
         return $rows;
     }
@@ -87,7 +87,10 @@ class Spravy extends Repository {
         $result = $this->db->query(' UPDATE pm SET remove = 1 WHERE id = ' . $id . '');
     }
     public function favoriteMessage($id) {
-        $result = $this->db->query(' UPDATE pm SET oblubena = 1 WHERE id = ' . $id . '');
+        $result = $this->db->query(' UPDATE pm SET favorite = 1 WHERE id = ' . $id . '');
+    }
+    public function removefavoriteMessage($id) {
+        $result = $this->db->query(' UPDATE pm SET favorite = 0 WHERE id = ' . $id . '');
     }
 
 }

@@ -1,16 +1,95 @@
 {block content}
 <div class="container">
-<div class="content">
-    <h1>Nastavenia </h1>
-    Úprava informácií o uživateľovi. Nezabudni kliknúť na Uložiť na spodu stránky.
-    <h2> Osobné informácie</h2>
-    {control changeInfoForm}
-    <h2> Adresy doručenia</h2>
-    {*control changeInfoForm*}
-</div>
-</div>
-{/block}
-{block scripts}
-<script>
+    <div class="content">
+        <h1>Nastavenia </h1>
+        Úprava informácií o uživateľovi. Nezabudni kliknúť na Uložiť na spodu stránky.
+        {*control changeInfoForm*}
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Osobné informácie </h2>
+                        <div class="text-right">
+                            <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                        </div>                    
+                    </div>
+                    <table class="table"> 
+                        <tbody> 
+                            <tr> <th scope="row">Prihlasovacie meno:</th> <td>12345</td></tr>
+                            <tr> <th scope="row">Meno:</th> <td>Lukáš</td> </tr>
+                            <tr> <th scope="row">Priezvisko:</th> <td>Šurda</td> </tr>
+                            <tr> <th scope="row">Telefón:</th> <td>0904090180</td> </tr>
+                            <tr> <th scope="row">Krajina:</th> <td>Slovenská republika</td> </tr>
+                            <tr> <th scope="row">Pohlavie:</th> <td>Muž</td> </tr>
+                        </tbody> 
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Adresy doručenia</h2>
+                        <div class="text-right">
+                            <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                        </div>
+                    </div>
+                    <table class="table"> 
+                        <tbody> 
+                            <tr> <th scope="row">Firma:</th> <td>Šurda</td></tr>
+                            <tr> <th scope="row">Adresa:</th> <td>Lukáš</td> </tr>
+                            <tr> <th scope="row">Mesto:</th> <td>Lukáš</td> </tr>
+                            <tr> <th scope="row">PSČ:</th> <td>Lukáš</td> </tr>
+                            <tr> <th scope="row">Štát:</th> <td>Lukáš</td> </tr>
+                        </tbody> 
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Fakturačne údaje</h2>
+                        <div class="text-right">
+                            <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                        </div>
+                    </div>
+                    <table class="table"> 
+                        <tbody> 
+                            <tr> <th scope="row">Firma:</th> <td>Šurda</td></tr>
+                            <tr> <th scope="row">Adresa:</th> <td>Mechov 213</td> </tr>
+                            <tr> <th scope="row">Mesto:</th> <td>Velčice</td> </tr>
+                            <tr> <th scope="row">PSČ:</th> <td>95171</td> </tr>
+                            <tr> <th scope="row">Štát:</th> <td>Slovenská republika</td> </tr>
+                        </tbody> 
+                    </table>
+                </div>
+            </div>        
+        </div>        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Obchody</h2>
+                        <div class="text-right">
+                            <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                        </div>                    
+                    </div>
+                    <table class="table"> 
+                        <tbody> 
+                            <tr> <th scope="row">Adresa:</th> <td>Mechov 213</td></tr>
+                            <tr> <th scope="row">Mesto:</th> <td>Velčice</td> </tr>
+                            <tr> <th scope="row">PSČ:</th> <td>95171</td> </tr>
+                            <tr> <th scope="row">Štát:</th> <td>Slovenská republika</td> </tr>
+                        </tbody> 
+                    </table>
+                </div>
+            </div>
 
-{/block}
+        </div>
+                    {control changeInfoForm}
+
+    </div>
+    {/block}
+    {block scripts}
+    <script>
+
+        {/block}

@@ -57,6 +57,14 @@ class SpravyPresenter extends \BasePresenter {
         $this->redirect('Spravy:prehlad');
     }
 
+    public function handleremovefavorite($id) {
+
+        $this->model->removefavoriteMessage($id);
+        $this->flashMessage('Sprava odstánena z oblubených', 'success');
+        $this->redirect('Spravy:oblubene');
+    }
+
+    
     // prida spravu k oblubenym
     public function handletest($id) {
         $this->id = $id;
@@ -91,11 +99,14 @@ class SpravyPresenter extends \BasePresenter {
         /**
          * ACtions
          */
+        if ($odoslane == 'dorucene') {
+            $grid->addAction('Favorite', '', 'favorite!')->setClass('glyphicon glyphicon-star')->setTitle('Pridať k oblubeným');
+        }
         if ($odoslane == 'dorucene' || $odoslane == 'odoslane') {
             $grid->addAction('Delete', '', 'delete!')->setClass('glyphicon glyphicon-remove')->setTitle('Odstrániť');
         }
-        if ($odoslane == 'dorucene') {
-            $grid->addAction('Favorite', '', 'favorite!')->setClass('glyphicon glyphicon-star')->setTitle('Pridať k oblubeným');
+        if ($odoslane == 'oblubene') {
+            $grid->addAction('Favorite', '', 'removefavorite!')->setClass('glyphicon glyphicon-remove')->setTitle('Odstraniť z oblubeným');
         }
         $grid->addGroupAction('Odstrániť vybrané')->onSelect[] = [$this, 'deleteExamples'];
         $grid->setPagination(TRUE);

@@ -13,14 +13,93 @@ list($_b, $_g, $_l) = $template->initialize('e270fb76c2', 'html')
 //
 if (!function_exists($_b->blocks['content'][] = '_lb374fffb0cd_content')) { function _lb374fffb0cd_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
 ?><div class="container">
-<div class="content">
-    <h1>Nastavenia </h1>
-    Úprava informácií o uživateľovi. Nezabudni kliknúť na Uložiť na spodu stránky.
-    <h2> Osobné informácie</h2>
+    <div class="content">
+        <h1>Nastavenia </h1>
+        Úprava informácií o uživateľovi. Nezabudni kliknúť na Uložiť na spodu stránky.
+                <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Osobné informácie </h2>
+                        <div class="text-right">
+                            <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                        </div>                    
+                    </div>
+                    <table class="table"> 
+                        <tbody> 
+                            <tr> <th scope="row">Prihlasovacie meno:</th> <td>12345</td></tr>
+                            <tr> <th scope="row">Meno:</th> <td>Lukáš</td> </tr>
+                            <tr> <th scope="row">Priezvisko:</th> <td>Šurda</td> </tr>
+                            <tr> <th scope="row">Telefón:</th> <td>0904090180</td> </tr>
+                            <tr> <th scope="row">Krajina:</th> <td>Slovenská republika</td> </tr>
+                            <tr> <th scope="row">Pohlavie:</th> <td>Muž</td> </tr>
+                        </tbody> 
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Adresy doručenia</h2>
+                        <div class="text-right">
+                            <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                        </div>
+                    </div>
+                    <table class="table"> 
+                        <tbody> 
+                            <tr> <th scope="row">Firma:</th> <td>Šurda</td></tr>
+                            <tr> <th scope="row">Adresa:</th> <td>Lukáš</td> </tr>
+                            <tr> <th scope="row">Mesto:</th> <td>Lukáš</td> </tr>
+                            <tr> <th scope="row">PSČ:</th> <td>Lukáš</td> </tr>
+                            <tr> <th scope="row">Štát:</th> <td>Lukáš</td> </tr>
+                        </tbody> 
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Fakturačne údaje</h2>
+                        <div class="text-right">
+                            <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                        </div>
+                    </div>
+                    <table class="table"> 
+                        <tbody> 
+                            <tr> <th scope="row">Firma:</th> <td>Šurda</td></tr>
+                            <tr> <th scope="row">Adresa:</th> <td>Mechov 213</td> </tr>
+                            <tr> <th scope="row">Mesto:</th> <td>Velčice</td> </tr>
+                            <tr> <th scope="row">PSČ:</th> <td>95171</td> </tr>
+                            <tr> <th scope="row">Štát:</th> <td>Slovenská republika</td> </tr>
+                        </tbody> 
+                    </table>
+                </div>
+            </div>        
+        </div>        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Obchody</h2>
+                        <div class="text-right">
+                            <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                        </div>                    
+                    </div>
+                    <table class="table"> 
+                        <tbody> 
+                            <tr> <th scope="row">Adresa:</th> <td>Mechov 213</td></tr>
+                            <tr> <th scope="row">Mesto:</th> <td>Velčice</td> </tr>
+                            <tr> <th scope="row">PSČ:</th> <td>95171</td> </tr>
+                            <tr> <th scope="row">Štát:</th> <td>Slovenská republika</td> </tr>
+                        </tbody> 
+                    </table>
+                </div>
+            </div>
+
+        </div>
 <?php $_l->tmp = $_control->getComponent("changeInfoForm"); if ($_l->tmp instanceof Nette\Application\UI\IRenderable) $_l->tmp->redrawControl(NULL, FALSE); $_l->tmp->render() ?>
-    <h2> Adresy doručenia</h2>
+
     </div>
-</div>
 <?php
 }}
 
@@ -28,7 +107,7 @@ if (!function_exists($_b->blocks['content'][] = '_lb374fffb0cd_content')) { func
 // block scripts
 //
 if (!function_exists($_b->blocks['scripts'][] = '_lbe53c4cbcaf_scripts')) { function _lbe53c4cbcaf_scripts($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
-?><script>
+?>    <script>
 
 <?php
 }}
