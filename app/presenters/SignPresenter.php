@@ -128,4 +128,106 @@ class SignPresenter extends \BasePresenter {
         $this->redirect('prihlasenie');
     }
 
+    
+    protected function createComponentNewPassword() {
+        $form = new UI\Form;
+        $form->setRenderer(new BootstrapVerticalRenderer());
+        $form->setTranslator($this->translator);
+
+        $form->addText('email', $this->translator->translate('Užívateľské meno'))->setAttribute('placeholder', $this->translator->translate('E-mail '))
+                ->setRequired('Prosím vložte Vaš E-mailo.');
+
+        $form->addSubmit('send', 'Prihlásiť sa');
+
+        // call method signInFormSubmitted() on success
+        $form->onSuccess[] = $this->signInFormSubmitted;
+        $form->addProtection();
+        return $form;
+    }
+
+    public function signInFormNewPassword(UI\Form $form) {
+        if ($this->isAjax()) {
+            $this->invalidateControl('signInForm');
+        }
+        $values = $form->getValues();
+        try {
+
+        $email = $values->email;
+        //existuje dany email 
+        if($this->model->ExistujeEmail($email)){
+                        //generat unique string
+            $uniqidStr = md5(uniqid(mt_rand()));;
+            
+            //update data with forgot pass code
+            $conditions = array(
+                'email' => $_POST['email']
+            );
+            $data = array(
+                'forgot_pass_identity' => $uniqidStr
+            );
+            $this->model->Updateuniqidstr($uniqidStr, $email);
+            /*
+            if($update){
+                $resetPassLink = 'http://codexworld.com/resetPassword.php?fp_code='.$uniqidStr;
+                
+                //get user details
+                $con['where'] = array('email'=>$_POST['email']);
+                $con['return_type'] = 'single';
+                $userDetails = $user->getRows($con);
+                
+                //send reset password email
+                $to = $userDetails['email'];
+                $subject = "Password Update Request";
+                $mailContent = 'Dear '.$userDetails['first_name'].', 
+                <br/>Recently a request was submitted to reset a password for your account. If this was a mistake, just ignore this email and nothing will happen.
+                <br/>To reset your password, visit the following link: <a href="'.$resetPassLink.'">'.$resetPassLink.'</a>
+                <br/><br/>Regards,
+                <br/>CodexWorld';
+                //set content-type header for sending HTML email
+                $headers = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                //additional headers
+                $headers .= 'From: CodexWorld<sender@example.com>' . "\r\n";
+                //send email
+                mail($to,$subject,$mailContent,$headers);
+                
+                $sessData['status']['type'] = 'success';
+                $sessData['status']['msg'] = 'Please check your e-mail, we have sent a password reset link to your registered email.';
+            }else{
+                $sessData['status']['type'] = 'error';
+                $sessData['status']['msg'] = 'Some problem occurred, please try again.';
+            }
+*/
+        }else{
+            
+        }
+        
+
+
+    //store reset password status into the session
+    $_SESSION['sessData'] = $sessData;
+    //redirect to the forgot pasword page
+    header("Location:forgotPassword.php");            
+            
+            
+            $this->user->login($values->username, $values->password);
+            $this->flashMessage('Boli ste úspešne prihlásený', 'success');
+            $this->redirect('Homepage:default');
+        } catch (\Nette\Security\AuthenticationException $e) {
+            $form->addError($this->translator->translate($e->getMessage()));
+        }
+    }    
+    
+    public function actionNewPassword() {
+        
+            /*
+
+    */
+        $this->getUser()->logout();
+        $this->flashMessage('Boli ste úspešne odhlásený', 'success');
+        $this->redirect('prihlasenie');
+    }
+    
+
+
 }

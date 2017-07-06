@@ -55,6 +55,17 @@ class UserManager extends \Nette\Object implements \Nette\Security\IAuthenticato
         return $row;
         
     }
+    
+    public function ExistujeEmail($email){
+
+        $row = $this->database->table(self::TABLE_NAME)->where(self::COLUMN_EMAIL, $email)->fetch();
+        return $row;
+        
+    }
+    public function Updateuniqidstr($forgot_pass_identity,$email){
+ 
+        $result = $this->database->query(' UPDATE pm SET forgot_pass_identity = '.$forgot_pass_identity.' WHERE email = ' . $email . '');
+    }
 
     /**
      * Adds new user.

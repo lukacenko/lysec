@@ -1,27 +1,108 @@
 {block content}
-{form form}
-    {input one, size => 3}
-    {snippet two}
-        {input two, size => 3}
-    {/snippet}
-    {input send}
-{/form}
+<div class="content">
+    <div class="container">	
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-9 current-chat">
+                    <div class="row chat-toolbar-row">
+                        <div class="col-sm-12">
+                            <div class="btn-group chat-toolbar" role="group" aria-label="...">
+                                <h3 class="bars"> Napísať novú správu </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login-page">
+                        <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
+                            <div n:foreach="$flashes as $flash" class="alert alert-{$flash->type} fade in">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                {$flash->message}
+                            </div>
+                            <p>Napíšte a odošlite správu. Príjemca je notifikovaný na svoj email, príloha je obmedzená na 25MB.</p>
+                            {form form}
+
+                                <div>
+                                    <span>{label one /}</span>
+                                    {input one}
+                                </div>
+                                <div>
+                                    <span>{label two /}</span>
+                                    {input two}
+                                </div>
+                                <div>   
+                                    Nie je dovolené dohovárať sa s Predajcom na osobnom odbere tovaru, zasielať akékoľvek kontaktné údaje, e-mail a obchodné ponuky mimo SAShE.sk, z dôvodu porušenia Podmienok používania odsúhlasených pri Registrácii.                                
+                                </div>
+                                <div>
+                                    <span>{label product_name /}</span>
+                                    {input product_name}
+                                </div>                            
+                                <div>
+                                    <span> {label keywords /}  </span>
+                                    {input keywords}
+                                </div>   
+                                <div>
+                                    <span> {label product_desc /}  </span>
+                                    {input product_desc}
+                                </div>   
+                                <div>
+                                    <span> {label stock/}  </span>
+                                    {input stock}
+                                </div>   
+                                <div>
+                                    <span> {label availability/}  </span>
+                                    {input availability}
+                                </div>   
+                                <div>
+                                    <span> {label price/}  </span>
+                                    {input price}
+                                </div>   
+                                <div>
+                                    <span> {label postage/}  </span>
+                                    {input postage}
+                                </div>   
+                                <div>
+                                    <span> {label color/}  </span>
+                                    {input color}
+                                </div>   
+                                <div class="col-md-2 col-md-offset-6">
+                                    {input send}
+                                </div>
+                            {/form}
+                        </div>	
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="row current-chat-footer">
+                        <div class="panel-footer">
+                            <div class="input-group">
+                                <input type="text" class="form-control">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">Send</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {/block}
 
 {block scripts}
 <script src="{$basePath}/js/nette.ajax.js"></script>
 <script>
-$(function(){
-    $.nette.init();
+    $(function () {
+        $.nette.init();
 
-    $('select[name=one]').change(function () {
-        $.nette.ajax({
-            url: {link invalidate!},
-            data: {
-                'value': $('select[name=one]').val(),
-            }
+        $('select[name=one]').change(function () {
+            $.nette.ajax({
+                url: {link invalidate!},
+                data: {
+                    'value': $('select[name=one]').val(),
+                }
+            });
         });
     });
-});
 </script>
 {/block}
