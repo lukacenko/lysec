@@ -1,0 +1,28 @@
+{* Latte template *}
+
+{block content}
+<div class="content">
+    <div class="container">
+            <div class="dreamcrub">
+                <h1>Zvoľ nové heslo</h1>
+                <h3>  Hurá, toto je posledný krok pri zmene tvojho hesla!</h3>
+            </div>
+        <div n:foreach="$flashes as $flash" class="alert alert-{$flash->type} fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {$flash->message}
+        </div>  
+        {form sendMessageForm}
+            <div class="form-group">
+                <label for="exampleInputEmail1">{label heslo /}</label>
+                {input heslo}
+            </div>            
+            <div class="form-group">
+                <label for="exampleInputEmail1">{label heslo2 /}</label>
+                {input heslo2}
+            </div>            
+            <div class="form-group text-center">
+                {input save}
+            </div>            
+        </div>            
+    {/form}
+</div>

@@ -1,0 +1,43 @@
+{* Latte template *}
+
+{block content}
+{* Latte template *}
+
+<div class="content">
+    <div class="container">
+        <div class="dreamcrub">
+            <ul class="breadcrumbs">
+                <li class="home">
+                    <a href="index.html" title="Go to Home Page">Home</a>&nbsp;
+                    <span>&gt;</span>
+                </li>
+                <li class="women">
+                    Login
+                </li>
+            </ul>
+            <ul class="previous">
+                <li><a href="index.html">Back to Previous Page</a></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>        
+        <div class="dreamcrub">
+            <h1>Zabudnuté heslo</h1>
+            <h3> Ak si zabudol svoje heslo, tu si ho môžeš zmeniť.</h3>
+        </div>
+    
+        <div n:foreach="$flashes as $flash" class="alert alert-{$flash->type} fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {$flash->message}
+        </div>  
+        {form newPassword}
+            <div class="form-group">
+                <label for="exampleInputEmail1">{label email /}</label>
+                {input email}
+            </div> 
+            <div class="form-group text-center">
+                {input recovery}
+            </div>            
+        </div>            
+    {/form}
+</div>
+

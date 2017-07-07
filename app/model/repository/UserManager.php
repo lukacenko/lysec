@@ -49,22 +49,22 @@ class UserManager extends \Nette\Object implements \Nette\Security\IAuthenticato
         return new \Nette\Security\Identity($row[self::COLUMN_ID], $row[self::COLUMN_ROLE], $arr);
     }
     
-    public function overeniePouzivatela($user){
+    public function issetUser($user){
 
         $row = $this->database->table(self::TABLE_NAME)->where(self::COLUMN_NAME, $user)->fetch();
         return $row;
         
     }
     
-    public function ExistujeEmail($email){
+    public function issetEmail($email){
 
         $row = $this->database->table(self::TABLE_NAME)->where(self::COLUMN_EMAIL, $email)->fetch();
         return $row;
         
     }
-    public function Updateuniqidstr($forgot_pass_identity,$email){
+    public function updateUniqidStr($forgot_pass_identity,$email){
  
-        $result = $this->database->query(' UPDATE pm SET forgot_pass_identity = '.$forgot_pass_identity.' WHERE email = ' . $email . '');
+        $result = $this->database->query(' UPDATE users SET forgot_pass_identity = "'.$forgot_pass_identity.'" WHERE email = "' . $email . '"');
     }
 
     /**
@@ -88,6 +88,3 @@ class UserManager extends \Nette\Object implements \Nette\Security\IAuthenticato
     }
 }
 
-class DuplicateNameException extends \Exception {
-    
-}

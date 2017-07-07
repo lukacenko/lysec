@@ -3,11 +3,10 @@
 <!-- content-section-starts -->
 <div class="content">
     <div class="container">
-        <div class="login-page">
             <div class="dreamcrub">
                 <ul class="breadcrumbs">
                     <li class="home">
-                        <a href="index.html" title="Go to Home Page">Home</a>&nbsp;
+                    <a n:href="Homepage:default" title="Go to Home Page">Home</a>&nbsp;
                         <span>&gt;</span>
                     </li>
                     <li class="women">
@@ -20,7 +19,10 @@
                 <div class="clearfix"></div>
             </div>
             <div class="account_grid">
-                <div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
+                    <div n:foreach="$flashes as $flash" class="alert alert-{$flash->type} fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {$flash->message}
+                    </div>                 <div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
                     <h2>NOVÝ ZÁKAZNÍCI</h2>
                     <p>Vytvorením účtu v našom obchode budete môcť rýchlejšie prechádzať procesom platby, ukladať viaceré dodacie adresy, zobrazovať a sledovať vaše objednávky vo vašom účte a ďalšie.</p>
                     <a class="acount-btn" n:href="Sign:registracia">Vytvoriť účet</a>
@@ -41,13 +43,12 @@
                             <span> {label remember /}  </span>
                             {input remember}
                         </div>                            
-                        <a class="forgot" href="#">Zabudol si heslo ?</a>
+                        <a class="forgot" n:href="Sign:zabudnuteheslo">Zabudol si heslo ?</a>
                         {input send}
                     {/form}
                 </div>	
                 <div class="clearfix"> </div>
             </div>
-        </div>
     </div>
 </div>
 

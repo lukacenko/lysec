@@ -9,7 +9,7 @@ use Nette,
     Tomaj\Form\Renderer\BootstrapVerticalRenderer;
 use App\Model\Homepage;
 
-class BasketPresenter extends \BasePresenter {
+class KosikPresenter extends \BasePresenter {
 
     
     

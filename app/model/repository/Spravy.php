@@ -89,7 +89,7 @@ class Spravy extends Repository {
     public function favoriteMessage($id) {
         $result = $this->db->query(' UPDATE pm SET favorite = 1 WHERE id = ' . $id . '');
     }
-    public function removefavoriteMessage($id) {
+    public function removeFavoriteMessage($id) {
         $result = $this->db->query(' UPDATE pm SET favorite = 0 WHERE id = ' . $id . '');
     }
 

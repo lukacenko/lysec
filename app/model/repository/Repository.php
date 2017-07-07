@@ -54,12 +54,6 @@ abstract class Repository extends \Nette\Object {
         return $row['id'];
     }
 
-    public function test() {
-        $result = $connection > query('SELECT * FROM users WHERE id=?', 123);
-        $rows = $result->fetchAll(); //vrátí všechny řádky jako pole
-        return $rows;
-    }
-
     public function inTransaction() {
         return $this->db->getConnection();
     }

@@ -42,6 +42,7 @@ services:
         - Model\Repository\UserManager
         - Model\Repository\Nastavenia
         - Model\Repository\Produkty
+        - Model\Repository\Obnova
         router: App\RouterFactory::createRouter
 
         authorizator:
@@ -51,16 +52,19 @@ services:
                         - addRole('user', 'guest')
                         - addRole('superuser', 'user')
                         - addRole('admin', 'superuser')	
-                        
+
                         - addResource('Sign') #prihlasenie
                         - addResource('Homepage') #domovska stranka
                         - addResource('Spravy') #domovska stranka
-                        - addResource('Basket') #domovska stranka
+                        - addResource('Kosik') #domovska stranka
                         - addResource('Nastavenia') #domovska stranka
                         - addResource('Produkty') #domovska stranka
+                        - addResource('Obnova')
 
+                        - allow('guest', 'Sign')
                         - allow('guest', 'Homepage')
                         - allow('guest', 'Sign')
+                        - allow('guest', 'Obnova')
                         #user
                         - allow('user', 'Homepage')
                         - allow('user', 'Spravy')

@@ -59,7 +59,7 @@ class SpravyPresenter extends \BasePresenter {
 
     public function handleremovefavorite($id) {
 
-        $this->model->removefavoriteMessage($id);
+        $this->model->removeFavoriteMessage($id);
         $this->flashMessage('Sprava odstánena z oblubených', 'success');
         $this->redirect('Spravy:oblubene');
     }

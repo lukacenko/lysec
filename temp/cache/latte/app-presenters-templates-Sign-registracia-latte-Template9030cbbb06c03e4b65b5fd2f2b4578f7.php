@@ -12,12 +12,12 @@ list($_b, $_g, $_l) = $template->initialize('c8da33dd7b', 'html')
 // block content
 //
 if (!function_exists($_b->blocks['content'][] = '_lbb608d0cd3e_content')) { function _lbb608d0cd3e_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
-?><div class="registration-form">
-    <div class="container">
+?>    <div class="container">
         <div class="dreamcrub">
             <ul class="breadcrumbs">
                 <li class="home">
-                    <a href="index.html" title="Go to Home Page">Home</a>&nbsp;
+                    <a title="Go to Home Page" href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Homepage:default"), ENT_COMPAT) ?>
+">Home</a>&nbsp;
                     <span>&gt;</span>
                 </li>
                 <li class="women">
@@ -88,7 +88,6 @@ if (!function_exists($_b->blocks['content'][] = '_lbb608d0cd3e_content')) { func
                 <div class="clearfix"></div>
             </div>
         </div>
-    </div>
 <?php
 }}
 
