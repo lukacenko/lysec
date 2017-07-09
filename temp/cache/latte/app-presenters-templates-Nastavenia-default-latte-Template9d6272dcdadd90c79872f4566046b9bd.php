@@ -15,7 +15,6 @@ if (!function_exists($_b->blocks['content'][] = '_lb39338c851a_content')) { func
 ?><div class="container">
     <div class="content">
         <h1>Nastavenia </h1>
-        Úprava informácií o uživateľovi. Nezabudni kliknúť na Uložiť na spodu stránky.
                 <div class="row">
             <div class="col-md-4">
                 <div class="panel panel-success">
@@ -79,27 +78,50 @@ if (!function_exists($_b->blocks['content'][] = '_lb39338c851a_content')) { func
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-success">
-                    <div class="panel-heading">
-                        <h2 class="panel-title">Obchody</h2>
-                        <div class="text-right">
-                            <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
-                        </div>                    
+                    <div class="panel-heading" style="margin-bottom:10px;">
+                        <h2 class="panel-title text-primary">Moje Obchody   <b><a class=""href="">pridať nový TU </a></b></h2> 
                     </div>
-                    <table class="table"> 
-                        <tbody> 
-                            <tr> <th scope="row">Adresa:</th> <td>Mechov 213</td></tr>
-                            <tr> <th scope="row">Mesto:</th> <td>Velčice</td> </tr>
-                            <tr> <th scope="row">PSČ:</th> <td>95171</td> </tr>
-                            <tr> <th scope="row">Štát:</th> <td>Slovenská republika</td> </tr>
-                        </tbody> 
-                    </table>
+                    <P></p>
+                    <div class="col-md-6">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">Obchod lukáš 1</h2>
+                                <div class="text-right">
+                                    <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                                </div>
+                            </div>
+                            <table class="table"> 
+                                <tbody> 
+                                    <tr> <th scope="row">Názov obchodu:</th> <td>Obchod lukáš 1</td></tr>
+                                    <tr> <th scope="row">Dátum založenia:</th> <td>09.07.2017</td> </tr>
+                                    <tr> <th scope="row">Logo:</th> <td><img src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/images/icon1.png"></td> </tr>
+                                </tbody> 
+                            </table>
+                        </div>
+                    </div> 
+                    <div class="col-md-6">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">Obchod lukáš 2</h2>
+                                <div class="text-right">
+                                    <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                                </div>
+                            </div>
+                            <table class="table"> 
+                                <tbody> 
+                                    <tr> <th scope="row">Názov obchodu:</th> <td>Obchod lukáš 1</td></tr>
+                                    <tr> <th scope="row">Dátum založenia:</th> <td>09.07.2017</td> </tr>
+                                    <tr> <th scope="row">Logo:</th> <td><img src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/images/icon1.png"></td> </tr>
+                                </tbody> 
+                            </table>
+                        </div>
+                    </div> 
+
                 </div>
             </div>
 
         </div>
-<?php $_l->tmp = $_control->getComponent("changeInfoForm"); if ($_l->tmp instanceof Nette\Application\UI\IRenderable) $_l->tmp->redrawControl(NULL, FALSE); $_l->tmp->render() ?>
-
-    </div>
+            </div>
 <?php
 }}
 

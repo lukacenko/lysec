@@ -2,7 +2,6 @@
 <div class="container">
     <div class="content">
         <h1>Nastavenia </h1>
-        Úprava informácií o uživateľovi. Nezabudni kliknúť na Uložiť na spodu stránky.
         {*control changeInfoForm*}
         <div class="row">
             <div class="col-md-4">
@@ -67,25 +66,50 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-success">
-                    <div class="panel-heading">
-                        <h2 class="panel-title">Obchody</h2>
-                        <div class="text-right">
-                            <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
-                        </div>                    
+                    <div class="panel-heading" style="margin-bottom:10px;">
+                        <h2 class="panel-title text-primary">Moje Obchody   <b><a class=""href="">pridať nový TU </a></b></h2> 
                     </div>
-                    <table class="table"> 
-                        <tbody> 
-                            <tr> <th scope="row">Adresa:</th> <td>Mechov 213</td></tr>
-                            <tr> <th scope="row">Mesto:</th> <td>Velčice</td> </tr>
-                            <tr> <th scope="row">PSČ:</th> <td>95171</td> </tr>
-                            <tr> <th scope="row">Štát:</th> <td>Slovenská republika</td> </tr>
-                        </tbody> 
-                    </table>
+                    <P></p>
+                    <div class="col-md-6">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">Obchod lukáš 1</h2>
+                                <div class="text-right">
+                                    <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                                </div>
+                            </div>
+                            <table class="table"> 
+                                <tbody> 
+                                    <tr> <th scope="row">Názov obchodu:</th> <td>Obchod lukáš 1</td></tr>
+                                    <tr> <th scope="row">Dátum založenia:</th> <td>09.07.2017</td> </tr>
+                                    <tr> <th scope="row">Logo:</th> <td><img src="{$basePath}/images/icon1.png"></td> </tr>
+                                </tbody> 
+                            </table>
+                        </div>
+                    </div> 
+                    <div class="col-md-6">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">Obchod lukáš 2</h2>
+                                <div class="text-right">
+                                    <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                                </div>
+                            </div>
+                            <table class="table"> 
+                                <tbody> 
+                                    <tr> <th scope="row">Názov obchodu:</th> <td>Obchod lukáš 1</td></tr>
+                                    <tr> <th scope="row">Dátum založenia:</th> <td>09.07.2017</td> </tr>
+                                    <tr> <th scope="row">Logo:</th> <td><img src="{$basePath}/images/icon1.png"></td> </tr>
+                                </tbody> 
+                            </table>
+                        </div>
+                    </div> 
+
                 </div>
             </div>
 
         </div>
-                    {control changeInfoForm}
+        {*control changeInfoForm*}
 
     </div>
     {/block}

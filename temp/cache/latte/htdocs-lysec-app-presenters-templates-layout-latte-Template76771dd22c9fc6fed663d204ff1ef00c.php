@@ -45,6 +45,8 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
         <meta name="description" content="">
         <meta name="author" content="NOV, s.r.o.">
         <link href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/bootstrap.css" rel='stylesheet' type='text/css'>
+        <link rel="shortcut icon" type="<?php echo Latte\Runtime\Filters::escapeHtml($basePath, ENT_COMPAT) ?>
+/favicon.ico" href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/favicon.ico">
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/jquery.min.js"></script>
         <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/netteForms.min.js"></script>
@@ -102,11 +104,11 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
 "><span lang="sk" class="lang-lg "></span></a></p>
                             <p><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("this", array('locale' => 'en')), ENT_COMPAT) ?>
 "><span lang="en" class="lang-lg "></span></a></p>
-                            <p></p>
+                            <p>&nbsp;&nbsp;&nbsp;</p>
                            <a href="checkout.html">
                                 <h3> <span class="simpleCart_total"> $0.00 </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span>)<img src="images/bag.png" alt=""></h3>
                             </a>	
-                            <p><a class="simpleCart_empty" href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Basket:basket"), ENT_COMPAT) ?>
+                            <p><a class="simpleCart_empty" href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Kosik:kosik"), ENT_COMPAT) ?>
 ">Empty cart</a></p>
                             <div class="clearfix"> </div>
                         </div>

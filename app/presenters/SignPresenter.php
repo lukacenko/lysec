@@ -173,7 +173,7 @@ class SignPresenter extends \BasePresenter {
                 //emailový server
                 $mailer = new SmtpMailer(array(
                     'smtp' => 'true',
-                    'port' => '587',
+                    'port' => '465',
                     'host' => 'mail.nov.sk',
                     'username' => 'monitor@nov.sk',
                     'password' => 'FloHatPop6',
