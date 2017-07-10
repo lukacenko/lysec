@@ -5,6 +5,7 @@ namespace App\Presenters;
 use Nette,
     Nette\Application\UI;
 use App\Model\Homepage;
+use Nette\Application\UI\Form;
 
 class NastaveniaPresenter extends \BasePresenter {
 
@@ -14,6 +15,11 @@ class NastaveniaPresenter extends \BasePresenter {
     public function __construct(\Model\Repository\Nastavenia $model) {
         $this->model = $model;
         parent::__construct();
+    }
+    
+    public function renderDefault(){
+        $id = $this->getUser()->getIdentity()->id;
+        $this->template->osobne = $this->model->getInfoUser($id);
     }
 
 //FORMULÁR pre odoslanie správy
@@ -27,44 +33,49 @@ class NastaveniaPresenter extends \BasePresenter {
         $form->addText('login', 'Prihlasovacie meno:')
                 ->setAttribute('readonly', 'readonly')
                 ->setValue($data->login)
-                ->setRequired('Prosím vložte Príjemcu.');
+                ->setAttribute('class', 'form-control');
         $form->addHidden('id')->setDefaultValue($this->getUser()->getIdentity()->id);
         $form->addText('email', 'E-mail:')
                 ->setValue($data->email)
-                ->setRequired('Prosím vložte Príjemcu.');
+                ->setAttribute('class', 'form-control');
+                //->setRequired('Prosím vložte Príjemcu.');
         //$form->addSelect('id_kat', 'Kategória', $this->model->ziskajdata2());
 
         $form->addText('name', 'Meno:')
                 ->setValue($data->name)
-                ->setRequired('Prosím vložte Príjemcu.');
+                ->setAttribute('class', 'form-control')
+                ->setRequired('Prosím vložte meno.');
         $form->addText('surname', 'Priezvisko:')
                 ->setValue($data->surname)
-                ->setRequired('Prosím vložte Príjemcu.');
+                ->setAttribute('class', 'form-control');
         $form->addText('street', 'Ulica, č.domu:')
                 ->setValue($data->street)
-                ->setRequired('Prosím vložte Príjemcu.');
+                ->setAttribute('class', 'form-control');
         $form->addText('postcode', 'PSČ:')
                 ->setValue($data->postcode)
-                ->setRequired('Prosím vložte Príjemcu.');
+                ->setAttribute('class', 'form-control');
         $form->addText('city', 'Mesto:')
                 ->setValue($data->city)
-                ->setRequired('Prosím vložte Príjemcu.');
+                ->setAttribute('class', 'form-control');
         $form->addText('phone', 'Telefón:')
                 ->setValue($data->phone)
-                ->setRequired('Prosím vložte Príjemcu.');
+                ->setAttribute('class', 'form-control');
         $countries = [
             'SK' => 'Slovensko',
             'CZ' => 'Česká Republika',
             '' => 'Prosim vyberte'
         ];
         $form->addSelect('country', 'Krajina:', $countries)
+                ->setAttribute('class', 'form-control')
                 ->setValue($data->country);
+
         $pohlavie = [
             'Z' => 'Muž',
             'M' => 'Žena',
             '' => 'Prosim vyberte'
         ];
         $form->addSelect('sex', 'Pohlavie:', $pohlavie)
+                ->setAttribute('class', 'form-control')
                 ->setValue($data->sex);
 
         if ($data->role != 'admin') {
@@ -75,19 +86,22 @@ class NastaveniaPresenter extends \BasePresenter {
             $form->addSelect('role', 'Typ registrácie:', $role)
                     ->setValue($data->role);
         }
-        $form->addSubmit('save', 'Uložiť');
+        $form->addSubmit('saveas', 'Uložiť')->
+                setAttribute('class', 'btn btn-default');
+        $form->onSuccess[] = $this->SaveInfoForm;
         $form->addProtection();
-        $form->onSuccess[] = array($this, 'addOrderFormSucceeded');
         return $form;
     }
 
     // spracovanie formularu pre editaciu/vytvorenie clanku
-    public function addOrderFormSucceeded($form) {
+    public function SaveInfoForm(UI\Form $form) {
+        
+        
         if ($form->isSuccess()) {
             // zisti ci je clanok editovany ale vytvarany
             $data = $form->getValues();
             $this->model->editUser($form->getValues());
-            $this->flashMessage('Úspešné uložený článok', 'success');
+            $this->flashMessage('Úspešné uložený profil', 'success');
             $this->redirect('Nastavenia:default');
         } else {
             // vyskytla sa chyba pri odoslaní formularu

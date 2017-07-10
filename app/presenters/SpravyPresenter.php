@@ -81,7 +81,7 @@ class SpravyPresenter extends \BasePresenter {
     public function createComponentSimpleGrid($name, $odoslane = 'dorucene') {
 
         $grid = new DataGrid($this, $name);
-        $grid->addColumnText('title', 'Predmet')->setSortable();
+        //$grid->addColumnText('title', 'Predmet')->setSortable();
         if ($odoslane == 'dorucene') {
             $grid->setDataSource($this->model->getAllMessage($this->getUser()->getIdentity()->id));
             $grid->addColumnText('login', 'Od')->setSortable();

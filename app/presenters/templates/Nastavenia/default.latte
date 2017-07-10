@@ -2,24 +2,27 @@
 <div class="container">
     <div class="content">
         <h1>Nastavenia </h1>
-        {*control changeInfoForm*}
+                <div n:foreach="$flashes as $flash" class="alert alert-{$flash->type} fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {$flash->message}
+        </div>      
         <div class="row">
             <div class="col-md-4">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <h2 class="panel-title">Osobné informácie </h2>
+                        <h2 class="panel-title">Osobné informácie</h2>
                         <div class="text-right">
-                            <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                            <a n:href="Nastavenia:osobnenastavenia" class="glyphicon glyphicon-pencil"> Upraviť </a>
                         </div>                    
                     </div>
                     <table class="table"> 
                         <tbody> 
-                            <tr> <th scope="row">Prihlasovacie meno:</th> <td>12345</td></tr>
-                            <tr> <th scope="row">Meno:</th> <td>Lukáš</td> </tr>
-                            <tr> <th scope="row">Priezvisko:</th> <td>Šurda</td> </tr>
-                            <tr> <th scope="row">Telefón:</th> <td>0904090180</td> </tr>
-                            <tr> <th scope="row">Krajina:</th> <td>Slovenská republika</td> </tr>
-                            <tr> <th scope="row">Pohlavie:</th> <td>Muž</td> </tr>
+                            <tr> <th scope="row">Prihlasovacie meno:</th> <td>{$osobne->login}</td></tr>
+                            <tr> <th scope="row">Meno:</th> <td>{$osobne->name}</td> </tr>
+                            <tr> <th scope="row">Priezvisko:</th> <td>{$osobne->surname}</td> </tr>
+                            <tr> <th scope="row">Telefón:</th> <td>{$osobne->phone}</td> </tr>
+                            <tr> <th scope="row">Krajina:</th> <td>{$osobne->country}</td> </tr>
+                            <tr> <th scope="row">Pohlavie:</th> <td>{$osobne->sex}</td> </tr>
                         </tbody> 
                     </table>
                 </div>
@@ -29,7 +32,7 @@
                     <div class="panel-heading">
                         <h2 class="panel-title">Adresy doručenia</h2>
                         <div class="text-right">
-                            <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                            <a n:href="Nastavenia:adresydorucenia" class="glyphicon glyphicon-pencil"> Upraviť </a>
                         </div>
                     </div>
                     <table class="table"> 
@@ -48,7 +51,7 @@
                     <div class="panel-heading">
                         <h2 class="panel-title">Fakturačne údaje</h2>
                         <div class="text-right">
-                            <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                            <a n:href="Nastavenia:fakturacneudaje" class="glyphicon glyphicon-pencil"> Upraviť </a>
                         </div>
                     </div>
                     <table class="table"> 
@@ -109,11 +112,9 @@
             </div>
 
         </div>
-        {*control changeInfoForm*}
-
     </div>
     {/block}
     {block scripts}
     <script>
 
-        {/block}
+    {/block}

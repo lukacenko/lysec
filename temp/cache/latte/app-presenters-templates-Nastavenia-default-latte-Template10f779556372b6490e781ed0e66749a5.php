@@ -15,24 +15,30 @@ if (!function_exists($_b->blocks['content'][] = '_lb374fffb0cd_content')) { func
 ?><div class="container">
     <div class="content">
         <h1>Nastavenia </h1>
-        Úprava informácií o uživateľovi. Nezabudni kliknúť na Uložiť na spodu stránky.
-                <div class="row">
+<?php $iterations = 0; foreach ($flashes as $flash) { ?>                <div class="alert alert-<?php echo Latte\Runtime\Filters::escapeHtml($flash->type, ENT_COMPAT) ?> fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <?php echo Latte\Runtime\Filters::escapeHtml($flash->message, ENT_NOQUOTES) ?>
+
+        </div>      
+<?php $iterations++; } ?>
+        <div class="row">
             <div class="col-md-4">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <h2 class="panel-title">Osobné informácie </h2>
+                        <h2 class="panel-title">Osobné informácie</h2>
                         <div class="text-right">
-                            <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                            <a class="glyphicon glyphicon-pencil" href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Nastavenia:osobnenastavenia"), ENT_COMPAT) ?>
+"> Upraviť </a>
                         </div>                    
                     </div>
                     <table class="table"> 
                         <tbody> 
-                            <tr> <th scope="row">Prihlasovacie meno:</th> <td>12345</td></tr>
-                            <tr> <th scope="row">Meno:</th> <td>Lukáš</td> </tr>
-                            <tr> <th scope="row">Priezvisko:</th> <td>Šurda</td> </tr>
-                            <tr> <th scope="row">Telefón:</th> <td>0904090180</td> </tr>
-                            <tr> <th scope="row">Krajina:</th> <td>Slovenská republika</td> </tr>
-                            <tr> <th scope="row">Pohlavie:</th> <td>Muž</td> </tr>
+                            <tr> <th scope="row">Prihlasovacie meno:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($osobne->login, ENT_NOQUOTES) ?></td></tr>
+                            <tr> <th scope="row">Meno:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($osobne->name, ENT_NOQUOTES) ?></td> </tr>
+                            <tr> <th scope="row">Priezvisko:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($osobne->surname, ENT_NOQUOTES) ?></td> </tr>
+                            <tr> <th scope="row">Telefón:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($osobne->phone, ENT_NOQUOTES) ?></td> </tr>
+                            <tr> <th scope="row">Krajina:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($osobne->country, ENT_NOQUOTES) ?></td> </tr>
+                            <tr> <th scope="row">Pohlavie:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($osobne->sex, ENT_NOQUOTES) ?></td> </tr>
                         </tbody> 
                     </table>
                 </div>
@@ -42,7 +48,8 @@ if (!function_exists($_b->blocks['content'][] = '_lb374fffb0cd_content')) { func
                     <div class="panel-heading">
                         <h2 class="panel-title">Adresy doručenia</h2>
                         <div class="text-right">
-                            <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                            <a class="glyphicon glyphicon-pencil" href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Nastavenia:adresydorucenia"), ENT_COMPAT) ?>
+"> Upraviť </a>
                         </div>
                     </div>
                     <table class="table"> 
@@ -61,7 +68,8 @@ if (!function_exists($_b->blocks['content'][] = '_lb374fffb0cd_content')) { func
                     <div class="panel-heading">
                         <h2 class="panel-title">Fakturačne údaje</h2>
                         <div class="text-right">
-                            <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                            <a class="glyphicon glyphicon-pencil" href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Nastavenia:fakturacneudaje"), ENT_COMPAT) ?>
+"> Upraviť </a>
                         </div>
                     </div>
                     <table class="table"> 
@@ -79,26 +87,49 @@ if (!function_exists($_b->blocks['content'][] = '_lb374fffb0cd_content')) { func
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-success">
-                    <div class="panel-heading">
-                        <h2 class="panel-title">Obchody</h2>
-                        <div class="text-right">
-                            <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
-                        </div>                    
+                    <div class="panel-heading" style="margin-bottom:10px;">
+                        <h2 class="panel-title text-primary">Moje Obchody   <b><a class=""href="">pridať nový TU </a></b></h2> 
                     </div>
-                    <table class="table"> 
-                        <tbody> 
-                            <tr> <th scope="row">Adresa:</th> <td>Mechov 213</td></tr>
-                            <tr> <th scope="row">Mesto:</th> <td>Velčice</td> </tr>
-                            <tr> <th scope="row">PSČ:</th> <td>95171</td> </tr>
-                            <tr> <th scope="row">Štát:</th> <td>Slovenská republika</td> </tr>
-                        </tbody> 
-                    </table>
+                    <P></p>
+                    <div class="col-md-6">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">Obchod lukáš 1</h2>
+                                <div class="text-right">
+                                    <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                                </div>
+                            </div>
+                            <table class="table"> 
+                                <tbody> 
+                                    <tr> <th scope="row">Názov obchodu:</th> <td>Obchod lukáš 1</td></tr>
+                                    <tr> <th scope="row">Dátum založenia:</th> <td>09.07.2017</td> </tr>
+                                    <tr> <th scope="row">Logo:</th> <td><img src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/images/icon1.png"></td> </tr>
+                                </tbody> 
+                            </table>
+                        </div>
+                    </div> 
+                    <div class="col-md-6">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">Obchod lukáš 2</h2>
+                                <div class="text-right">
+                                    <a href="" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                                </div>
+                            </div>
+                            <table class="table"> 
+                                <tbody> 
+                                    <tr> <th scope="row">Názov obchodu:</th> <td>Obchod lukáš 1</td></tr>
+                                    <tr> <th scope="row">Dátum založenia:</th> <td>09.07.2017</td> </tr>
+                                    <tr> <th scope="row">Logo:</th> <td><img src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/images/icon1.png"></td> </tr>
+                                </tbody> 
+                            </table>
+                        </div>
+                    </div> 
+
                 </div>
             </div>
 
         </div>
-<?php $_l->tmp = $_control->getComponent("changeInfoForm"); if ($_l->tmp instanceof Nette\Application\UI\IRenderable) $_l->tmp->redrawControl(NULL, FALSE); $_l->tmp->render() ?>
-
     </div>
 <?php
 }}

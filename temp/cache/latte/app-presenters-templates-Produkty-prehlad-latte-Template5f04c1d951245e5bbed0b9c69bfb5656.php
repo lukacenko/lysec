@@ -12,116 +12,204 @@ list($_b, $_g, $_l) = $template->initialize('dd285d225f', 'html')
 // block content
 //
 if (!function_exists($_b->blocks['content'][] = '_lbbb9eea9da0_content')) { function _lbbb9eea9da0_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
-?><!-- content-section-starts-here -->
+?><!-- content-section-starts -->
 <div class="container">
-    <div class="main-content">
-        <div class="online-strip">
-            <div class="col-md-4 follow-us">
-                <h3>follow us : <a class="twitter" href="#"></a><a class="facebook" href="#"></a></h3>
+    <div class="products-page">
+        <div class="products">
+            <div class="product-listy">
+                <h2>Naše produkty</h2>
+                <ul class="product-list">
+                    <li><a href="">Nové produkty</a></li>
+                    <li><a href="">Najpredávanejšie</a></li>
+                    <li><a href="">Nábytok</a></li>
+                    <li><a href="">Krabičky</a></li>
+                    <li><a href="">Do kuchyne</a></li>
+                    <li><a href="">Zrkadlá</a></li>
+                    <li><a href="#">Dekorácie</a></li>
+                    <li><a href="#">Hodiny</a></li>
+                </ul>
+                <h2>Dostupnosť</h2>
+                <ul class="product-list">
+                    <li><a href="">Nové produkty</a></li>
+                    <li><a href="">1 deň</a></li>
+                    <li><a href="">2 dni</a></li>
+                    <li><a href="">3 dni</a></li>
+                    <li><a href="">Týždeň</a></li>
+                    <li><a href="">2 týždne</a></li>
+                    <li><a href="#">Mesiac</a></li>
+                    <li><a href="#">Viac ako mesiac</a></li>
+                </ul>
+                <h2>Farba</h2>
+                <ul class="product-list">
+                   <li><a href="">Žltá</a></li>
+                    <li><a href="">Biela</a></li>
+                    <li><a href="">Modrá</a></li>
+                    <li><a href="#">Červená</a></li>
+                </ul>
+                <h2>Spôsob výroby</h2>
+                <ul class="product-list">
+                   <li><a href="">Batikovanie</a></li>
+                    <li><a href="">Batikovanie</a></li>
+                    <li><a href="">Cínovanie</a></li>
+                    <li><a href="#">Čipka</a></li>
+                </ul>
+                <h2>Materiál</h2>
+                <ul class="product-list">
+                    <li><a href="">Drevo </a></li>
+                    <li><a href="">Kov</a></li>
+                </ul>
             </div>
-            <div class="col-md-4 shipping-grid">
-                <div class="shipping">
-                    <img src="images/shipping.png" alt="">
+            <div class="latest-bis">
+                <img src="images/l4.jpg" class="img-responsive" alt="">
+                <div class="offer">
+                    <p>40%</p>
+                    <small>Top ponuka</small>
                 </div>
-                <div class="shipping-text">
-                    <h3>Free Shipping</h3>
-                    <p>on orders over $ 199</p>
-                </div>
+            </div> 	
+            <div class="tags">
+                <h4 class="tag_head">Kľúčové slová</h4>
+                <ul class="tags_links">
+                    <li><a href="#">Kabelky</a></li>
+                    <li><a href="#">Dekorácie</a></li>
+                    <li><a href="#">Hodiny</a></li>
+                    <li><a href="#">Šperky</a></li>
+                    <li><a href="#">Kabelky</a></li>
+                    <li><a href="#">Dekorácie</a></li>
+                    <li><a href="#">Hodiny</a></li>
+                    <li><a href="#">Šperky</a></li>
+                    <li><a href="#">Kabelky</a></li>
+                    <li><a href="#">Dekorácie</a></li>
+                    <li><a href="#">Hodiny</a></li>
+                    <li><a href="#">Šperky</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="new-product">
+            <div class="new-product-top">
+                <ul class="product-top-list">
+                    <li><a href="index.html">Home</a>&nbsp;<span>&gt;</span></li>
+                    <li><span class="act">Best Sales</span>&nbsp;</li>
+                </ul>
+                <p class="back"><a href="index.html">Choď na úvod</a></p>
                 <div class="clearfix"></div>
             </div>
-            <div class="col-md-4 online-order">
-                <p>Order online</p>
-                <h3>Tel:999 4567 8902</h3>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <div class="products-grid">
-            <header>
-                <h3 class="head text-center"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate("Produkty"), ENT_NOQUOTES) ?></h3>
-            </header>
-<?php $iterations = 0; foreach ($produkty as $row) { ?>
-            
-            <div class="col-md-4 product simpleCart_shelfItem text-center">
-                <a href="single.html"><img src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>
-/<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($row->title_photo), ENT_COMPAT) ?>" alt=""></a>
-                <div class="mask">
-                    <a href="single.html">Quick View</a>
+            <div class="mens-toolbar">
+                <div class="sort">
+                    <div class="sort-by">
+                        <label>Zoradiť</label>
+                        <select>
+                            <option value="">
+                                Mena                </option>
+                            <option value="">
+                                Cený                </option>
+                            <option value="">
+                                Dátumu                 </option>
+                        </select>
+                        <a href=""><img src="images/arrow2.gif" alt="" class="v-middle"></a>
+                    </div>
                 </div>
-                <a class="product_name" href="single.html"><?php echo Latte\Runtime\Filters::escapeHtml($row->product_name, ENT_NOQUOTES) ?></a>
-                <p><a class="item_add" href="#"><i></i> <span class="item_price"><?php echo Latte\Runtime\Filters::escapeHtml($row->price, ENT_NOQUOTES) ?> €</span></a></p>
+                <ul class="women_pagenation">
+                    <li>Stránka:</li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                </ul>
+                <div class="clearfix"></div>		
             </div>
+            <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
+                <div class="cbp-vm-options">
+                    <a href="#" class="cbp-vm-icon cbp-vm-grid cbp-vm-selected" data-view="cbp-vm-view-grid" title="grid">Grid View</a>
+                    <a href="#" class="cbp-vm-icon cbp-vm-list" data-view="cbp-vm-view-list" title="list">List View</a>
+                </div>
+                <div class="pages">   
+                    <div class="limiter visible-desktop">
+                        <label>Zobraziť</label>
+                        <select>
+                            <option value="" selected="selected">
+                                9                </option>
+                            <option value="">
+                                15                </option>
+                            <option value="">
+                                30                </option>
+                        </select> na stánke        
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <ul>
+<?php $iterations = 0; foreach ($produkty as $row) { ?>
+                        <li>
+                            <a class="cbp-vm-image" href="single.html">
+                                <div class="simpleCart_shelfItem">
+                                    <div class="view view-first">
+                                        <div class="inner_content clearfix">
+                                            <div class="product_image">
+                                                <img src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>
+/<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($row->title_photo), ENT_COMPAT) ?>" class="img-responsive" alt="">
+                                                <div class="mask">
+                                                    <div class="info">Quick View</div>
+                                                </div>
+                                                <div class="product_container">
+                                                    <div class="cart-left">
+                                                        <p class="title"><?php echo Latte\Runtime\Filters::escapeHtml($row->product_name, ENT_NOQUOTES) ?></p>
+                                                    </div>
+                                                    <div class="pricey"><span class="item_price"><?php echo Latte\Runtime\Filters::escapeHtml($row->price, ENT_NOQUOTES) ?> €</span></div>
+                                                    <div class="clearfix"></div>
+                                                </div>		
+                                            </div>
+                                        </div>
+                                    </div>
+                            </a>
+                            <div class="cbp-vm-details">
+                                Wattle seed bunya nuts spring onion okra garlic bitterleaf zucchini.
+                            </div>
+                            <a class="cbp-vm-icon cbp-vm-add item_add" href="#">Pridať do košíka</a>
+                        </li>                
 <?php $iterations++; } ?>
-
-            <div class="clearfix"></div>
+                </ul>
+            </div>
         </div>
+        <div class="clearfix"></div>
     </div>
-
+    <div class="clearfix"></div>
 </div>
+<!-- content-section-ends -->
 <div class="other-products">
     <div class="container">
         <h3 class="like text-center">Featured Collection</h3>        			
         <ul id="flexiselDemo3">
-            <li><a href="single.html"><img src="images/l1.jpg" class="img-responsive" alt=""></a>
+            <li><a href="single.html"><img src="images/l1.jpg" class="img-responsive"></a>
                 <div class="product liked-product simpleCart_shelfItem">
-                    <a class="like_name" href="single.html">perfectly simple</a>
+                    <a class="like_name" href="single.html">Perfectly simple</a>
                     <p><a class="item_add" href="#"><i></i> <span class=" item_price">$759</span></a></p>
                 </div>
             </li>
-            <li><a href="single.html"><img src="images/l2.jpg" class="img-responsive" alt=""></a>						
+            <li><a href="single.html"><img src="images/l2.jpg" class="img-responsive"></a>						
                 <div class="product liked-product simpleCart_shelfItem">
-                    <a class="like_name" href="single.html">praising pain</a>
+                    <a class="like_name" href="single.html">Praising pain</a>
                     <p><a class="item_add" href="#"><i></i> <span class=" item_price">$699</span></a></p>
                 </div>
             </li>
-            <li><a href="single.html"><img src="images/l3.jpg" class="img-responsive" alt=""></a>
+            <li><a href="single.html"><img src="images/l3.jpg" class="img-responsive"></a>
                 <div class="product liked-product simpleCart_shelfItem">
                     <a class="like_name" href="single.html">Neque porro</a>
                     <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
                 </div>
             </li>
-            <li><a href="single.html"><img src="images/l4.jpg" class="img-responsive" alt=""></a>
+            <li><a href="single.html"><img src="images/l4.jpg" class="img-responsive"></a>
                 <div class="product liked-product simpleCart_shelfItem">
-                    <a class="like_name" href="single.html">equal blame</a>
+                    <a class="like_name" href="single.html">Equal blame</a>
                     <p><a class="item_add" href="#"><i></i> <span class=" item_price">$499</span></a></p>
                 </div>
             </li>
-            <li><a href="single.html"><img src="images/l5.jpg" class="img-responsive" alt=""></a>
+            <li><a href="single.html"><img src="images/l5.jpg" class="img-responsive"></a>
                 <div class="product liked-product simpleCart_shelfItem">
-                    <a class="like_name" href="single.html">perfectly simple</a>
+                    <a class="like_name" href="single.html">Perfectly simple</a>
                     <p><a class="item_add" href="#"><i></i> <span class=" item_price">$649</span></a></p>
                 </div>
             </li>
         </ul>
-        <script type="text/javascript">
-            $(window).load(function () {
-                $("#flexiselDemo3").flexisel({
-                    visibleItems: 4,
-                    animationSpeed: 1000,
-                    autoPlay: true,
-                    autoPlaySpeed: 3000,
-                    pauseOnHover: true,
-                    enableResponsiveBreakpoints: true,
-                    responsiveBreakpoints: {
-                        portrait: {
-                            changePoint: 480,
-                            visibleItems: 1
-                        },
-                        landscape: {
-                            changePoint: 640,
-                            visibleItems: 2
-                        },
-                        tablet: {
-                            changePoint: 768,
-                            visibleItems: 3
-                        }
-                    }
-                });
-
-            });
-        </script>
-        <script type="text/javascript" src="js/jquery.flexisel.js"></script>
     </div>
-</div>            
+</div>
 <?php
 }}
 
@@ -129,16 +217,16 @@ if (!function_exists($_b->blocks['content'][] = '_lbbb9eea9da0_content')) { func
 // block scripts
 //
 if (!function_exists($_b->blocks['scripts'][] = '_lbb91caf183f_scripts')) { function _lbb91caf183f_scripts($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
-?><script>
-    $(document).ready(function () {
-        $(".hoverDiv").hover(function () {
-            $(this).children('.overlayed').css("opacity", "0.1");
-            $(this).children('.overlay').fadeIn(0);
-        }, function () {
-            $(this).children('.overlayed').css("opacity", "1");
-            $(this).children('.overlay').fadeOut(0);
-        });
-    });
+?><script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/cbpViewModeSwitch.js" type="text/javascript"></script>
+<script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/classie.js" type="text/javascript"></script>
+<script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/simpleCart.min.js"></script>
+<!-- cart -->
+<script type="<?php echo Latte\Runtime\Filters::escapeHtml($basePath, ENT_COMPAT) ?>/application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- cart -->
+<script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/simpleCart.min.js"></script>
+<!-- cart -->
+<link href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/component.css" rel='stylesheet' type='text/css'>
+<script>
 </script>
 <?php
 }}
@@ -163,6 +251,8 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
 //
 // main template
 //
-if ($_l->extends) { ob_end_clean(); return $template->renderChildTemplate($_l->extends, get_defined_vars()); }
+?>
+
+<?php if ($_l->extends) { ob_end_clean(); return $template->renderChildTemplate($_l->extends, get_defined_vars()); }
 call_user_func(reset($_b->blocks['content']), $_b, get_defined_vars()) ; call_user_func(reset($_b->blocks['scripts']), $_b, get_defined_vars()) ; 
 }}

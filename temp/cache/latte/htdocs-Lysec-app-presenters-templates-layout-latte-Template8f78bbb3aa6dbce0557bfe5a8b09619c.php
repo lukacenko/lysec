@@ -104,7 +104,7 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
 "><span lang="sk" class="lang-lg "></span></a></p>
                             <p><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("this", array('locale' => 'en')), ENT_COMPAT) ?>
 "><span lang="en" class="lang-lg "></span></a></p>
-                            <p></p>
+                            <p>&nbsp;&nbsp;&nbsp;</p>
                            <a href="checkout.html">
                                 <h3> <span class="simpleCart_total"> $0.00 </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span>)<img src="images/bag.png" alt=""></h3>
                             </a>	
@@ -319,7 +319,6 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
 </div-->
         
 <?php Latte\Macros\BlockMacrosRuntime::callBlock($_b, 'content', $template->getParameters()) ?>
-    </div>
     <!-- content-section-ends-here -->
     <div class="news-letter">
         <div class="container">

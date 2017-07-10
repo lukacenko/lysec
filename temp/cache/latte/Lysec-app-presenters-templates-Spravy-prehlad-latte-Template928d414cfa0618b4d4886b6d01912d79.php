@@ -22,7 +22,7 @@ if (!function_exists($_b->blocks['content'][] = '_lb4006dc7e1d_content')) { func
                     <div class="row chat-toolbar-row">
                         <div class="col-sm-12">
                             <div class="btn-group chat-toolbar" role="group" aria-label="...">
-                                <h3 class="bars"> Zoznam prijatých správ</h3>
+                                <h3 class="bars"> <?php ob_start() ?>Zoznam prijatých správ<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </h3>
                             </div>
                         </div>
                     </div>
