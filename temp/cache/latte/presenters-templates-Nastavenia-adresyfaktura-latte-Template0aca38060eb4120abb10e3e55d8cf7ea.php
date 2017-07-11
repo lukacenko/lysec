@@ -1,21 +1,21 @@
 <?php
-// source: C:\xampp\htdocs\Lysec\app\presenters/templates/Nastavenia/adresydorucenia.latte
+// source: C:\xampp\htdocs\Lysec\app\presenters/templates/Nastavenia/adresyfaktura.latte
 
-class Templateeff44d901595d91baca208a0005dbe4e extends Latte\Template {
+class Template0aca38060eb4120abb10e3e55d8cf7ea extends Latte\Template {
 function render() {
 foreach ($this->params as $__k => $__v) $$__k = $__v; unset($__k, $__v);
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('c1e671e25d', 'html')
+list($_b, $_g, $_l) = $template->initialize('bc9b81f1ec', 'html')
 ;
 // prolog Latte\Macros\BlockMacros
 //
 // block content
 //
-if (!function_exists($_b->blocks['content'][] = '_lb62f769b2b1_content')) { function _lb62f769b2b1_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+if (!function_exists($_b->blocks['content'][] = '_lba9bec03678_content')) { function _lba9bec03678_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
 ?><div class="container">
 
 
-    <?php echo Nette\Bridges\FormsLatte\Runtime::renderFormBegin($form = $_form = $_control["changeDeliveryForm"], array()) ?>
+    <?php echo Nette\Bridges\FormsLatte\Runtime::renderFormBegin($form = $_form = $_control["changeBillingForm"], array()) ?>
 
         <div class="form-group">
             <?php if ($_label = $_form["name"]->getLabel()) echo $_label  ?>

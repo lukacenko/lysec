@@ -14,7 +14,7 @@ list($_b, $_g, $_l) = $template->initialize('d99381faff', 'html')
 if (!function_exists($_b->blocks['content'][] = '_lb1eeb5eff51_content')) { function _lb1eeb5eff51_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
 ?><div class="container">
 
-    
+
     <?php echo Nette\Bridges\FormsLatte\Runtime::renderFormBegin($form = $_form = $_control["changeInfoForm"], array()) ?>
 
         <div class="form-group">
@@ -39,18 +39,6 @@ if (!function_exists($_b->blocks['content'][] = '_lb1eeb5eff51_content')) { func
             <?php if ($_label = $_form["surname"]->getLabel()) echo $_label  ?>
 
             <?php echo $_form["surname"]->getControl() ?>
-
-        </div>
-        <div class="form-group">
-            <?php if ($_label = $_form["phone"]->getLabel()) echo $_label  ?>
-
-            <?php echo $_form["phone"]->getControl() ?>
-
-        </div>
-        <div class="form-group">
-            <?php if ($_label = $_form["city"]->getLabel()) echo $_label  ?>
-
-            <?php echo $_form["city"]->getControl() ?>
 
         </div>
         <div class="form-group">

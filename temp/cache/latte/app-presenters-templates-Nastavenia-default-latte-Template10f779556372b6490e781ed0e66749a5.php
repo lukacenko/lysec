@@ -36,7 +36,6 @@ if (!function_exists($_b->blocks['content'][] = '_lb374fffb0cd_content')) { func
                             <tr> <th scope="row">Prihlasovacie meno:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($osobne->login, ENT_NOQUOTES) ?></td></tr>
                             <tr> <th scope="row">Meno:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($osobne->name, ENT_NOQUOTES) ?></td> </tr>
                             <tr> <th scope="row">Priezvisko:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($osobne->surname, ENT_NOQUOTES) ?></td> </tr>
-                            <tr> <th scope="row">Telefón:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($osobne->phone, ENT_NOQUOTES) ?></td> </tr>
                             <tr> <th scope="row">Krajina:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($osobne->country, ENT_NOQUOTES) ?></td> </tr>
                             <tr> <th scope="row">Pohlavie:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($osobne->sex, ENT_NOQUOTES) ?></td> </tr>
                         </tbody> 
@@ -54,11 +53,14 @@ if (!function_exists($_b->blocks['content'][] = '_lb374fffb0cd_content')) { func
                     </div>
                     <table class="table"> 
                         <tbody> 
-                            <tr> <th scope="row">Firma:</th> <td>Šurda</td></tr>
-                            <tr> <th scope="row">Adresa:</th> <td>Lukáš</td> </tr>
-                            <tr> <th scope="row">Mesto:</th> <td>Lukáš</td> </tr>
-                            <tr> <th scope="row">PSČ:</th> <td>Lukáš</td> </tr>
-                            <tr> <th scope="row">Štát:</th> <td>Lukáš</td> </tr>
+                            <tr> <th scope="row">Meno:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($dodacie->name, ENT_NOQUOTES) ?></td></tr>
+                            <tr> <th scope="row">Priezvisko:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($dodacie->surename, ENT_NOQUOTES) ?></td> </tr>
+                            <tr> <th scope="row">Ulica:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($dodacie->street, ENT_NOQUOTES) ?></td> </tr>
+                            <tr> <th scope="row">PSČ:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($dodacie->postcode, ENT_NOQUOTES) ?></td> </tr>
+                            <tr> <th scope="row">Mesto:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($dodacie->city, ENT_NOQUOTES) ?></td> </tr>
+                            <tr> <th scope="row">Telefón:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($dodacie->phone, ENT_NOQUOTES) ?></td> </tr>
+
+                            
                         </tbody> 
                     </table>
                 </div>
@@ -68,17 +70,18 @@ if (!function_exists($_b->blocks['content'][] = '_lb374fffb0cd_content')) { func
                     <div class="panel-heading">
                         <h2 class="panel-title">Fakturačne údaje</h2>
                         <div class="text-right">
-                            <a class="glyphicon glyphicon-pencil" href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Nastavenia:fakturacneudaje"), ENT_COMPAT) ?>
+                            <a class="glyphicon glyphicon-pencil" href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Nastavenia:adresyfaktura"), ENT_COMPAT) ?>
 "> Upraviť </a>
                         </div>
                     </div>
                     <table class="table"> 
                         <tbody> 
-                            <tr> <th scope="row">Firma:</th> <td>Šurda</td></tr>
-                            <tr> <th scope="row">Adresa:</th> <td>Mechov 213</td> </tr>
-                            <tr> <th scope="row">Mesto:</th> <td>Velčice</td> </tr>
-                            <tr> <th scope="row">PSČ:</th> <td>95171</td> </tr>
-                            <tr> <th scope="row">Štát:</th> <td>Slovenská republika</td> </tr>
+                            <tr> <th scope="row">Meno:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($fakturacne->name, ENT_NOQUOTES) ?></td></tr>
+                            <tr> <th scope="row">Priezvisko:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($fakturacne->surename, ENT_NOQUOTES) ?></td> </tr>
+                            <tr> <th scope="row">Ulica:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($fakturacne->street, ENT_NOQUOTES) ?></td> </tr>
+                            <tr> <th scope="row">PSČ:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($fakturacne->postcode, ENT_NOQUOTES) ?></td> </tr>
+                            <tr> <th scope="row">Mesto:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($fakturacne->city, ENT_NOQUOTES) ?></td> </tr>
+                            <tr> <th scope="row">Telefón:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($fakturacne->phone, ENT_NOQUOTES) ?></td> </tr>
                         </tbody> 
                     </table>
                 </div>

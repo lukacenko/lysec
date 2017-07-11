@@ -20,7 +20,6 @@
                             <tr> <th scope="row">Prihlasovacie meno:</th> <td>{$osobne->login}</td></tr>
                             <tr> <th scope="row">Meno:</th> <td>{$osobne->name}</td> </tr>
                             <tr> <th scope="row">Priezvisko:</th> <td>{$osobne->surname}</td> </tr>
-                            <tr> <th scope="row">Telefón:</th> <td>{$osobne->phone}</td> </tr>
                             <tr> <th scope="row">Krajina:</th> <td>{$osobne->country}</td> </tr>
                             <tr> <th scope="row">Pohlavie:</th> <td>{$osobne->sex}</td> </tr>
                         </tbody> 
@@ -37,11 +36,14 @@
                     </div>
                     <table class="table"> 
                         <tbody> 
-                            <tr> <th scope="row">Firma:</th> <td>Šurda</td></tr>
-                            <tr> <th scope="row">Adresa:</th> <td>Lukáš</td> </tr>
-                            <tr> <th scope="row">Mesto:</th> <td>Lukáš</td> </tr>
-                            <tr> <th scope="row">PSČ:</th> <td>Lukáš</td> </tr>
-                            <tr> <th scope="row">Štát:</th> <td>Lukáš</td> </tr>
+                            <tr> <th scope="row">Meno:</th> <td>{$dodacie->name}</td></tr>
+                            <tr> <th scope="row">Priezvisko:</th> <td>{$dodacie->surename}</td> </tr>
+                            <tr> <th scope="row">Ulica:</th> <td>{$dodacie->street}</td> </tr>
+                            <tr> <th scope="row">PSČ:</th> <td>{$dodacie->postcode}</td> </tr>
+                            <tr> <th scope="row">Mesto:</th> <td>{$dodacie->city}</td> </tr>
+                            <tr> <th scope="row">Telefón:</th> <td>{$dodacie->phone}</td> </tr>
+
+                            
                         </tbody> 
                     </table>
                 </div>
@@ -51,16 +53,17 @@
                     <div class="panel-heading">
                         <h2 class="panel-title">Fakturačne údaje</h2>
                         <div class="text-right">
-                            <a n:href="Nastavenia:fakturacneudaje" class="glyphicon glyphicon-pencil"> Upraviť </a>
+                            <a n:href="Nastavenia:adresyfaktura" class="glyphicon glyphicon-pencil"> Upraviť </a>
                         </div>
                     </div>
                     <table class="table"> 
                         <tbody> 
-                            <tr> <th scope="row">Firma:</th> <td>Šurda</td></tr>
-                            <tr> <th scope="row">Adresa:</th> <td>Mechov 213</td> </tr>
-                            <tr> <th scope="row">Mesto:</th> <td>Velčice</td> </tr>
-                            <tr> <th scope="row">PSČ:</th> <td>95171</td> </tr>
-                            <tr> <th scope="row">Štát:</th> <td>Slovenská republika</td> </tr>
+                            <tr> <th scope="row">Meno:</th> <td>{$fakturacne->name}</td></tr>
+                            <tr> <th scope="row">Priezvisko:</th> <td>{$fakturacne->surename}</td> </tr>
+                            <tr> <th scope="row">Ulica:</th> <td>{$fakturacne->street}</td> </tr>
+                            <tr> <th scope="row">PSČ:</th> <td>{$fakturacne->postcode}</td> </tr>
+                            <tr> <th scope="row">Mesto:</th> <td>{$fakturacne->city}</td> </tr>
+                            <tr> <th scope="row">Telefón:</th> <td>{$fakturacne->phone}</td> </tr>
                         </tbody> 
                     </table>
                 </div>

@@ -16,14 +16,15 @@ class NastaveniaPresenter extends \BasePresenter {
         $this->model = $model;
         parent::__construct();
     }
-    
-    public function renderDefault(){
+
+    public function renderDefault() {
         $id = $this->getUser()->getIdentity()->id;
         $this->template->osobne = $this->model->getInfoUser($id);
+        $this->template->fakturacne = $this->model->getBillingAdress($id);
+        $this->template->dodacie = $this->model->getShippingAdress($id);
     }
 
-//FORMULÁR pre odoslanie správy
-
+//FORMULÁR pre upravu osobnych nastavení
     protected function createComponentChangeInfoForm() {
 
         $data = $this->model->getInfoUser($this->getUser()->getIdentity()->id);
@@ -38,8 +39,7 @@ class NastaveniaPresenter extends \BasePresenter {
         $form->addText('email', 'E-mail:')
                 ->setValue($data->email)
                 ->setAttribute('class', 'form-control');
-                //->setRequired('Prosím vložte Príjemcu.');
-        //$form->addSelect('id_kat', 'Kategória', $this->model->ziskajdata2());
+        //->setRequired('Prosím vložte Príjemcu.');
 
         $form->addText('name', 'Meno:')
                 ->setValue($data->name)
@@ -48,31 +48,20 @@ class NastaveniaPresenter extends \BasePresenter {
         $form->addText('surname', 'Priezvisko:')
                 ->setValue($data->surname)
                 ->setAttribute('class', 'form-control');
-        $form->addText('street', 'Ulica, č.domu:')
-                ->setValue($data->street)
-                ->setAttribute('class', 'form-control');
-        $form->addText('postcode', 'PSČ:')
-                ->setValue($data->postcode)
-                ->setAttribute('class', 'form-control');
-        $form->addText('city', 'Mesto:')
-                ->setValue($data->city)
-                ->setAttribute('class', 'form-control');
-        $form->addText('phone', 'Telefón:')
-                ->setValue($data->phone)
-                ->setAttribute('class', 'form-control');
-        $countries = [
-            'SK' => 'Slovensko',
-            'CZ' => 'Česká Republika',
-            '' => 'Prosim vyberte'
-        ];
-        $form->addSelect('country', 'Krajina:', $countries)
+        
+        $countries = $this->model->getCountry();
+        foreach($countries as $krajina){
+            $countriese[''] = 'Prosím vyberte';
+            $countriese[$krajina['id_country']] = $krajina->name;
+        }
+        $form->addSelect('country', 'Krajina:', $countriese)
                 ->setAttribute('class', 'form-control')
-                ->setValue($data->country);
+                ->setValue($data->id_country);
 
         $pohlavie = [
-            'Z' => 'Muž',
-            'M' => 'Žena',
-            '' => 'Prosim vyberte'
+            '' => 'Prosím vyberte si pohlavie',
+            'Muž' => 'Muž',
+            'Žena' => 'Žena',
         ];
         $form->addSelect('sex', 'Pohlavie:', $pohlavie)
                 ->setAttribute('class', 'form-control')
@@ -95,8 +84,8 @@ class NastaveniaPresenter extends \BasePresenter {
 
     // spracovanie formularu pre editaciu/vytvorenie clanku
     public function SaveInfoForm(UI\Form $form) {
-        
-        
+
+
         if ($form->isSuccess()) {
             // zisti ci je clanok editovany ale vytvarany
             $data = $form->getValues();
@@ -109,4 +98,118 @@ class NastaveniaPresenter extends \BasePresenter {
         }
     }
 
+//FORMULÁR pre upravu dorucenych nastavení
+    protected function createComponentChangeDeliveryForm() {
+
+        $data = $this->model->getShippingAdress($this->getUser()->getIdentity()->id);
+        $form = new UI\Form;
+        $form->setTranslator($this->translator);
+
+        $form->addText('name', 'Meno:')
+                ->setValue($data->name)
+                ->setAttribute('class', 'form-control');
+        $form->addHidden('id')->setDefaultValue($data->id_delivery_address);
+        $form->addText('surename', 'Prezvisko:')
+                ->setValue($data->surename)
+                ->setAttribute('class', 'form-control');
+        $form->addText('street', 'Ulica:')
+                ->setValue($data->street)
+                ->setAttribute('class', 'form-control')
+                ->setRequired('Prosím vložte meno.');
+        $form->addText('postcode', 'PSČ:')
+                ->setValue($data->postcode)
+                ->setAttribute('class', 'form-control');
+
+        $form->addText('phone', 'Telefón:')
+                ->setValue($data->phone)
+                ->setAttribute('class', 'form-control');
+
+        $form->addText('city', 'Mesto:')
+                ->setValue($data->city)
+                ->setAttribute('class', 'form-control');
+
+        $form->addText('county', 'Štát:')
+                ->setValue($data->county)
+                ->setAttribute('class', 'form-control');
+
+        $form->addSubmit('saveas', 'Uložiť')->
+                setAttribute('class', 'btn btn-default');
+        $form->onSuccess[] = $this->SaveDeliveriForm;
+        $form->addProtection();
+        return $form;
+    }
+
+    // spracovanie formularu pre editaciu/vytvorenie clanku
+    public function SaveDeliveriForm(UI\Form $form) {
+
+
+        if ($form->isSuccess()) {
+            // zisti ci je clanok editovany ale vytvarany
+            $data = $form->getValues();
+            $this->model->editDelivery($form->getValues());
+            $this->flashMessage('Úspešné uložený profil', 'success');
+            $this->redirect('Nastavenia:default');
+        } else {
+            // vyskytla sa chyba pri odoslaní formularu
+            $form->addError('Vyskytla sa chyba pri odosielani formulara');
+        }
+    }
+
+
+//FORMULÁR pre upravu dorucenych nastavení
+    protected function createComponentChangeBillingForm() {
+
+        $data = $this->model->getBillingAdress($this->getUser()->getIdentity()->id);
+        $form = new UI\Form;
+        $form->setTranslator($this->translator);
+
+        $form->addText('name', 'Meno:')
+                ->setValue($data->name)
+                ->setAttribute('class', 'form-control');
+        $form->addHidden('id')->setDefaultValue($data->id_billing_address);
+        $form->addText('surename', 'Prezvisko:')
+                ->setValue($data->surename)
+                ->setAttribute('class', 'form-control');
+        $form->addText('street', 'Ulica:')
+                ->setValue($data->street)
+                ->setAttribute('class', 'form-control')
+                ->setRequired('Prosím vložte meno.');
+        $form->addText('postcode', 'PSČ:')
+                ->setValue($data->postcode)
+                ->setAttribute('class', 'form-control');
+
+        $form->addText('phone', 'Telefón:')
+                ->setValue($data->phone)
+                ->setAttribute('class', 'form-control');
+
+        $form->addText('city', 'Mesto:')
+                ->setValue($data->city)
+                ->setAttribute('class', 'form-control');
+
+        $form->addText('county', 'Štát:')
+                ->setValue($data->county)
+                ->setAttribute('class', 'form-control');
+
+        $form->addSubmit('saveas', 'Uložiť')->
+                setAttribute('class', 'btn btn-default');
+        $form->onSuccess[] = $this->SaveBillingForm;
+        $form->addProtection();
+        return $form;
+    }
+
+    // spracovanie formularu pre editaciu/vytvorenie clanku
+    public function SaveBillingForm(UI\Form $form) {
+
+
+        if ($form->isSuccess()) {
+            // zisti ci je clanok editovany ale vytvarany
+            $data = $form->getValues();
+            $this->model->editBilling($form->getValues());
+            $this->flashMessage('Úspešné uložený profil', 'success');
+            $this->redirect('Nastavenia:default');
+        } else {
+            // vyskytla sa chyba pri odoslaní formularu
+            $form->addError('Vyskytla sa chyba pri odosielani formulara');
+        }
+    }    
 }
