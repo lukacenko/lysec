@@ -95,11 +95,11 @@ abstract class Repository extends \Nette\Object {
         return $this->db->insert($table, $val)->execute();
     }
 
-    public function getValuesForFilter($table, $column) {
-        $data = $this->db->select($column)->from($table)->fetchAll();
-        $return = array('' => '');
+    public function getValuesForFilter($table, $id, $value) {
+        $data = $this->db->query('SELECT '.$id.', '.$value.' FROM '.$table.'')->fetchAll();
+        $return = array();
         foreach ($data as $col) {
-            $return[$col[$column]] = $col[$column];
+            $return[$col[$id]] = $col[$value];
         }
         return $return;
     }

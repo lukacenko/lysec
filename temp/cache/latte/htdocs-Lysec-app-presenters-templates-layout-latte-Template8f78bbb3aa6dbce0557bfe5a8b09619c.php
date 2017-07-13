@@ -82,14 +82,31 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
 <?php if ($user->loggedIn) { ?>
                                 <li style="color:white"> <span class="glyphicon glyphicon-user"> </span> Ahoj <?php echo Latte\Runtime\Filters::escapeHtml($user->getIdentity()->login, ENT_NOQUOTES) ?> </li>
                                 <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Spravy:prehlad"), ENT_COMPAT) ?>
-">  <span class="glyphicon glyphicon-envelope"> </span><?php ob_start() ?> Správy<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </a></li>
+">  <span class="glyphicon glyphicon-envelope"> </span><?php ob_start() ?> Pošta<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </a></li>
                                 <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Nastavenia:default"), ENT_COMPAT) ?>
 ">  <span class="glyphicon glyphicon-wrench"> </span><?php ob_start() ?> Môj účet<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </a></li>
-                                <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Produkty:prehlad"), ENT_COMPAT) ?>
-">  <span class="glyphicon glyphicon-baby-formula"> </span><?php ob_start() ?> Produkty<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </a></li>
+                                <li class="dropdown">
+                                <a class="dropdown-toggle glyphicon glyphicon-baby-formula" data-toggle="dropdown" href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Produkty:prehlad"), ENT_COMPAT) ?>
+">Produkty <b class="caret"></b></a>
+                                <ul class="dropdown-menu multi-column columns-3">
+                                    <div class="row">
+                                        <div class="col-sm-4" >
+                                            <ul class="multi-column-dropdown text-danger" >
+                                                <h6>PRODUKTY</h6>
+                                                <li><a style="color:saddlebrown"  href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Produkty:prehlad"), ENT_COMPAT) ?>
+">Prehľad produktov</a></li>
+                                                <li><a style="color:saddlebrown"  href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Produkty:pridaj"), ENT_COMPAT) ?>
+">Pridať nový produkt</a></li>
+                                                <li><a style="color:saddlebrown"  href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Produkty:moje"), ENT_COMPAT) ?>
+">Moje produkty</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </ul>
+                             </li>                                
                                 <li> <a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Sign:out"), ENT_COMPAT) ?>
 ">  <span class="glyphicon glyphicon-share"> </span><?php ob_start() ?>Odhlásiť sa<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </a></li>
-                                
 <?php } else { ?>
                                 <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Sign:prihlasenie"), ENT_COMPAT) ?>
 "><span class="glyphicon glyphicon-user"> </span>Prihlásiť sa</a></li>
@@ -136,7 +153,7 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Homepage:default"), ENT_COMPAT) ?>
+                            <li><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Produkty:prehlad"), ENT_COMPAT) ?>
 ">Home</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Men <b class="caret"></b></a>

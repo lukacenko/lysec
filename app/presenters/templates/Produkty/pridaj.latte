@@ -20,14 +20,7 @@
                             <p>Napíšte a odošlite správu. Príjemca je notifikovaný na svoj email, príloha je obmedzená na 25MB.</p>
                             {form form}
 
-                                <div>
-                                    <span>{label one /}</span>
-                                    {input one}
-                                </div>
-                                <div>
-                                    <span>{label two /}</span>
-                                    {input two}
-                                </div>
+
                                 <div>   
                                     Nie je dovolené dohovárať sa s Predajcom na osobnom odbere tovaru, zasielať akékoľvek kontaktné údaje, e-mail a obchodné ponuky mimo SAShE.sk, z dôvodu porušenia Podmienok používania odsúhlasených pri Registrácii.                                
                                 </div>
@@ -62,7 +55,25 @@
                                 <div>
                                     <span> {label color/}  </span>
                                     {input color}
-                                </div>   
+                                </div> 
+                                <div>
+                                    <span>{label one /}</span>
+                                    {input one}
+                                </div>
+                                <div>
+                                    <span>{label two /}</span>
+                                    {snippet two}
+                                        {input two}
+                                    {/snippet}
+                                </div>                                
+
+                                <div>
+                                    <span>{label three /}</span>
+                                    {snippet three}
+                                        {input three}
+                                    {/snippet}
+                                </div>                                
+
                                 <div class="col-md-2 col-md-offset-6">
                                     {input send}
                                 </div>
@@ -94,12 +105,19 @@
 <script>
     $(function () {
         $.nette.init();
-
         $('select[name=one]').change(function () {
             $.nette.ajax({
                 url: {link invalidate!},
                 data: {
                     'value': $('select[name=one]').val(),
+                }
+            });
+        });
+        $('select[name=two]').change(function () {
+            $.nette.ajax({
+                url: {link invalidate2!},
+                data: {
+                    'value': $('select[name=two]').val(),
                 }
             });
         });

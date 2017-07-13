@@ -21,12 +21,6 @@ class ProduktyPresenter extends \BasePresenter {
         $this->template->produkty = $this->model->getAllProduct();
     }
 
-    private $database = [
-        [1 => '2', '4', '9'],
-        [4 => '.', '∴', '…'],
-        [5 => 'π', '€', '©'],
-    ];
-
     protected function createComponentForm($name) {
         $form = new UI\Form;
         $this[$name] = $form; // <- Zde je celý fígl
@@ -39,6 +33,7 @@ class ProduktyPresenter extends \BasePresenter {
                 ->setAttribute('cols', 100)
                 ->setAttribute('rows', 12);
         $form->addText('stock', '  Množstvo')
+                ->setAttribute('type', 'number')
                 ->setRequired('Prosím vložte množstvo.');
         $availability = $this->model->getAllAvailability();
         foreach ($availability as $value) {
@@ -50,24 +45,26 @@ class ProduktyPresenter extends \BasePresenter {
         $form->addSelect('availability', 'Dostupnosť:', $categories)
                 ->setPrompt('Prosím vložte dostupnosť');
         $form->addText('price', 'Cena')
+                ->setAttribute('type', 'number')
                 ->setRequired('Prosím vložte cenu.');
         $form->addText('postage', 'Poštovné')
+                ->setAttribute('type', 'number')
                 ->setRequired('Prosím vložte cenu poštovného.');
-        $color = $this->model->getAllColor();
-        foreach ($color as $value) {
-            $parent = $value['id_color']; //cií klíč do kategorií
-            if ($parent !== NULL) {
-                $colors[$value['id_color']] = $value['color'];
-            }
-        }
+
+        $colors = $this->model->getValuesForFilter('color', 'id_color', 'color');
         $form->addSelect('color', 'Farba:', $colors)
                 ->setPrompt('Prosím vložte farbu');
 
-        $form->addSelect('one', 'One', ['Čísla', 'Tečky', 'Symboly'])->setDefaultValue(1);
-        //dump($form['one']->value);
+        $category = $this->model->getValuesForFilter('category', 'id_category', 'category_name');
+        $form->addSelect('one', 'Kategória', $category)->setDefaultValue(3);
+        $subCategory = $this->model->getAllSubCategory($form['one']->value);
+        $form->addSelect('two', 'Podkategória', $subCategory);
 
-        $form->addSelect('two', 'Two', $this->database[$form['one']->value]);
-
+        if($form['two']->value == NULL){
+            $form['two']->value = 20;
+        }
+        $subCategory2 = $this->model->getAllSubCategoryLevel2($form['two']->value);
+        $form->addSelect('three', 'Podkategória upresnenie', $subCategory2);
         $form->addSubmit('send', 'Odeslat');
         $form->onSuccess[] = $this->success;
         return $form;
@@ -79,8 +76,12 @@ class ProduktyPresenter extends \BasePresenter {
     }
 
     public function handleInvalidate($value) {
-        $this['form']['two']->setItems($this->database[$value]);
+        $this['form']['two']->setItems($this->model->getAllSubCategory($value));
         $this->redrawControl('two');
+    }
+    public function handleInvalidate2($value) {
+        $this['form']['three']->setItems($this->model->getAllSubCategoryLevel2($value));
+        $this->redrawControl('three');
     }
 
     public function success(UI\Form $form, $vals) {
