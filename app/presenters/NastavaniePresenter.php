@@ -48,9 +48,9 @@ class NastaveniaPresenter extends \BasePresenter {
         $form->addText('surname', 'Priezvisko:')
                 ->setValue($data->surname)
                 ->setAttribute('class', 'form-control');
-        
+
         $countries = $this->model->getCountry();
-        foreach($countries as $krajina){
+        foreach ($countries as $krajina) {
             $countriese[''] = 'Prosím vyberte';
             $countriese[$krajina['id_country']] = $krajina->name;
         }
@@ -128,9 +128,15 @@ class NastaveniaPresenter extends \BasePresenter {
                 ->setValue($data->city)
                 ->setAttribute('class', 'form-control');
 
-        $form->addText('county', 'Štát:')
-                ->setValue($data->county)
-                ->setAttribute('class', 'form-control');
+
+        $countries = $this->model->getCountry();
+        foreach ($countries as $krajina) {
+            $countriese[''] = 'Prosím vyberte';
+            $countriese[$krajina['id_country']] = $krajina->name;
+        }
+        $form->addSelect('country', 'Krajina:', $countriese)
+                ->setAttribute('class', 'form-control')
+                ->setValue($data->id_country);
 
         $form->addSubmit('saveas', 'Uložiť')->
                 setAttribute('class', 'btn btn-default');
@@ -154,7 +160,6 @@ class NastaveniaPresenter extends \BasePresenter {
             $form->addError('Vyskytla sa chyba pri odosielani formulara');
         }
     }
-
 
 //FORMULÁR pre upravu dorucenych nastavení
     protected function createComponentChangeBillingForm() {
@@ -186,9 +191,15 @@ class NastaveniaPresenter extends \BasePresenter {
                 ->setValue($data->city)
                 ->setAttribute('class', 'form-control');
 
-        $form->addText('county', 'Štát:')
-                ->setValue($data->county)
-                ->setAttribute('class', 'form-control');
+        $countries = $this->model->getCountry();
+        foreach ($countries as $krajina) {
+            $countriese[''] = 'Prosím vyberte';
+            $countriese[$krajina['id_country']] = $krajina->name;
+        }
+        $form->addSelect('country', 'Krajina:', $countriese)
+                ->setAttribute('class', 'form-control')
+                ->setValue($data->id_country);
+
 
         $form->addSubmit('saveas', 'Uložiť')->
                 setAttribute('class', 'btn btn-default');
@@ -211,5 +222,6 @@ class NastaveniaPresenter extends \BasePresenter {
             // vyskytla sa chyba pri odoslaní formularu
             $form->addError('Vyskytla sa chyba pri odosielani formulara');
         }
-    }    
+    }
+
 }

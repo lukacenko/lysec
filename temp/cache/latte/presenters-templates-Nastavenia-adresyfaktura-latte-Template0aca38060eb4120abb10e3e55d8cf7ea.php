@@ -54,9 +54,9 @@ if (!function_exists($_b->blocks['content'][] = '_lba9bec03678_content')) { func
 
         </div>
         <div class="form-group">
-            <?php if ($_label = $_form["county"]->getLabel()) echo $_label  ?>
+            <?php if ($_label = $_form["country"]->getLabel()) echo $_label  ?>
 
-            <?php echo $_form["county"]->getControl() ?>
+            <?php echo $_form["country"]->getControl() ?>
 
         </div>
         <div class="text-center">

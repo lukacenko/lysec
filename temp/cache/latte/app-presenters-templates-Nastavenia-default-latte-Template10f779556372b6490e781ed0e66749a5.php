@@ -57,10 +57,8 @@ if (!function_exists($_b->blocks['content'][] = '_lb374fffb0cd_content')) { func
                             <tr> <th scope="row">Priezvisko:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($dodacie->surename, ENT_NOQUOTES) ?></td> </tr>
                             <tr> <th scope="row">Ulica:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($dodacie->street, ENT_NOQUOTES) ?></td> </tr>
                             <tr> <th scope="row">PSČ:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($dodacie->postcode, ENT_NOQUOTES) ?></td> </tr>
-                            <tr> <th scope="row">Mesto:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($dodacie->city, ENT_NOQUOTES) ?></td> </tr>
+                            <tr> <th scope="row">Mesto:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($dodacie->country_name, ENT_NOQUOTES) ?></td> </tr>
                             <tr> <th scope="row">Telefón:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($dodacie->phone, ENT_NOQUOTES) ?></td> </tr>
-
-                            
                         </tbody> 
                     </table>
                 </div>
@@ -80,7 +78,7 @@ if (!function_exists($_b->blocks['content'][] = '_lb374fffb0cd_content')) { func
                             <tr> <th scope="row">Priezvisko:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($fakturacne->surename, ENT_NOQUOTES) ?></td> </tr>
                             <tr> <th scope="row">Ulica:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($fakturacne->street, ENT_NOQUOTES) ?></td> </tr>
                             <tr> <th scope="row">PSČ:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($fakturacne->postcode, ENT_NOQUOTES) ?></td> </tr>
-                            <tr> <th scope="row">Mesto:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($fakturacne->city, ENT_NOQUOTES) ?></td> </tr>
+                            <tr> <th scope="row">Mesto:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($fakturacne->country_name, ENT_NOQUOTES) ?></td> </tr>
                             <tr> <th scope="row">Telefón:</th> <td><?php echo Latte\Runtime\Filters::escapeHtml($fakturacne->phone, ENT_NOQUOTES) ?></td> </tr>
                         </tbody> 
                     </table>
