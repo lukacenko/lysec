@@ -68,9 +68,12 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
         <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/simpleCart.min.js"></script>
         <!-- cart -->
         <link rel="stylesheet" href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/flexslider.css" type="text/css" media="screen">
+<?php if (isset($_b->blocks["head"])) { Latte\Macros\BlockMacrosRuntime::callBlock($_b, 'head', $template->getParameters()) ;} ?>
 
         <title><?php if (isset($_b->blocks["title"])) { ob_start(); Latte\Macros\BlockMacrosRuntime::callBlock($_b, 'title', $template->getParameters()); echo $template->striptags(ob_get_clean()) ?>
  | <?php } ?>Lysec | Luko, s.r.o.</title>
+
+        
     </head>
     <body role="document">
         <!-- header-section-starts -->

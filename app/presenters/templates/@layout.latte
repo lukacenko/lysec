@@ -29,8 +29,13 @@
         <script src="{$basePath}/js/simpleCart.min.js"></script>
         <!-- cart -->
         <link rel="stylesheet" href="{$basePath}/css/flexslider.css" type="text/css" media="screen" />
+        {ifset head}
+            {include head} 
+        {/ifset}
 
         <title>{ifset title}{include title|striptags} | {/ifset}Lysec | Luko, s.r.o.</title>
+
+        
     </head>
     <body role="document">
         <!-- header-section-starts -->

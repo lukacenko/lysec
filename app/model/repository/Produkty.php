@@ -32,7 +32,12 @@ class Produkty extends Repository {
     }
 
     public function getAllSubCategory($id) {
-        $result = $this->db->query('SELECT * FROM sub_category WHERE parent = ' . $id . ' AND level = 0 ORDER BY sub_category_name DESC');
+        
+        if($id != null){
+            $result = $this->db->query('SELECT * FROM sub_category WHERE parent = ' . $id . ' AND level = 0 ORDER BY sub_category_name DESC');
+        }else{
+            $result = $this->db->query('SELECT * FROM sub_category WHERE level = 0 ORDER BY sub_category_name DESC');
+        }
         $rows = $result->fetchAll();
         $return = array();
         foreach ($rows as $col) {
@@ -42,7 +47,11 @@ class Produkty extends Repository {
     }
 
     public function getAllSubCategoryLevel2($id_p) {
-        $result = $this->db->query('SELECT * FROM sub_category WHERE level = 1 AND parent2 = '.$id_p.' ORDER BY sub_category_name DESC');
+        if($id_p != null){
+            $result = $this->db->query('SELECT * FROM sub_category WHERE level = 1 AND parent2 = '.$id_p.' ORDER BY sub_category_name DESC');
+        }else{
+            $result = $this->db->query('SELECT * FROM sub_category WHERE level = 1 ORDER BY sub_category_name DESC');
+        }
         $rows = $result->fetchAll();
         $return = array();
         foreach ($rows as $col) {
