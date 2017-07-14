@@ -29,13 +29,8 @@ if (!function_exists($_b->blocks['content'][] = '_lbdefe47cc6a_content')) { func
                     <span><?php if ($_label = $_form["product_name"]->getLabel()) echo $_label  ?></span>
                     <?php echo $_form["product_name"]->getControl() ?>
 
-                </div>                            
-                <div class="form-group">
-                    <span><?php if ($_label = $_form["image"]->getLabel()) echo $_label  ?></span>
-                    <?php echo $_form["image"]->getControl() ?>
-
-                </div>                            
-                <div class="form-group">
+                </div>    
+                                <div class="form-group">
                     <span> <?php if ($_label = $_form["keywords"]->getLabel()) echo $_label  ?>  </span>
                     <?php echo $_form["keywords"]->getControl() ?>
 
@@ -60,6 +55,7 @@ if (!function_exists($_b->blocks['content'][] = '_lbdefe47cc6a_content')) { func
                     <?php echo $_form["price"]->getControl() ?>
 
                 </div>   
+
                 <div class="form-group">
                     <span> <?php if ($_label = $_form["postage"]->getLabel()) echo $_label  ?>  </span>
                     <?php echo $_form["postage"]->getControl() ?>
@@ -80,6 +76,7 @@ if (!function_exists($_b->blocks['content'][] = '_lbdefe47cc6a_content')) { func
                     <?php echo $_form["production"]->getControl() ?>
 
                 </div> 
+
                 <div class="form-group">
                     <span><?php if ($_label = $_form["one"]->getLabel()) echo $_label  ?></span>
                     <?php echo $_form["one"]->getControl() ?>
@@ -92,7 +89,7 @@ if (!function_exists($_b->blocks['content'][] = '_lbdefe47cc6a_content')) { func
                 <div class="form-group">
                     <span><?php if ($_label = $_form["three"]->getLabel()) echo $_label  ?></span>
 <div id="<?php echo $_control->getSnippetId('three') ?>"><?php call_user_func(reset($_b->blocks['_three']), $_b, $template->getParameters()) ?>
-</div>                </div>                                
+</div>                </div>               
                 <div class="form-group col-md-2 col-md-offset-6">
                     <?php echo $_form["send"]->getControl() ?>
 
@@ -104,7 +101,16 @@ if (!function_exists($_b->blocks['content'][] = '_lbdefe47cc6a_content')) { func
     </div>
 </div>
 <script>
+        var obj = {filename: this.getName(id)}
+</script>            
+<script>
     $('#fine-uploader-gallery').fineUploader({
+        deleteFile: {
+            enabled: true,
+            forceConfirm: true,
+            method: "POST",
+            endpoint: 'delete'
+        },
         template: 'qq-template-gallery',
         request: {
             endpoint: 'pictures?do=uploadPicture'
@@ -117,10 +123,16 @@ if (!function_exists($_b->blocks['content'][] = '_lbdefe47cc6a_content')) { func
         },
         validation: {
             allowedExtensions: ['jpeg', 'jpg', 'gif', 'png']
+        },
+            /*
+        callbacks: {
+            onDelete: function (id) {
+                this.setDeleteFileParams(obj, id);
+            }
         }
-    });
-</script>            
+        */
 
+    });</script>            
 
 <?php
 }}
@@ -227,7 +239,7 @@ if (!function_exists($_b->blocks['head'][] = '_lbc1da51c7ac_head')) { function _
     </div>
     </dialog>
     </div> 
-    </script>
+</script>
 <?php
 }}
 
@@ -235,27 +247,27 @@ if (!function_exists($_b->blocks['head'][] = '_lbc1da51c7ac_head')) { function _
 // block scripts
 //
 if (!function_exists($_b->blocks['scripts'][] = '_lb40b7644207_scripts')) { function _lb40b7644207_scripts($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
-?>    <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/nette.ajax.js">
-<script>
-    $(function () {
-        $.nette.init();
-        $('select[name=one]').change(function () {
-            $.nette.ajax({
-                url: <?php echo Latte\Runtime\Filters::escapeJs($_control->link("invalidate!")) ?>,
-                data: {
-                    'value': $('select[name=one]').val(),
-                }
+?><script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/nette.ajax.js">
+    < script >
+            $(function () {
+                $.nette.init();
+                $('select[name=one]').change(function () {
+                    $.nette.ajax({
+                        url: <?php echo Latte\Runtime\Filters::escapeJs($_control->link("invalidate!")) ?>,
+                        data: {
+                            'value': $('select[name=one]').val(),
+                        }
+                    });
+                });
+                $('select[name=two]').change(function () {
+                    $.nette.ajax({
+                        url: <?php echo Latte\Runtime\Filters::escapeJs($_control->link("invalidate2!")) ?>,
+                        data: {
+                            'value': $('select[name=two]').val(),
+                        }
+                    });
+                });
             });
-        });
-        $('select[name=two]').change(function () {
-            $.nette.ajax({
-                url: <?php echo Latte\Runtime\Filters::escapeJs($_control->link("invalidate2!")) ?>,
-                data: {
-                    'value': $('select[name=two]').val(),
-                }
-            });
-        });
-    });
 </script>
 
 <?php

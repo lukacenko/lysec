@@ -829,7 +829,7 @@ class Container_9a9c12eb62 extends Nette\DI\Container
 	 */
 	public function createServiceApplication__7()
 	{
-		$service = new App\Presenters\ProduktyPresenter($this->getService('64_Model_Repository_Produkty'));
+		$service = new App\Presenters\ProduktyPresenter($this->getService('64_Model_Repository_Produkty'), $this->getService('session.session'));
 		$service->injectPrimary($this, $this->getService('application.presenterFactory'), $this->getService('routing.router'),
 			$this->getService('http.request'), $this->getService('http.response'), $this->getService('session.session'),
 			$this->getService('security.user'), $this->getService('latte.templateFactory'));

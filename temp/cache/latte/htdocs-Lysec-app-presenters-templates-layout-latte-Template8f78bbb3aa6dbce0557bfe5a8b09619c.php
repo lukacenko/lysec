@@ -308,10 +308,8 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
                         </div>
         <!--banner-->
         <script src="js/responsiveslides.min.js"></script>
-        <script>
-// You can also use "$(window).load(function() {"
+        <!--script>
             $(function () {
-// Slideshow 4
                 $("#slider4").responsiveSlides({
                     auto: true,
                     pager: true,
@@ -327,8 +325,7 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
                 });
 
             });
-            * /
-        </script>
+        </script-->
         <!--/div>
         <div class="clearfix"> </div>
     </div>

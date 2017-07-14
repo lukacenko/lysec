@@ -1,32 +1,50 @@
 <?php
-// source: C:\xampp\htdocs\Lysec\app\presenters/templates/Produkty/moje.latte
+// source: C:\xampp\htdocs\Lysec\app\presenters/templates/Spravy/prehlad.latte
 
-class Template8e8886b1493f96756e19a4033925d3d0 extends Latte\Template {
+class Template928d414cfa0618b4d4886b6d01912d79 extends Latte\Template {
 function render() {
 foreach ($this->params as $__k => $__v) $$__k = $__v; unset($__k, $__v);
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('846b8e8979', 'html')
+list($_b, $_g, $_l) = $template->initialize('5f81caeb86', 'html')
 ;
 // prolog Latte\Macros\BlockMacros
 //
 // block content
 //
-if (!function_exists($_b->blocks['content'][] = '_lb2e9a6ed301_content')) { function _lb2e9a6ed301_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
-?><div class="container">
-    <div class="products-page">
-<?php $_l->tmp = $_control->getComponent("produktyGrid"); if ($_l->tmp instanceof Nette\Application\UI\IRenderable) $_l->tmp->redrawControl(NULL, FALSE); $_l->tmp->render() ?>
+if (!function_exists($_b->blocks['content'][] = '_lb4006dc7e1d_content')) { function _lb4006dc7e1d_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+?><div class="content">
+    <div class="container">	
+
+        <div class="container-fluid">
+            <div class="row">
+<?php $_b->templates['5f81caeb86']->renderChildTemplate("layout.latte", $template->getParameters()) ?>
+                <div class="col-md-9 current-chat">
+                    <div class="row chat-toolbar-row">
+                        <div class="col-sm-12">
+                            <div class="btn-group chat-toolbar" role="group" aria-label="...">
+                                <h3 class="bars"> <?php ob_start() ?>Zoznam prijatých správ<?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?> </h3>
+                            </div>
+                        </div>
+                    </div>
+<?php $iterations = 0; foreach ($flashes as $flash) { ?>                    <div class="alert alert-<?php echo Latte\Runtime\Filters::escapeHtml($flash->type, ENT_COMPAT) ?> fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <?php echo Latte\Runtime\Filters::escapeHtml($flash->message, ENT_NOQUOTES) ?>
+
+                    </div> 
+<?php $iterations++; } $_l->tmp = $_control->getComponent("simpleGridDorucene"); if ($_l->tmp instanceof Nette\Application\UI\IRenderable) $_l->tmp->redrawControl(NULL, FALSE); $_l->tmp->render() ?>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-    
-    
 <?php
 }}
 
 //
 // block scripts
 //
-if (!function_exists($_b->blocks['scripts'][] = '_lbb6e924d5b0_scripts')) { function _lbb6e924d5b0_scripts($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
-?> <link rel="stylesheet" type="text/css" href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/happy.css">
+if (!function_exists($_b->blocks['scripts'][] = '_lbb29ba52009_scripts')) { function _lbb29ba52009_scripts($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+?><link rel="stylesheet" type="text/css" href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/happy.css">
 <link rel="stylesheet" type="text/css" href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/bootstrap-datepicker3.css">
 <link rel="stylesheet" type="text/css" href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/datagrid.css">
 <link rel="stylesheet" type="text/css" href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/datagrid-spinners.css">
@@ -69,6 +87,6 @@ if (empty($_l->extends) && !empty($_control->snippetMode)) {
 //
 if ($_l->extends) { ob_end_clean(); return $template->renderChildTemplate($_l->extends, get_defined_vars()); }
 call_user_func(reset($_b->blocks['content']), $_b, get_defined_vars())  ?>
- 
+
 <?php call_user_func(reset($_b->blocks['scripts']), $_b, get_defined_vars()) ; 
 }}

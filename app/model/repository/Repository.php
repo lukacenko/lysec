@@ -91,9 +91,6 @@ abstract class Repository extends \Nette\Object {
      * @cond array
      * @return int
      */
-    public function insertInto($table, $val) {
-        return $this->db->insert($table, $val)->execute();
-    }
 
     public function getValuesForFilter($table, $id, $value) {
         $data = $this->db->query('SELECT '.$id.', '.$value.' FROM '.$table.'')->fetchAll();
@@ -116,47 +113,6 @@ abstract class Repository extends \Nette\Object {
     public function getDisplayConfigurationSettings() {
         $d = $this->db->select('displej_nastavenie')->from('displej_typ')->where('id_displej_typ=2')->fetch();
         return unserialize($d['displej_nastavenie']);
-    }
-
-    /**
-     * Weather underground api processing
-     * @param type $lang
-     * @return array / FALSE
-     */
-    public function getWeather($lang = 'EN') {
-        try {
-            if ($this->wunderground == FALSE) {
-                throw new \Exception();
-            }
-            $value = $this->cache->load('weathersk');
-
-            if ($value === NULL) {
-                $urlFormat = 'http://api.wunderground.com/api/%s/conditions/lang:%s/q/%s/%s.json';
-                $url = sprintf($urlFormat, $this->wunderground['apikey'], $lang, $this->wunderground['state'], $this->wunderground['location']);
-                $json_string = file_get_contents($url);
-                $parsed_json = json_decode($json_string);
-                $this->cache->save('weather' . $lang, array('data' => $parsed_json, 'timestamp' => new Nette\DateTime), array(
-                    Nette\Caching\Cache::EXPIRE => $this->wunderground['refresh'], // akceptuje i sekundy nebo timestamp
-                ));
-                $value = $this->cache->load('weather' . $lang);
-                $data = $value['data'];
-                $i = Nette\Image::fromString(file_get_contents((string) $data->{'current_observation'}->{'icon_url'}));
-                $i->save($this->wunderground['basePath'] . '/actual_weather' . $lang . '.png', 100, Nette\Image::PNG);
-            } else {
-                $value = $this->cache->load('weather' . $lang);
-                $data = $value['data'];
-            }
-            return array(
-                'location' => (string) $data->{'current_observation'}->{'display_location'}->{'city'},
-                'temp_c' => (string) $data->{'current_observation'}->{'temp_c'},
-                'temp_f' => (string) $data->{'current_observation'}->{'temp_f'},
-                'humidity' => filter_var((string) $data->{'current_observation'}->{'relative_humidity'}, FILTER_SANITIZE_NUMBER_INT),
-                'weather' => Nette\Utils\Strings::lower((string) $data->{'current_observation'}->{'weather'}),
-                'icon' => $this->baseUri . $this->wunderground['baseUri'] . '/actual_weather' . $lang . '.png?' . $value['timestamp']->format('U')
-            );
-        } catch (\Exception $ex) {
-            return FALSE;
-        }
     }
 
 }

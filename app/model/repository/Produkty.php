@@ -6,8 +6,31 @@ use Nette;
 
 class Produkty extends Repository {
 
+    public function inserProduct($val) {
+        return $this->db->query('INSERT INTO product', [
+                    'product_name' => $val->product_name,
+                    'keywords' => $val->keywords,
+                    'other_photo' => $val->other_photo,
+                    'other_photo' => $val->other_photo,
+                    'availability' => $val->availability,
+                    'price' => $val->price,
+                    'postage' => $val->postage,
+                    'category' => $val->one,
+                    'material' => $val->material,
+                    'color' => $val->color,
+                    'production' => $val->production,
+                    'subcategory' => $val->two,
+        ]);
+    }
+
 // zobrazi vsetky produkty
     public function getAllProduct() {
+        $result = $this->db->query('SELECT * FROM product ORDER BY timestamp DESC');
+        $rows = $result->fetchAll();
+        return $rows;
+    }
+
+    public function getAllProductUsers() {
         $result = $this->db->query('SELECT * FROM product ORDER BY timestamp DESC');
         $rows = $result->fetchAll();
         return $rows;
@@ -32,10 +55,10 @@ class Produkty extends Repository {
     }
 
     public function getAllSubCategory($id) {
-        
-        if($id != null){
+
+        if ($id != null) {
             $result = $this->db->query('SELECT * FROM sub_category WHERE parent = ' . $id . ' AND level = 0 ORDER BY sub_category_name DESC');
-        }else{
+        } else {
             $result = $this->db->query('SELECT * FROM sub_category WHERE level = 0 ORDER BY sub_category_name DESC');
         }
         $rows = $result->fetchAll();
@@ -47,9 +70,9 @@ class Produkty extends Repository {
     }
 
     public function getAllSubCategoryLevel2($id_p) {
-        if($id_p != null){
-            $result = $this->db->query('SELECT * FROM sub_category WHERE level = 1 AND parent2 = '.$id_p.' ORDER BY sub_category_name DESC');
-        }else{
+        if ($id_p != null) {
+            $result = $this->db->query('SELECT * FROM sub_category WHERE level = 1 AND parent2 = ' . $id_p . ' ORDER BY sub_category_name DESC');
+        } else {
             $result = $this->db->query('SELECT * FROM sub_category WHERE level = 1 ORDER BY sub_category_name DESC');
         }
         $rows = $result->fetchAll();

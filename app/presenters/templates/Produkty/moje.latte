@@ -1,3 +1,32 @@
 {* Latte template *}
 
 {block content}
+<div class="container">
+    <div class="products-page">
+        {control produktyGrid}
+    </div>
+</div>
+    
+    
+ {/block}
+ 
+ {block scripts}
+ <link rel="stylesheet" type="text/css" href="{$basePath}/css/happy.css">
+<link rel="stylesheet" type="text/css" href="{$basePath}/css/bootstrap-datepicker3.css">
+<link rel="stylesheet" type="text/css" href="{$basePath}/css/datagrid.css">
+<link rel="stylesheet" type="text/css" href="{$basePath}/css/datagrid-spinners.css">
+<link rel="stylesheet" type="text/css" href="{$basePath}/css/bootstrap-select.css">
+<script src="{$basePath}/js/nette.ajax.js"></script>
+<!-- Use this tiny js for that pretty checkboxes (https://github.com/paveljanda/happy) -->
+<script src="{$basePath}/js/happy.js"></script>
+<script src="{$basePath}/js/bootstrap-datepicker.js"></script>
+<script src="{$basePath}/js/jquery-ui-sortable.js"></script>
+<script src="{$basePath}/js/datagrid.js"></script>
+<!-- It is recommended to include this JS file with just a few bits. It refreshes URL on non ajax request -->
+<script src="{$basePath}/js/datagrid-instant-url-refresh.js"></script>
+<!-- Use this little extension for ajax spinners -->
+<script src="{$basePath}/js/datagrid-spinners.js"></script>
+<!-- Include bootstrap.js for proper behaviour of ColumnStatus -->
+<!-- Include bootstrap-select.js when using FilterMultiSelect (silviomoreto.github.io/bootstrap-select) -->
+<script src="{$basePath}/js/bootstrap-select.js"></script>
+ {/block}

@@ -11,25 +11,67 @@ use Nette\Application\UI\Form;
 class ProduktyPresenter extends \BasePresenter {
 
     private $model;
+    private $session;
 
-    public function __construct(\Model\Repository\Produkty $model) {
+    public function __construct(\Model\Repository\Produkty $model, Nette\Http\Session $session) {
         $this->model = $model;
         parent::__construct();
+        $this->session = $session->getSection(get_class($this));
     }
 
     public function renderPrehlad() {
         $this->template->produkty = $this->model->getAllProduct();
     }
 
+    public function createComponentProduktyGrid($name) {
+
+        $grid = new DataGrid($this, $name);
+        //$grid->addColumnText('title', 'Predmet')->setSortable();
+        $grid->setDataSource($this->model->getAllProductUsers());
+        $grid->addColumnText('id', 'ID')->setSortable();
+        $grid->addColumnText('product_name', 'Názov produktu')->setSortable();
+        $grid->addColumnText('stock', 'Počet')->setSortable();
+        $grid->addColumnText('price', 'Cena')->setSortable();
+        $grid->addColumnText('timestamp', 'Dátum')->setSortable();
+
+        //$grid->addAction('Delete', '', 'delete!')->setClass('glyphicon glyphicon-remove')->setTitle('Odstrániť');
+        //$grid->addAction('Favorite', '', 'favorite!')->setClass('glyphicon glyphicon-star')->setTitle('Pridať k oblubeným');
+        $grid->addGroupAction('Odstrániť vybrané')->onSelect[] = [$this, 'deleteExamples'];
+        $grid->setPagination(TRUE);
+        /**
+         * Localization
+         */
+        /*
+        $translator = new \Ublaboo\DataGrid\Localization\SimpleTranslator([
+            'ublaboo_datagrid.no_item_found_reset' => 'Žádné položky nenalezeny. Filtr můžete vynulovat',
+            'ublaboo_datagrid.no_item_found' => 'Žádné položky nenalezeny.',
+            'ublaboo_datagrid.here' => 'zde',
+            'ublaboo_datagrid.items' => 'Položky',
+            'ublaboo_datagrid.all' => 'všechny',
+            'ublaboo_datagrid.from' => 'z',
+            'ublaboo_datagrid.reset_filter' => 'Resetovat filtr',
+            'ublaboo_datagrid.group_actions' => 'Hromadné akce',
+            'ublaboo_datagrid.show_all_columns' => 'Zobrazit všechny sloupce',
+            'ublaboo_datagrid.hide_column' => 'Skrýt sloupec',
+            'ublaboo_datagrid.action' => 'Akce',
+            'ublaboo_datagrid.previous' => 'Předchozí',
+            'ublaboo_datagrid.next' => 'Další',
+            'ublaboo_datagrid.choose' => 'Vyberte',
+            'ublaboo_datagrid.execute' => 'Provést',
+            'Name' => 'Jméno',
+            'Inserted' => 'Vloženo'
+        ]);
+        $grid->setTranslator($translator);
+        */
+    }
+
     protected function createComponentForm($name) {
+
+
         $form = new UI\Form;
         $this[$name] = $form;
-
-        $form->addUpload('image', 'Obrázok:')
-                ->setRequired(false)
-                ->setAttribute('id', 'fine-uploader-gallery')
-                ->addRule(Form::IMAGE, 'Obrázok musí být JPEG, PNG nebo GIF.')
-                ->addRule(Form::MAX_FILE_SIZE, 'Maximální velikost souboru je 1024 kB.', 1024 * 1024 /* v bytech */);
+        $this->session->id_add = microtime();
+        $form->addHidden('other_photo')->setDefaultValue($this->session->id_add);
         $form->addText('product_name', 'Názov produktu')
                 ->setRequired('Prosím vložte názov produktu.')
                 ->setAttribute('class', 'form-control');
@@ -48,7 +90,7 @@ class ProduktyPresenter extends \BasePresenter {
                 ->setAttribute('class', 'form-control');
         $availability = $this->model->getAllAvailability();
         foreach ($availability as $value) {
-            $parent = $value['availability_id']; //cií klíč do kategorií
+            $parent = $value['availability_id'];
             if ($parent !== NULL) {
                 $categories[$value['availability_id']] = $value['availability'];
             }
@@ -76,16 +118,16 @@ class ProduktyPresenter extends \BasePresenter {
         $form->addSelect('production', 'Spôsob výroby:', $production)
                 ->setPrompt('Prosím vložte spôsob výroby')
                 ->setAttribute('class', 'form-control');
+
         $category = $this->model->getValuesForFilter('category', 'id_category', 'category_name');
         $form->addSelect('one', 'Kategória', $category)
-                ->setAttribute('class', 'form-control')
-                ->setPrompt('Prosím vložte kategóriu');
+                ->setAttribute('class', 'form-control');
         $subCategory = $this->model->getAllSubCategory($form['one']->value);
         $form->addSelect('two', 'Podkategória', $subCategory)
                 ->setAttribute('class', 'form-control');
 
         if ($form['two']->value == NULL) {
-            $form['two']->value = 20;
+            $form['two']->value = 30;
         }
         $subCategory2 = $this->model->getAllSubCategoryLevel2($form['two']->value);
         $form->addSelect('three', 'Podkategória upresnenie', $subCategory2)
@@ -98,13 +140,16 @@ class ProduktyPresenter extends \BasePresenter {
 
     public function pridajprodukt(UI\Form $form, $values) {
 
+
         if ($this->isAjax()) {
-            $this->invalidateControl('sendMessageForm');
+            $this->invalidateControl('Form');
         }
-                //$this->model->recoveryPassword($password, $id, $email);
-                $this->flashMessage("Úspešne pridaný produkt", 'success');
-                $this->redirect('Sign:prihlasenie');
-        }
+        dump($values);
+        $this->model->inserProduct($values);
+        unset($this->session->id_add);
+        $this->flashMessage("Úspešne pridaný produkt", 'success');
+        //$this->redirect('Sign:prihlasenie');
+    }
 
     public function beforeRender() {
         parent::beforeRender();
@@ -115,7 +160,6 @@ class ProduktyPresenter extends \BasePresenter {
 
         $this['form']['two']->setItems($this->model->getAllSubCategory($value));
         $this->redrawControl('two');
-
         $this->redrawControl('three');
     }
 
@@ -129,13 +173,25 @@ class ProduktyPresenter extends \BasePresenter {
     }
 
     public function handleUploadPicture() {
-    $uploader = new \UploadHandler();
-    $uploader->allowedExtensions = array("jpeg", "jpg", "png", "gif");
-    $id = $this->getUser()->getIdentity()->id;
-    $cas = microtime();
-    $result = $uploader->handleUpload(__DIR__ . '/../../www/uploads/'.$this->getUser()->getIdentity()->id.'/image/product_image/'.$cas.'/');
-//    $result = $uploader->handleUpload(__DIR__ . '/../../www/uploads/'.$this->getUser()->getIdentity()->id.'/image/product_image/'.$cas.'/');
-    $result = $uploader->handleUpload(__DIR__ . '/../../www/uploads/');
-    $this->sendResponse(new Nette\Application\Responses\JsonResponse($result));
-}
+
+        $uploader = new \UploadHandler();
+        $uploader->allowedExtensions = array("jpeg", "jpg", "png", "gif");
+        $id = $this->getUser()->getIdentity()->id;
+        $cesta = __DIR__ . '/../../www/uploads/' . $this->getUser()->getIdentity()->id . '/image//product_image/' . $this->session->id_add . '';
+        if (!file_exists($cesta)) {
+            mkdir($cesta, 0777, true);
+        }
+        $result = $uploader->handleUpload($cesta);
+        $this->sendResponse(new Nette\Application\Responses\JsonResponse($result));
+    }
+
+    public function renderDelete() {
+
+        $uploader = new \UploadHandler();
+        $cesta = __DIR__ . '/../../www/uploads/' . $this->getUser()->getIdentity()->id . '/image//product_image/' . $this->session->id_add . '';
+        //$cesta = __DIR__ . '/../../www/uploads/' . $this->getUser()->getIdentity()->id . '/image/product_image/';
+        $result = $uploader->handleDelete($cesta);
+        $this->sendResponse(new Nette\Application\Responses\JsonResponse($result));
+    }
+
 }

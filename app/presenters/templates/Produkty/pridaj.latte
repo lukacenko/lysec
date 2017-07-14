@@ -12,11 +12,13 @@
                 <div class="form-group">
                     <span>{label product_name /}</span>
                     {input product_name}
-                </div>                            
+                </div>    
+                {*
                 <div class="form-group">
                     <span>{label image /}</span>
                     {input image}
                 </div>                            
+                *}
                 <div class="form-group">
                     <span> {label keywords /}  </span>
                     {input keywords}
@@ -37,6 +39,7 @@
                     <span> {label price/}  </span>
                     {input price}
                 </div>   
+
                 <div class="form-group">
                     <span> {label postage/}  </span>
                     {input postage}
@@ -53,6 +56,7 @@
                     <span> {label production/}  </span>
                     {input production}
                 </div> 
+
                 <div class="form-group">
                     <span>{label one /}</span>
                     {input one}
@@ -68,7 +72,7 @@
                     {snippet three}
                         {input three}
                     {/snippet}
-                </div>                                
+                </div>               
                 <div class="form-group col-md-2 col-md-offset-6">
                     {input send}
                 </div>
@@ -77,8 +81,17 @@
         </div>
     </div>
 </div>
+<script n:syntax="off">
+        var obj = {filename: this.getName(id)}
+</script>            
 <script>
     $('#fine-uploader-gallery').fineUploader({
+        deleteFile: {
+            enabled: true,
+            forceConfirm: true,
+            method: "POST",
+            endpoint: 'delete'
+        },
         template: 'qq-template-gallery',
         request: {
             endpoint: 'pictures?do=uploadPicture'
@@ -91,10 +104,16 @@
         },
         validation: {
             allowedExtensions: ['jpeg', 'jpg', 'gif', 'png']
+        },
+            /*
+        callbacks: {
+            onDelete: function (id) {
+                this.setDeleteFileParams(obj, id);
+            }
         }
-    });
-</script>            
+        */
 
+    });</script>            
 
 {/block}
 {block head}
@@ -178,32 +197,32 @@
     </div>
     </dialog>
     </div> 
-    </script>
-    {/block}
+</script>
+{/block}
 
 
-    {block scripts}
-    <script src="{$basePath}/js/nette.ajax.js">
-<script>
-    $(function () {
-        $.nette.init();
-        $('select[name=one]').change(function () {
-            $.nette.ajax({
-                url: {link invalidate!},
-                data: {
-                    'value': $('select[name=one]').val(),
-                }
+{block scripts}
+<script src="{$basePath}/js/nette.ajax.js">
+    < script >
+            $(function () {
+                $.nette.init();
+                $('select[name=one]').change(function () {
+                    $.nette.ajax({
+                        url: {link invalidate!},
+                        data: {
+                            'value': $('select[name=one]').val(),
+                        }
+                    });
+                });
+                $('select[name=two]').change(function () {
+                    $.nette.ajax({
+                        url: {link invalidate2!},
+                        data: {
+                            'value': $('select[name=two]').val(),
+                        }
+                    });
+                });
             });
-        });
-        $('select[name=two]').change(function () {
-            $.nette.ajax({
-                url: {link invalidate2!},
-                data: {
-                    'value': $('select[name=two]').val(),
-                }
-            });
-        });
-    });
 </script>
 
 {/block}
