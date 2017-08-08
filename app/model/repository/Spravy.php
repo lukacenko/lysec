@@ -48,27 +48,36 @@ class Spravy extends Repository {
         return $rows;
     }
 
-    public function getAllMessageUsers($user) {
+    public function getAllMessageUsers($id) {
 
-        $result = $this->db->query('SELECT pm.timesend, users.login,pm.message as sprava,pm.timestamp,pm.user2read, pm.id, pm.title FROM pm
-            INNER JOIN users ON pm.user1=users.id where user1 = ' . $user . ' ');
-        $rows = $result->fetchAll();
-
-        // nastavy spravu ako precitanu
-        //$this->db->query('UPDATE pm.message SET ? WHERE id=?', $data, $id);        
-        return $rows;
+        $result = $this->db->query('SELECT user1, user2 FROM pm
+          where id = ' . $id . ' ');
+        $rows = $result->fetch();
+        if (isset($rows->user1)) {
+            $user = $rows->user1;
+            $user2 = $rows->user2;
+            $result = $this->db->query('SELECT pm.user1,pm.user2,pm.timesend, users.login,pm.message as sprava,pm.timestamp,pm.user2read, pm.id, pm.title FROM pm
+            INNER JOIN users ON pm.user1=users.id where (user1 = ' . $user . ' AND  user2 = ' . $user2 . ') OR (user1 = ' . $user2 . ' AND  user2 = ' . $user . ') ORDER BY timesend asc');
+            $rows = $result->fetchAll();
+            // nastavy spravu ako precitanu
+            //$this->db->query('UPDATE pm.message SET ? WHERE id=?', $data, $id);        
+            return $rows;
+        } else {
+            return false;
+        }
     }
 
     public function getAllMessageUsersName($user) {
 
         $result = $this->db->query('SELECT users.login FROM pm
-            INNER JOIN users ON pm.user1=users.id where user1 = ' . $user . ' ');
+            INNER JOIN users ON pm.user1=users.id where user2 = ' . $user . ' ');
         $rows = $result->fetch();
         $result = $this->db->query(' UPDATE pm SET user2read = 1 WHERE user1 = ' . $user . '');
         return $rows;
     }
 
     // odosle spravu
+    
     public function sendMessage($title, $user1, $user2, $message) {
         $this->db->table("pm")->insert([
             'id2' => 1,
@@ -86,9 +95,11 @@ class Spravy extends Repository {
     public function removeMessage($id) {
         $result = $this->db->query(' UPDATE pm SET remove = 1 WHERE id = ' . $id . '');
     }
+
     public function favoriteMessage($id) {
         $result = $this->db->query(' UPDATE pm SET favorite = 1 WHERE id = ' . $id . '');
     }
+
     public function removeFavoriteMessage($id) {
         $result = $this->db->query(' UPDATE pm SET favorite = 0 WHERE id = ' . $id . '');
     }

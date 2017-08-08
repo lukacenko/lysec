@@ -4,13 +4,16 @@ namespace App\Presenters;
 
 use Nette\Security\Identity;
 use Nette,
-    Nette\Application\UI;
+    Nette\Application\UI,
+    Nette\Utils\Html;
 use Ublaboo\DataGrid\DataGrid;
 
 class SpravyPresenter extends \BasePresenter {
 
     private $model;
     public $id;
+    public $komu;
+    public $odkoho;
 
     public function __construct(\Model\Repository\Spravy $model) {
         $this->model = $model;
@@ -25,14 +28,20 @@ class SpravyPresenter extends \BasePresenter {
         $this->template->prehlad = $this->model->getAllSendMessage($this->getUser()->getIdentity()->id);
     }
 
-    public function actionDetail($id) {
+    public function renderDetail($id) {
 
         $this->id = $id;
         $data = $this->model->getAllMessageUsers($this->id);
         $this->template->message = $data;
-        $user = $this->model->getAllMessageUsersName($this->id);
-        $this->template->messageUser = $user;
-        $this->setView('detail');
+        if ($data == false) {
+            $this->flashMessage('Sprava neexistuje', 'danger');
+            $this->redirect('Spravy:prehlad');
+        } else {
+            $user = $this->model->getAllMessageUsersName($data[0]->user1);
+            $this->template->messageUser = $user;
+            $this->komu = $user->login;
+            $this->odkoho = $data[0]->login;
+        }
     }
 
     // zmazanie správy
@@ -64,7 +73,6 @@ class SpravyPresenter extends \BasePresenter {
         $this->redirect('Spravy:oblubene');
     }
 
-    
     // prida spravu k oblubenym
     public function handletest($id) {
         $this->id = $id;
@@ -81,9 +89,12 @@ class SpravyPresenter extends \BasePresenter {
     public function createComponentSimpleGrid($name, $odoslane = 'dorucene') {
 
         $grid = new DataGrid($this, $name);
-        //$grid->addColumnText('title', 'Predmet')->setSortable();
+
         if ($odoslane == 'dorucene') {
             $grid->setDataSource($this->model->getAllMessage($this->getUser()->getIdentity()->id));
+            $grid->addColumnLink($this->getUser()->getIdentity()->id, 'Názov', 'this#demo', 'id')->setRenderer(function($item) {
+                echo Html::el('a')->href('detail/' . $item->id)->setHtml($item->title);
+            });
             $grid->addColumnText('login', 'Od')->setSortable();
         } elseif ($odoslane == 'odoslane') {
             $grid->setDataSource($this->model->getAllSendMessage($this->getUser()->getIdentity()->id));
@@ -186,6 +197,40 @@ class SpravyPresenter extends \BasePresenter {
             $this->model->sendMessage($values->title, $user, $id, $values->text);
             $this->flashMessage('Správa uspešne odoslaná', 'success');
             $this->redirect("Spravy:prehlad");
+        }
+    }
+
+    //FORMULÁR pre odoslanie správy
+    protected function createComponentSendMessageOpenForm() {
+        $form = new UI\Form;
+        $form->setTranslator($this->translator);
+        $form->addHidden('user2', $this->komu);
+        $form->addHidden('user1', $this->odkoho);
+        $form->addText('title', 'Predmet')->setRequired('Zadaj predmet')->setAttribute('class', 'form-control');
+        $form->addText('text', 'Správa')->setRequired('Zadaj text')->setAttribute('class', 'form-control');
+        $form->addSubmit('save', 'Odoslať')->setAttribute('class', 'btn btn-default');
+        $form->addProtection();
+        $form->onSuccess[] = array($this, 'addOrderFormSucceededd');
+        return $form;
+    }
+
+    //Spracovanie zakázky
+    public function addOrderFormSucceededd(UI\Form $form, $values) {
+        if ($this->isAjax()) {
+            $this->invalidateControl('sendMessageOpenForm');
+        }
+        $values = $form->getValues();
+        $user = $this->getUser()->getIdentity()->id;
+        //overic ci existuje prijemca
+        $row = $this->model->issetUser($values->user2);
+        if (!$row) {
+            $this->flashMessage('Zadaný používateľ neexistuje', 'danger');
+            $this->redirect("Spravy:nova");
+        } else {
+            $id = $this->model->getIdUser($values->user2);
+            $this->model->sendMessage($values->title, $user, $id, $values->text);
+            $this->flashMessage('Správa uspešne odoslaná', 'success');
+            $this->redirect("this");
         }
     }
 

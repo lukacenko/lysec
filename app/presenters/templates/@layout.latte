@@ -35,7 +35,7 @@
 
         <title>{ifset title}{include title|striptags} | {/ifset}Lysec | Luko, s.r.o.</title>
 
-        
+
     </head>
     <body role="document">
         <!-- header-section-starts -->
@@ -49,21 +49,21 @@
                                 <li><a n:href="Spravy:prehlad">  <span class="glyphicon glyphicon-envelope"> </span>{_} Pošta{/_} </a></li>
                                 <li><a n:href="Nastavenia:default">  <span class="glyphicon glyphicon-wrench"> </span>{_} Môj účet{/_} </a></li>
                                 <li class="dropdown">
-                                <a n:href="Produkty:prehlad" class="dropdown-toggle glyphicon glyphicon-baby-formula" data-toggle="dropdown">Produkty <b class="caret"></b></a>
-                                <ul class="dropdown-menu multi-column columns-3">
-                                    <div class="row">
-                                        <div class="col-sm-4" >
-                                            <ul class="multi-column-dropdown text-danger" >
-                                                <h6>PRODUKTY</h6>
-                                                <li><a n:href="Produkty:prehlad" style="color:saddlebrown" >Prehľad produktov</a></li>
-                                                <li><a n:href="Produkty:pridaj" style="color:saddlebrown" >Pridať nový produkt</a></li>
-                                                <li><a n:href="Produkty:moje" style="color:saddlebrown" >Moje produkty</a></li>
-                                            </ul>
+                                    <a n:href="Produkty:prehlad" class="dropdown-toggle glyphicon glyphicon-baby-formula" data-toggle="dropdown">Produkty <b class="caret"></b></a>
+                                    <ul class="dropdown-menu multi-column columns-3">
+                                        <div class="row">
+                                            <div class="col-sm-4" >
+                                                <ul class="multi-column-dropdown text-danger" >
+                                                    <h6>PRODUKTY</h6>
+                                                    <li><a n:href="Produkty:prehlad" style="color:saddlebrown" >Prehľad produktov</a></li>
+                                                    <li><a n:href="Produkty:pridaj" style="color:saddlebrown" >Pridať nový produkt</a></li>
+                                                    <li><a n:href="Produkty:moje" style="color:saddlebrown" >Moje produkty</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="clearfix"></div>
                                         </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </ul>
-                             </li>                                
+                                    </ul>
+                                </li>                                
                                 <li> <a n:href="Sign:out">  <span class="glyphicon glyphicon-share"> </span>{_}Odhlásiť sa{/_} </a></li>
                                 {else}
                                 <li><a n:href="Sign:prihlasenie"><span class="glyphicon glyphicon-user"> </span>Prihlásiť sa</a></li>
@@ -76,7 +76,7 @@
                             <p><a n:href="this, locale => sk"><span lang="sk" class="lang-lg "></span></a></p>
                             <p><a n:href="this, locale => en"><span lang="en" class="lang-lg "></span></a></p>
                             <p>&nbsp;&nbsp;&nbsp;</p>
-                           <a href="checkout.html">
+                            <a href="checkout.html">
                                 <h3> <span class="simpleCart_total"> $0.00 </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span>)<img src="images/bag.png" alt=""></h3>
                             </a>	
                             <p><a n:href="Kosik:kosik" class="simpleCart_empty">Empty cart</a></p>
@@ -283,90 +283,90 @@
     </div>
 </div>
 </div-->
-        
+
         {include content}
-    <!-- content-section-ends-here -->
-    <div class="news-letter">
-        <div class="container">
-            <div class="join">
-                <h6>JOIN OUR MAILING LIST</h6>
-                <div class="sub-left-right">
-                    <form>
-                        <input type="text" value="Enter Your Email Here" onfocus="this.value = '';"/>
-                        <input type="submit" value="SUBSCRIBE" />
-                    </form>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer">
-        <div class="container">
-            <div class="footer_top">
-                <div class="span_of_4">
-                    <div class="col-md-3 span1_of_4">
-                        <h4>Shop</h4>
-                        <ul class="f_nav">
-                            <li><a href="#">new arrivals</a></li>
-                            <li><a href="#">men</a></li>
-                            <li><a href="#">women</a></li>
-                            <li><a href="#">accessories</a></li>
-                            <li><a href="#">kids</a></li>
-                            <li><a href="#">brands</a></li>
-                            <li><a href="#">trends</a></li>
-                            <li><a href="#">sale</a></li>
-                            <li><a href="#">style videos</a></li>
-                        </ul>	
+        <!-- content-section-ends-here -->
+        <!--div class="news-letter">
+            <div class="container">
+                <div class="join">
+                    <h6>JOIN OUR MAILING LIST</h6>
+                    <div class="sub-left-right">
+                        <form>
+                            <input type="text" value="Enter Your Email Here" onfocus="this.value = '';"/>
+                            <input type="submit" value="SUBSCRIBE" />
+                        </form>
                     </div>
-                    <div class="col-md-3 span1_of_4">
-                        <h4>help</h4>
-                        <ul class="f_nav">
-                            <li><a href="#">frequently asked  questions</a></li>
-                            <li><a href="#">men</a></li>
-                            <li><a href="#">women</a></li>
-                            <li><a href="#">accessories</a></li>
-                            <li><a href="#">kids</a></li>
-                            <li><a href="#">brands</a></li>
-                        </ul>	
-                    </div>
-                    <div class="col-md-3 span1_of_4">
-                        <h4>account</h4>
-                        <ul class="f_nav">
-                            <li><a href="account.html">prihlásiť sa</a></li>
-                            <li><a href="register.html">vytvoriť účet</a></li>
-                            <li><a href="#">create wishlist</a></li>
-                            <li><a href="checkout.html">my shopping bag</a></li>
-                            <li><a href="#">brands</a></li>
-                            <li><a href="#">create wishlist</a></li>
-                        </ul>				
-                    </div>
-                    <div class="col-md-3 span1_of_4">
-                        <h4>popular</h4>
-                        <ul class="f_nav">
-                            <li><a href="#">new arrivals</a></li>
-                            <li><a href="#">men</a></li>
-                            <li><a href="#">women</a></li>
-                            <li><a href="#">accessories</a></li>
-                            <li><a href="#">kids</a></li>
-                            <li><a href="#">brands</a></li>
-                            <li><a href="#">trends</a></li>
-                            <li><a href="#">sale</a></li>
-                            <li><a href="#">style videos</a></li>
-                            <li><a href="#">login</a></li>
-                            <li><a href="#">brands</a></li>
-                        </ul>			
-                    </div>
-                    <div class="clearfix"></div>
+                    <div class="clearfix"> </div>
                 </div>
             </div>
-            <div class="cards text-center">
-                <img src="images/cards.jpg" alt="" />
-            </div>
-            <div class="copyright text-center">
-                <p>© 2017 Lysec. All Rights Reserved | Design by   <a href="http://w3layouts.com">  W3layouts</a></p>
+        </div-->
+        <div class="footer">
+            <div class="container">
+                <div class="footer_top">
+                    <div class="span_of_4">
+                        <div class="col-md-3 span1_of_4">
+                            <h4>Shop</h4>
+                            <ul class="f_nav">
+                                <li><a href="#">new arrivals</a></li>
+                                <li><a href="#">men</a></li>
+                                <li><a href="#">women</a></li>
+                                <li><a href="#">accessories</a></li>
+                                <li><a href="#">kids</a></li>
+                                <li><a href="#">brands</a></li>
+                                <li><a href="#">trends</a></li>
+                                <li><a href="#">sale</a></li>
+                                <li><a href="#">style videos</a></li>
+                            </ul>	
+                        </div>
+                        <div class="col-md-3 span1_of_4">
+                            <h4>help</h4>
+                            <ul class="f_nav">
+                                <li><a href="#">frequently asked  questions</a></li>
+                                <li><a href="#">men</a></li>
+                                <li><a href="#">women</a></li>
+                                <li><a href="#">accessories</a></li>
+                                <li><a href="#">kids</a></li>
+                                <li><a href="#">brands</a></li>
+                            </ul>	
+                        </div>
+                        <div class="col-md-3 span1_of_4">
+                            <h4>account</h4>
+                            <ul class="f_nav">
+                                <li><a href="account.html">prihlásiť sa</a></li>
+                                <li><a href="register.html">vytvoriť účet</a></li>
+                                <li><a href="#">create wishlist</a></li>
+                                <li><a href="checkout.html">my shopping bag</a></li>
+                                <li><a href="#">brands</a></li>
+                                <li><a href="#">create wishlist</a></li>
+                            </ul>				
+                        </div>
+                        <div class="col-md-3 span1_of_4">
+                            <h4>popular</h4>
+                            <ul class="f_nav">
+                                <li><a href="#">new arrivals</a></li>
+                                <li><a href="#">men</a></li>
+                                <li><a href="#">women</a></li>
+                                <li><a href="#">accessories</a></li>
+                                <li><a href="#">kids</a></li>
+                                <li><a href="#">brands</a></li>
+                                <li><a href="#">trends</a></li>
+                                <li><a href="#">sale</a></li>
+                                <li><a href="#">style videos</a></li>
+                                <li><a href="#">login</a></li>
+                                <li><a href="#">brands</a></li>
+                            </ul>			
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="cards text-center">
+                    <img src="images/cards.jpg" alt="" />
+                </div>
+                <div class="copyright text-center">
+                    <p>© 2017 Lysec. All Rights Reserved | Design by   <a href="http://w3layouts.com">  W3layouts</a></p>
+                </div>
             </div>
         </div>
-    </div>
-    {block scripts}{/block}
-</body>    
+        {block scripts}{/block}
+    </body>    
 </html>

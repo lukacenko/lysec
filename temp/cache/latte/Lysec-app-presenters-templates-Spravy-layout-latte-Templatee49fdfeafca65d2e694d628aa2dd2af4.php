@@ -16,16 +16,16 @@ if (!function_exists($_b->blocks['content'][] = '_lbb28def7297_content')) { func
     <div class="row chats-row">
         <div class="col-md-12">
             <div class="list-group-item open-request">
+                <p><i class="glyphicon glyphicon-folder-open"></i> <a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Spravy:prehlad"), ENT_COMPAT) ?>
+"><?php ob_start() ?>Doručená pošta <?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?></a></p>
+            </div>
+            <div class="list-group-item open-request">
                 <p><i class="glyphicon glyphicon-envelope"></i> <a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Spravy:nova"), ENT_COMPAT) ?>
 "><?php ob_start() ?>Napísať správu <?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?></a></p>
             </div>
             <div class="list-group-item open-request">
                 <p><i class="glyphicon glyphicon-user"></i> <a href="/chcem/kontakty"><?php ob_start() ?>
 Kontakty <?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?></a></p>
-            </div>
-            <div class="list-group-item open-request">
-                <p><i class="glyphicon glyphicon-folder-open"></i> <a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Spravy:prehlad"), ENT_COMPAT) ?>
-"><?php ob_start() ?>Doručená pošta <?php echo Latte\Runtime\Filters::escapeHtml($template->translate(ob_get_clean()), ENT_NOQUOTES) ?></a></p>
             </div>
             <div class="list-group-item open-request">
                 <p><i class="glyphicon glyphicon-send"></i> <a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Spravy:odoslane"), ENT_COMPAT) ?>

@@ -4,7 +4,8 @@ namespace App\Presenters;
 
 use Nette\Security\Identity;
 use Nette,
-    Nette\Application\UI;
+    Nette\Application\UI,
+    Nette\Utils\Html;
 use Ublaboo\DataGrid\DataGrid;
 use Nette\Application\UI\Form;
 
@@ -26,10 +27,12 @@ class ProduktyPresenter extends \BasePresenter {
     public function createComponentProduktyGrid($name) {
 
         $grid = new DataGrid($this, $name);
-        //$grid->addColumnText('title', 'Predmet')->setSortable();
         $grid->setDataSource($this->model->getAllProductUsers());
         $grid->addColumnText('id', 'ID')->setSortable();
-        $grid->addColumnText('product_name', 'Názov produktu')->setSortable();
+        $grid->addColumnText('product_name', 'Názov produktu')
+                ->setRenderer(function($item){
+                    echo Html::el('a')->href('detail/'.$item->id)->setHtml($item->product_name);
+                })->setSortable();
         $grid->addColumnText('stock', 'Počet')->setSortable();
         $grid->addColumnText('price', 'Cena')->setSortable();
         $grid->addColumnText('timestamp', 'Dátum')->setSortable();
@@ -189,7 +192,6 @@ class ProduktyPresenter extends \BasePresenter {
 
         $uploader = new \UploadHandler();
         $cesta = __DIR__ . '/../../www/uploads/' . $this->getUser()->getIdentity()->id . '/image//product_image/' . $this->session->id_add . '';
-        //$cesta = __DIR__ . '/../../www/uploads/' . $this->getUser()->getIdentity()->id . '/image/product_image/';
         $result = $uploader->handleDelete($cesta);
         $this->sendResponse(new Nette\Application\Responses\JsonResponse($result));
     }

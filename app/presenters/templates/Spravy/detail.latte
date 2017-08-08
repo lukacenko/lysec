@@ -13,39 +13,60 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row current-chat-area">
-                        <div class="col-md-12">
-                            <ul class="media-list">
-                                {foreach $message as $row}
-                                    <li class="media">
-                                        <div class="media-body">
-                                            <div class="media">
-                                                <b>{$row->title}</b>
-                                                <a class="pull-left" href="#">
-                                                    <img class="media-object img-circle " src="https://app.teamsupport.com/dc/1078/UserAvatar/1839999/48/1470773165634">
-                                                </a>
-                                                <div class="media-body">
-                                                    {$row->sprava}
-                                                    <br>
-                                                    <small class="text-muted">{$row->login} | {$row->timesend}</small>
-                                                    <hr>
+                    {foreach $message as $row}
+                        {if $iterator->first}
+                            <div class="row current-chat-area">
+                                <div class="col-md-12">
+                                {/if}
+                                {if $messageUser->login == $row->login}
+                                    <ul class="media-list text-right">
+
+                                    {else}
+                                        <ul class="media-list">
+                                        {/if}
+                                        <li class="media">
+                                            <div class="media-body">
+                                                <div class="media">
+                                                    <b>{$row->title}</b>
+                                                    {if $messageUser->login == $row->login}
+                                                        <a class="pull-right" href="#">
+
+                                                        {else}
+                                                            <a class="pull-left" href="#">
+                                                            {/if}
+                                                            <img class="media-object img-circle " src="https://app.teamsupport.com/dc/1078/UserAvatar/1839999/48/1470773165634">
+                                                        </a>
+                                                        <div class="media-body">
+                                                            {$row->sprava}
+                                                            <br>
+                                                            {$help = !$row->login}
+                                                            <small class="text-muted">{$row->login} | {$row->timesend}</small>
+                                                            <hr>
+                                                        </div>
                                                 </div>
                                             </div>
-
-                                        </div>
-                                    </li>
-                                {/foreach} 
-                            </ul>  
-                        </div>
-                    </div>
+                                        </li>
+                                    </ul> 
+                                    {if $iterator->first}
+                                </div>
+                            </div>
+                        {/if}
+                    {/foreach} 
                     <div class="row current-chat-footer">
                         <div class="panel-footer">
-                            <div class="input-group">
-                                <input type="text" class="form-control">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Send</button>
-                                </span>
-                            </div>
+                            {form sendMessageOpenForm}
+                                <div class="form-group" >
+                                    <span> {label title /}  </span>
+                                    {input title}
+                                </div>
+                                <div class="form-group" >
+                                    <span> {label text /}  </span>
+                                    {input text}
+                                </div>
+                                <div class="form-group" >
+                                    {input save}
+                                </div>
+                            {/form}
                         </div>
                     </div>
                 </div>
