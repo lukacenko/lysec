@@ -9,7 +9,7 @@
                     <div class="row chat-toolbar-row">
                         <div class="col-sm-12">
                             <div class="btn-group chat-toolbar" role="group" aria-label="...">
-                                <h3 class="bars"> Konverzácia s {$messageUser->login}</h3>
+                                <h3 class="bars"> Konverzácia s {$messageUser}</h3>
                             </div>
                         </div>
                     </div>
@@ -18,7 +18,7 @@
                             <div class="row current-chat-area">
                                 <div class="col-md-12">
                                 {/if}
-                                {if $messageUser->login == $row->login}
+                                {if $messageUser == $row->login}
                                     <ul class="media-list text-right">
 
                                     {else}
@@ -28,7 +28,7 @@
                                             <div class="media-body">
                                                 <div class="media">
                                                     <b>{$row->title}</b>
-                                                    {if $messageUser->login == $row->login}
+                                                    {if $messageUser == $row->login}
                                                         <a class="pull-right" href="#">
 
                                                         {else}

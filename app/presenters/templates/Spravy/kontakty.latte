@@ -9,7 +9,7 @@
                     <div class="row chat-toolbar-row">
                         <div class="col-sm-12">
                             <div class="btn-group chat-toolbar" role="group" aria-label="...">
-                                <h3 class="bars"> Zoznam zmazaných správ</h3>
+                                <h3 class="bars"> {_}Zoznam mojích kontaktov{/_} </h3>
                             </div>
                         </div>
                     </div>
@@ -17,17 +17,12 @@
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         {$flash->message}
                     </div> 
-                    {control simpleGridZmazane}
+                {control favoriteUserGrid}
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
 </div>
-
 {/block}
 
 {block scripts}
