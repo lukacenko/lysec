@@ -32,7 +32,11 @@ class Produkty extends Repository {
 
     // zobrazi produkt podla ID
     public function getSingleProduct($id) {
-        $result = $this->db->query('SELECT * FROM product where id = ' . $id . ' ORDER BY timestamp DESC ');
+        $result = $this->db->query('SELECT product.product_name,material.material, production.production,product.other_photo,product.product_desc,product.price,product.stock,product.postage, color.color FROM product 
+                                  INNER JOIN color ON id_color=product.color                 
+                                  INNER JOIN material ON id_material=product.production                 
+                                  INNER JOIN production ON id_production=product.color                 
+                 where id = ' . $id . ' ORDER BY timestamp DESC ');
         $rows = $result->fetch();
         return $rows;
     }

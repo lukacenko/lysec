@@ -161,7 +161,7 @@ if (!function_exists($_b->blocks['content'][] = '_lbbb9eea9da0_content')) { func
                                     </div>
                             </a>
                             <div class="cbp-vm-details">
-                                Wattle seed bunya nuts spring onion okra garlic bitterleaf zucchini.
+                                <?php echo Latte\Runtime\Filters::escapeHtml($row->product_desc, ENT_NOQUOTES) ?>.
                             </div>
                             <a class="cbp-vm-icon cbp-vm-add item_add" href="#">Pridať do košíka</a>
                         </li>                

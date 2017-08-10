@@ -160,7 +160,7 @@ class ProduktyPresenter extends \BasePresenter {
                 ->setAttribute('class', 'form-control');
 
         if ($form['two']->value == NULL) {
-            $form['two']->value = 34;
+            $form['two']->value = 20;
         }
         $subCategory2 = $this->model->getAllSubCategoryLevel2($form['two']->value);
         $form->addSelect('three', 'Podkategória upresnenie', $subCategory2)
