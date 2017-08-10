@@ -1,6 +1,18 @@
-{block content}
+<?php
+// source: C:\xampp\htdocs\Lysec\app\presenters/templates/Produkty/prehlad.latte
 
-<!-- content-section-starts -->
+class Template5f04c1d951245e5bbed0b9c69bfb5656 extends Latte\Template {
+function render() {
+foreach ($this->params as $__k => $__v) $$__k = $__v; unset($__k, $__v);
+// prolog Latte\Macros\CoreMacros
+list($_b, $_g, $_l) = $template->initialize('dd285d225f', 'html')
+;
+// prolog Latte\Macros\BlockMacros
+//
+// block content
+//
+if (!function_exists($_b->blocks['content'][] = '_lbbb9eea9da0_content')) { function _lbbb9eea9da0_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+?><!-- content-section-starts -->
 <div class="container">
     <div class="products-page">
         <div class="products">
@@ -48,7 +60,7 @@
                 </ul>
             </div>
             <div class="latest-bis">
-                <img src="images/l4.jpg" class="img-responsive" alt="" />
+                <img src="images/l4.jpg" class="img-responsive" alt="">
                 <div class="offer">
                     <p>40%</p>
                     <small>Top ponuka</small>
@@ -124,22 +136,24 @@
                 </div>
                 <div class="clearfix"></div>
                 <ul>
-                    {foreach $produkty as $row}
+<?php $iterations = 0; foreach ($produkty as $row) { ?>
                         <li>
-                            <a class="cbp-vm-image" n:href="Produkty:detail, $row->id">
+                            <a class="cbp-vm-image" href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link("Produkty:detail", array($row->id)), ENT_COMPAT) ?>
+">
                                 <div class="simpleCart_shelfItem">
                                     <div class="view view-first">
                                         <div class="inner_content clearfix">
                                             <div class="product_image">
-                                                <img src="{$basePath}/{$row->title_photo}" class="img-responsive" alt=""/>
+                                                <img src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>
+/<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($row->title_photo), ENT_COMPAT) ?>" class="img-responsive" alt="">
                                                 <div class="mask">
                                                     <div class="info">Quick View</div>
                                                 </div>
                                                 <div class="product_container">
                                                     <div class="cart-left">
-                                                        <p class="title">{$row->product_name}</p>
+                                                        <p class="title"><?php echo Latte\Runtime\Filters::escapeHtml($row->product_name, ENT_NOQUOTES) ?></p>
                                                     </div>
-                                                    <div class="pricey"><span class="item_price">{$row->price} €</span></div>
+                                                    <div class="pricey"><span class="item_price"><?php echo Latte\Runtime\Filters::escapeHtml($row->price, ENT_NOQUOTES) ?> €</span></div>
                                                     <div class="clearfix"></div>
                                                 </div>		
                                             </div>
@@ -151,7 +165,7 @@
                             </div>
                             <a class="cbp-vm-icon cbp-vm-add item_add" href="#">Pridať do košíka</a>
                         </li>                
-                    {/foreach}                    
+<?php $iterations++; } ?>
                 </ul>
             </div>
         </div>
@@ -164,31 +178,31 @@
     <div class="container">
         <h3 class="like text-center">Featured Collection</h3>        			
         <ul id="flexiselDemo3">
-            <li><a href="single.html"><img src="images/l1.jpg" class="img-responsive"/></a>
+            <li><a href="single.html"><img src="images/l1.jpg" class="img-responsive"></a>
                 <div class="product liked-product simpleCart_shelfItem">
                     <a class="like_name" href="single.html">Perfectly simple</a>
                     <p><a class="item_add" href="#"><i></i> <span class=" item_price">$759</span></a></p>
                 </div>
             </li>
-            <li><a href="single.html"><img src="images/l2.jpg" class="img-responsive"/></a>						
+            <li><a href="single.html"><img src="images/l2.jpg" class="img-responsive"></a>						
                 <div class="product liked-product simpleCart_shelfItem">
                     <a class="like_name" href="single.html">Praising pain</a>
                     <p><a class="item_add" href="#"><i></i> <span class=" item_price">$699</span></a></p>
                 </div>
             </li>
-            <li><a href="single.html"><img src="images/l3.jpg" class="img-responsive"/></a>
+            <li><a href="single.html"><img src="images/l3.jpg" class="img-responsive"></a>
                 <div class="product liked-product simpleCart_shelfItem">
                     <a class="like_name" href="single.html">Neque porro</a>
                     <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
                 </div>
             </li>
-            <li><a href="single.html"><img src="images/l4.jpg" class="img-responsive"/></a>
+            <li><a href="single.html"><img src="images/l4.jpg" class="img-responsive"></a>
                 <div class="product liked-product simpleCart_shelfItem">
                     <a class="like_name" href="single.html">Equal blame</a>
                     <p><a class="item_add" href="#"><i></i> <span class=" item_price">$499</span></a></p>
                 </div>
             </li>
-            <li><a href="single.html"><img src="images/l5.jpg" class="img-responsive"/></a>
+            <li><a href="single.html"><img src="images/l5.jpg" class="img-responsive"></a>
                 <div class="product liked-product simpleCart_shelfItem">
                     <a class="like_name" href="single.html">Perfectly simple</a>
                     <p><a class="item_add" href="#"><i></i> <span class=" item_price">$649</span></a></p>
@@ -197,17 +211,49 @@
         </ul>
     </div>
 </div>
-{/block}
-{block scripts}
-<script src="{$basePath}/js/cbpViewModeSwitch.js" type="text/javascript"></script>
-<script src="{$basePath}/js/classie.js" type="text/javascript"></script>
-<script src="{$basePath}/js/simpleCart.min.js"></script>
+<?php
+}}
+
+//
+// block scripts
+//
+if (!function_exists($_b->blocks['scripts'][] = '_lbb91caf183f_scripts')) { function _lbb91caf183f_scripts($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+?><script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/cbpViewModeSwitch.js" type="text/javascript"></script>
+<script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/classie.js" type="text/javascript"></script>
+<script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/simpleCart.min.js"></script>
 <!-- cart -->
-<script type="{$basePath}/application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script type="<?php echo Latte\Runtime\Filters::escapeHtml($basePath, ENT_COMPAT) ?>/application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- cart -->
-<script src="{$basePath}/js/simpleCart.min.js"></script>
+<script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/simpleCart.min.js"></script>
 <!-- cart -->
-<link href="{$basePath}/css/component.css" rel='stylesheet' type='text/css' />
+<link href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/css/component.css" rel='stylesheet' type='text/css'>
 <script>
 </script>
-{/block}
+<?php
+}}
+
+//
+// end of blocks
+//
+
+// template extending
+
+$_l->extends = empty($_g->extended) && isset($_control) && $_control instanceof Nette\Application\UI\Presenter ? $_control->findLayoutTemplateFile() : NULL; $_g->extended = TRUE;
+
+if ($_l->extends) { ob_start();}
+
+// prolog Nette\Bridges\ApplicationLatte\UIMacros
+
+// snippets support
+if (empty($_l->extends) && !empty($_control->snippetMode)) {
+	return Nette\Bridges\ApplicationLatte\UIRuntime::renderSnippets($_control, $_b, get_defined_vars());
+}
+
+//
+// main template
+//
+?>
+
+<?php if ($_l->extends) { ob_end_clean(); return $template->renderChildTemplate($_l->extends, get_defined_vars()); }
+call_user_func(reset($_b->blocks['content']), $_b, get_defined_vars()) ; call_user_func(reset($_b->blocks['scripts']), $_b, get_defined_vars()) ; 
+}}

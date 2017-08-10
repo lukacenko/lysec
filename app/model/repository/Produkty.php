@@ -10,7 +10,7 @@ class Produkty extends Repository {
         return $this->db->query('INSERT INTO product', [
                     'product_name' => $val->product_name,
                     'keywords' => $val->keywords,
-                    'other_photo' => $val->other_photo,
+                    'title_photo' => $val->title_photo,
                     'other_photo' => $val->other_photo,
                     'availability' => $val->availability,
                     'price' => $val->price,
@@ -23,10 +23,17 @@ class Produkty extends Repository {
         ]);
     }
 
-// zobrazi vsetky produkty
+    // zobrazi vsetky produkty
     public function getAllProduct() {
         $result = $this->db->query('SELECT * FROM product ORDER BY timestamp DESC');
         $rows = $result->fetchAll();
+        return $rows;
+    }
+
+    // zobrazi produkt podla ID
+    public function getSingleProduct($id) {
+        $result = $this->db->query('SELECT * FROM product where id = ' . $id . ' ORDER BY timestamp DESC ');
+        $rows = $result->fetch();
         return $rows;
     }
 
@@ -38,6 +45,12 @@ class Produkty extends Repository {
 
     public function getAllAvailability() {
         $result = $this->db->query('SELECT * FROM availability ORDER BY availability DESC');
+        $rows = $result->fetchAll();
+        return $rows;
+    }
+
+    public function getShop($id) {
+        $result = $this->db->query('SELECT * FROM shop where id_user = ' . $id . '');
         $rows = $result->fetchAll();
         return $rows;
     }

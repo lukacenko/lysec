@@ -24,14 +24,33 @@ class ProduktyPresenter extends \BasePresenter {
         $this->template->produkty = $this->model->getAllProduct();
     }
 
+    public function renderDetail($id) {
+        $data = $this->model->getSingleProduct($id);
+        $path = $this->context->parameters['wwwDir'];
+        $rii = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path . '/'.$data->other_photo));
+        $files = array(); 
+        foreach ($rii as $file) {
+            if ($file->isDir()){ 
+                continue;
+            }
+            $files[] = strchr($file->getPathname(), 'uploads'); 
+        }
+        $this->template->product = $data;
+        $this->template->files = $files;
+        if ($data == false) {
+            $this->flashMessage('Produkt neexistuje', 'danger');
+            $this->redirect('Produkt:prehlad');
+        }
+    }
+
     public function createComponentProduktyGrid($name) {
 
         $grid = new DataGrid($this, $name);
         $grid->setDataSource($this->model->getAllProductUsers());
         $grid->addColumnText('id', 'ID')->setSortable();
         $grid->addColumnText('product_name', 'Názov produktu')
-                ->setRenderer(function($item){
-                    echo Html::el('a')->href('detail/'.$item->id)->setHtml($item->product_name);
+                ->setRenderer(function($item) {
+                    echo Html::el('a')->href('detail/' . $item->id)->setHtml($item->product_name);
                 })->setSortable();
         $grid->addColumnText('stock', 'Počet')->setSortable();
         $grid->addColumnText('price', 'Cena')->setSortable();
@@ -45,27 +64,27 @@ class ProduktyPresenter extends \BasePresenter {
          * Localization
          */
         /*
-        $translator = new \Ublaboo\DataGrid\Localization\SimpleTranslator([
-            'ublaboo_datagrid.no_item_found_reset' => 'Žádné položky nenalezeny. Filtr můžete vynulovat',
-            'ublaboo_datagrid.no_item_found' => 'Žádné položky nenalezeny.',
-            'ublaboo_datagrid.here' => 'zde',
-            'ublaboo_datagrid.items' => 'Položky',
-            'ublaboo_datagrid.all' => 'všechny',
-            'ublaboo_datagrid.from' => 'z',
-            'ublaboo_datagrid.reset_filter' => 'Resetovat filtr',
-            'ublaboo_datagrid.group_actions' => 'Hromadné akce',
-            'ublaboo_datagrid.show_all_columns' => 'Zobrazit všechny sloupce',
-            'ublaboo_datagrid.hide_column' => 'Skrýt sloupec',
-            'ublaboo_datagrid.action' => 'Akce',
-            'ublaboo_datagrid.previous' => 'Předchozí',
-            'ublaboo_datagrid.next' => 'Další',
-            'ublaboo_datagrid.choose' => 'Vyberte',
-            'ublaboo_datagrid.execute' => 'Provést',
-            'Name' => 'Jméno',
-            'Inserted' => 'Vloženo'
-        ]);
-        $grid->setTranslator($translator);
-        */
+          $translator = new \Ublaboo\DataGrid\Localization\SimpleTranslator([
+          'ublaboo_datagrid.no_item_found_reset' => 'Žádné položky nenalezeny. Filtr můžete vynulovat',
+          'ublaboo_datagrid.no_item_found' => 'Žádné položky nenalezeny.',
+          'ublaboo_datagrid.here' => 'zde',
+          'ublaboo_datagrid.items' => 'Položky',
+          'ublaboo_datagrid.all' => 'všechny',
+          'ublaboo_datagrid.from' => 'z',
+          'ublaboo_datagrid.reset_filter' => 'Resetovat filtr',
+          'ublaboo_datagrid.group_actions' => 'Hromadné akce',
+          'ublaboo_datagrid.show_all_columns' => 'Zobrazit všechny sloupce',
+          'ublaboo_datagrid.hide_column' => 'Skrýt sloupec',
+          'ublaboo_datagrid.action' => 'Akce',
+          'ublaboo_datagrid.previous' => 'Předchozí',
+          'ublaboo_datagrid.next' => 'Další',
+          'ublaboo_datagrid.choose' => 'Vyberte',
+          'ublaboo_datagrid.execute' => 'Provést',
+          'Name' => 'Jméno',
+          'Inserted' => 'Vloženo'
+          ]);
+          $grid->setTranslator($translator);
+         */
     }
 
     protected function createComponentForm($name) {
@@ -74,7 +93,18 @@ class ProduktyPresenter extends \BasePresenter {
         $form = new UI\Form;
         $this[$name] = $form;
         $this->session->id_add = microtime();
-        $form->addHidden('other_photo')->setDefaultValue($this->session->id_add);
+        $form->addHidden('other_photo')->setDefaultValue('/uploads/' . $this->getUser()->getIdentity()->id . '/image/product_image/' . $this->session->id_add . '/');
+        $shop = $this->model->getShop($this->getUser()->getIdentity()->id);
+        foreach ($shop as $value) {
+            $parent = $value['id'];
+            if ($parent !== NULL) {
+                $shops[$value['id']] = $value['name'];
+            }
+        }
+        $form->addSelect('shop', 'Vyberte obchod:', $shops)
+                ->setPrompt('Prosím vložte dostupnosť')
+                ->setAttribute('class', 'form-control');
+        $form->addUpload('subor', 'Titulná fotka:', FALSE);
         $form->addText('product_name', 'Názov produktu')
                 ->setRequired('Prosím vložte názov produktu.')
                 ->setAttribute('class', 'form-control');
@@ -130,7 +160,7 @@ class ProduktyPresenter extends \BasePresenter {
                 ->setAttribute('class', 'form-control');
 
         if ($form['two']->value == NULL) {
-            $form['two']->value = 30;
+            $form['two']->value = 34;
         }
         $subCategory2 = $this->model->getAllSubCategoryLevel2($form['two']->value);
         $form->addSelect('three', 'Podkategória upresnenie', $subCategory2)
@@ -147,9 +177,16 @@ class ProduktyPresenter extends \BasePresenter {
         if ($this->isAjax()) {
             $this->invalidateControl('Form');
         }
-        dump($values);
-        $this->model->inserProduct($values);
+        $name = $values->subor->getName();
+        $path = $this->context->parameters['wwwDir'];
+        $upload_images = $path . '/uploads/' . $this->getUser()->getIdentity()->id . '/image/product_image/' . $this->session->id_add . '/' . $name;
+        $values['title_photo'] = '/uploads/' . $this->getUser()->getIdentity()->id . '/image/product_image/' . $this->session->id_add . '/' . $name;
         unset($this->session->id_add);
+        $this->model->inserProduct($values);
+        if ($values->subor->isOK()) {
+            $values->subor->move($upload_images);
+        }
+        exit();
         $this->flashMessage("Úspešne pridaný produkt", 'success');
         //$this->redirect('Sign:prihlasenie');
     }
