@@ -27,13 +27,13 @@ class ProduktyPresenter extends \BasePresenter {
     public function renderDetail($id) {
         $data = $this->model->getSingleProduct($id);
         $path = $this->context->parameters['wwwDir'];
-        $rii = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path . '/'.$data->other_photo));
-        $files = array(); 
+        $rii = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path . '/' . $data->other_photo));
+        $files = array();
         foreach ($rii as $file) {
-            if ($file->isDir()){ 
+            if ($file->isDir()) {
                 continue;
             }
-            $files[] = strchr($file->getPathname(), 'uploads'); 
+            $files[] = strchr($file->getPathname(), 'uploads');
         }
         $this->template->product = $data;
         $this->template->files = $files;
@@ -41,6 +41,21 @@ class ProduktyPresenter extends \BasePresenter {
             $this->flashMessage('Produkt neexistuje', 'danger');
             $this->redirect('Produkt:prehlad');
         }
+    }
+
+    // zmazanie produktu
+    public function handledelete($id) {
+
+        // overit ci sprava patri prihlasene pouzivatelovy alebo inemu
+        $user_id = $this->getUser()->getIdentity()->id;
+        $id_user = $this->model->getIdShop($id);
+        if ($user_id == $id_user->id_user) {
+            $this->model->removeProduct($id);
+            $this->flashMessage('Vymazane', 'success');
+        } else {
+            $this->flashMessage('Produkt sa neda zmazať', 'danger');
+        }
+        $this->redirect('Produkty:moje');
     }
 
     public function createComponentProduktyGrid($name) {
@@ -56,7 +71,7 @@ class ProduktyPresenter extends \BasePresenter {
         $grid->addColumnText('price', 'Cena')->setSortable();
         $grid->addColumnText('timestamp', 'Dátum')->setSortable();
 
-        //$grid->addAction('Delete', '', 'delete!')->setClass('glyphicon glyphicon-remove')->setTitle('Odstrániť');
+        $grid->addAction('Delete', '', 'delete!')->setClass('glyphicon glyphicon-remove')->setTitle('Odstrániť');
         //$grid->addAction('Favorite', '', 'favorite!')->setClass('glyphicon glyphicon-star')->setTitle('Pridať k oblubeným');
         $grid->addGroupAction('Odstrániť vybrané')->onSelect[] = [$this, 'deleteExamples'];
         $grid->setPagination(TRUE);
@@ -160,7 +175,7 @@ class ProduktyPresenter extends \BasePresenter {
                 ->setAttribute('class', 'form-control');
 
         if ($form['two']->value == NULL) {
-            $form['two']->value = 20;
+            $form['two']->value = 34;
         }
         $subCategory2 = $this->model->getAllSubCategoryLevel2($form['two']->value);
         $form->addSelect('three', 'Podkategória upresnenie', $subCategory2)
@@ -182,7 +197,8 @@ class ProduktyPresenter extends \BasePresenter {
         $upload_images = $path . '/uploads/' . $this->getUser()->getIdentity()->id . '/image/product_image/' . $this->session->id_add . '/' . $name;
         $values['title_photo'] = '/uploads/' . $this->getUser()->getIdentity()->id . '/image/product_image/' . $this->session->id_add . '/' . $name;
         unset($this->session->id_add);
-        $this->model->inserProduct($values);
+        $user_id = $this->getUser()->getIdentity()->id;
+        $this->model->inserProduct($values, $user_id);
         if ($values->subor->isOK()) {
             $values->subor->move($upload_images);
         }

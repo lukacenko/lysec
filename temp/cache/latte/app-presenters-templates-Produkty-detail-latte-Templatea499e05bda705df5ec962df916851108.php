@@ -62,7 +62,7 @@ if (!function_exists($_b->blocks['content'][] = '_lb9d8869ba0d_content')) { func
                     <div class="clearfix"></div>
                 </div>
                 <div class="purchase">
-                    <a href="#">Purchase Now</a>
+                    <a href="#">Pridať do košíka</a>
                     <div class="social-icons">
                         <ul>
                             <li><a class="facebook1" href="#"></a></li>
@@ -89,9 +89,8 @@ if (!function_exists($_b->blocks['content'][] = '_lb9d8869ba0d_content')) { func
             <div class="reviews-tabs">
                 <!-- Main component for a primary marketing message or call to action -->
                 <ul class="nav nav-tabs responsive hidden-xs hidden-sm" id="myTab">
-                    <li class="test-class active"><a class="deco-none misc-class" href="#how-to"> More Information</a></li>
-                    <li class="test-class"><a href="#features">Specifications</a></li>
-                    <li class="test-class"><a class="deco-none" href="#source">Reviews (7)</a></li>
+                    <li class="test-class active"><a class="deco-none misc-class" href="#how-to"> Viac informácií</a></li>
+                    <li class="test-class"><a href="#features">Komentáre</a></li>
                 </ul>
 
                 <div class="tab-content responsive hidden-xs hidden-sm">

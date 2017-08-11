@@ -6,7 +6,7 @@ use Nette;
 
 class Produkty extends Repository {
 
-    public function inserProduct($val) {
+    public function inserProduct($val, $id) {
         return $this->db->query('INSERT INTO product', [
                     'product_name' => $val->product_name,
                     'keywords' => $val->keywords,
@@ -20,6 +20,8 @@ class Produkty extends Repository {
                     'color' => $val->color,
                     'production' => $val->production,
                     'subcategory' => $val->two,
+                    'id_shop' => $val->shop,
+                    'id_user' => $id,
         ]);
     }
 
@@ -40,7 +42,12 @@ class Produkty extends Repository {
         $rows = $result->fetch();
         return $rows;
     }
-
+    // zobrazi produkt podla ID
+    public function getIdShop($id) {
+        $result = $this->db->query('SELECT id_user FROM product where id = ' . $id . '');
+        $rows = $result->fetch();
+        return $rows;
+    }
     public function getAllProductUsers() {
         $result = $this->db->query('SELECT * FROM product ORDER BY timestamp DESC');
         $rows = $result->fetchAll();
@@ -98,6 +105,10 @@ class Produkty extends Repository {
             $return[$col['id_sub_category']] = $col['sub_category_name'];
         }
         return $return;
+    }
+    // odstranenie produtku
+    public function removeProduct($id) {
+        $result = $this->db->query(' DELETE FROM product WHERE id = ' . $id . '');
     }
 
 }
