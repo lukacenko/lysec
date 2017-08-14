@@ -134,6 +134,9 @@ if (!function_exists($_b->blocks['content'][] = '_lbdefe47cc6a_content')) { func
         validation: {
             allowedExtensions: ['jpeg', 'jpg', 'gif', 'png']
         },
+        session: {
+            endpoint: <?php echo Latte\Runtime\Filters::escapeJs($basePath) ?> + "/uploads/2/image/product_image/0.62001700 1500035767/b06345af-e22b-46af-95da-81f3b401c969/logo.png"
+        }
             /*
         callbacks: {
             onDelete: function (id) {

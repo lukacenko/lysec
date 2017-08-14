@@ -36,7 +36,7 @@ if (!function_exists($_b->blocks['content'][] = '_lb9d8869ba0d_content')) { func
                     <p><?php echo Latte\Runtime\Filters::escapeHtml($product->product_desc, ENT_NOQUOTES) ?></p>
                 </div>
                 <div class="span span1">
-                    <p class="left"> VYRÁBAN</p>
+                    <p class="left"> VYRABANÉ</p>
                     <p class="right"><?php echo Latte\Runtime\Filters::escapeHtml($product->production, ENT_NOQUOTES) ?></p>
                     <div class="clearfix"></div>
                 </div>

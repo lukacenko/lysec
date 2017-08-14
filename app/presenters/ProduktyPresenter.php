@@ -8,16 +8,18 @@ use Nette,
     Nette\Utils\Html;
 use Ublaboo\DataGrid\DataGrid;
 use Nette\Application\UI\Form;
-
+use Nette\Database\Table;
 class ProduktyPresenter extends \BasePresenter {
 
     private $model;
     private $session;
+    private $id_product;
 
     public function __construct(\Model\Repository\Produkty $model, Nette\Http\Session $session) {
         $this->model = $model;
         parent::__construct();
         $this->session = $session->getSection(get_class($this));
+        $this->id_product = '';
     }
 
     public function renderPrehlad() {
@@ -58,6 +60,26 @@ class ProduktyPresenter extends \BasePresenter {
         $this->redirect('Produkty:moje');
     }
 
+    // editovanie clanku 
+    public function actionEdit($id) {
+
+            $this->id_product = $id;
+            //ak existuje zaznam
+            $post = $this->model->getProductFromId($this->id_product);
+            dump($post);
+            if (!$post) {
+                $this->flashMessage('Článok neexistuje', 'error');
+                $this->redirect('Produkty:moje');
+                //$this->id_product = '';
+                $this->setView('pridaj');
+            }else{
+                $this['form']->setDefaults($post[0]);
+                $dopl = array('shop' => $post[0]['id_shop']);
+                $this['form']->setDefaults($dopl);
+                $this->setView('pridaj');
+            }
+    }
+
     public function createComponentProduktyGrid($name) {
 
         $grid = new DataGrid($this, $name);
@@ -71,8 +93,8 @@ class ProduktyPresenter extends \BasePresenter {
         $grid->addColumnText('price', 'Cena')->setSortable();
         $grid->addColumnText('timestamp', 'Dátum')->setSortable();
 
+        $grid->addAction('Editovať', '', 'edit')->setClass('glyphicon glyphicon glyphicon-pencil')->setTitle('Editovať');
         $grid->addAction('Delete', '', 'delete!')->setClass('glyphicon glyphicon-remove')->setTitle('Odstrániť');
-        //$grid->addAction('Favorite', '', 'favorite!')->setClass('glyphicon glyphicon-star')->setTitle('Pridať k oblubeným');
         $grid->addGroupAction('Odstrániť vybrané')->onSelect[] = [$this, 'deleteExamples'];
         $grid->setPagination(TRUE);
         /**
@@ -104,7 +126,6 @@ class ProduktyPresenter extends \BasePresenter {
 
     protected function createComponentForm($name) {
 
-
         $form = new UI\Form;
         $this[$name] = $form;
         $this->session->id_add = microtime();
@@ -119,23 +140,28 @@ class ProduktyPresenter extends \BasePresenter {
         $form->addSelect('shop', 'Vyberte obchod:', $shops)
                 ->setPrompt('Prosím vložte dostupnosť')
                 ->setAttribute('class', 'form-control');
+                //->setDefaultValue($data[0]['id_shop']);
         $form->addUpload('subor', 'Titulná fotka:', FALSE);
         $form->addText('product_name', 'Názov produktu')
                 ->setRequired('Prosím vložte názov produktu.')
                 ->setAttribute('class', 'form-control');
+                //->setDefaultValue($data[0]['product_name']);
         $form->addText('keywords', ' Kľúčové slová')
                 ->setRequired('Prosím vložte kľúčové slová.')
                 ->setAttribute('class', 'form-control');
+                //->setDefaultValue($data[0]['keywords']);
         $form->addTextArea('product_desc', 'Popis produktu')
                 ->setRequired(FALSE)
                 ->setAttribute('cols', 100)
                 ->setAttribute('rows', 12)
                 ->setAttribute('class', 'form-control')
                 ->setRequired('Prosím vložte popis produktu.');
+                //->setDefaultValue($data[0]['product_desc']);
         $form->addText('stock', '  Množstvo')
                 ->setAttribute('type', 'number')
                 ->setRequired('Prosím vložte množstvo.')
                 ->setAttribute('class', 'form-control');
+                //->setDefaultValue($data[0]['stock']);
         $availability = $this->model->getAllAvailability();
         foreach ($availability as $value) {
             $parent = $value['availability_id'];
@@ -146,33 +172,40 @@ class ProduktyPresenter extends \BasePresenter {
         $form->addSelect('availability', 'Dostupnosť:', $categories)
                 ->setPrompt('Prosím vložte dostupnosť')
                 ->setAttribute('class', 'form-control');
+                //->setDefaultValue($data[0]['availability']);
         $form->addText('price', 'Cena')
                 ->setAttribute('type', 'number')
                 ->setRequired('Prosím vložte cenu.')
                 ->setAttribute('class', 'form-control');
+                //->setDefaultValue($data[0]['price']);
         $form->addText('postage', 'Poštovné')
                 ->setAttribute('type', 'number')
                 ->setRequired('Prosím vložte cenu poštovného.')
                 ->setAttribute('class', 'form-control');
+                //->setDefaultValue($data[0]['postage']);
         $colors = $this->model->getValuesForFilter('color', 'id_color', 'color');
         $form->addSelect('color', 'Farba:', $colors)
                 ->setPrompt('Prosím vložte farbu')
                 ->setAttribute('class', 'form-control');
+                //->setDefaultValue($data[0]['color']);
         $material = $this->model->getValuesForFilter('material', 'id_material', 'material');
         $form->addSelect('material', 'Materiál:', $material)
                 ->setPrompt('Prosím vložte materiál')
                 ->setAttribute('class', 'form-control');
+                //->setDefaultValue($data[0]['material']);
         $production = $this->model->getValuesForFilter('production', 'id_production', 'production');
         $form->addSelect('production', 'Spôsob výroby:', $production)
                 ->setPrompt('Prosím vložte spôsob výroby')
                 ->setAttribute('class', 'form-control');
-
+                //->setDefaultValue($data[0]['production']);
         $category = $this->model->getValuesForFilter('category', 'id_category', 'category_name');
         $form->addSelect('one', 'Kategória', $category)
                 ->setAttribute('class', 'form-control');
+                //->setDefaultValue($data[0]['category']);
         $subCategory = $this->model->getAllSubCategory($form['one']->value);
         $form->addSelect('two', 'Podkategória', $subCategory)
                 ->setAttribute('class', 'form-control');
+                //->setDefaultValue($data[0]['subcategory']);
 
         if ($form['two']->value == NULL) {
             $form['two']->value = 34;
@@ -222,10 +255,6 @@ class ProduktyPresenter extends \BasePresenter {
     public function handleInvalidate2($value) {
         $this['form']['three']->setItems($this->model->getAllSubCategoryLevel2($value));
         $this->redrawControl('three');
-    }
-
-    public function success(UI\Form $form, $vals) {
-        //dump($vals);
     }
 
     public function handleUploadPicture() {

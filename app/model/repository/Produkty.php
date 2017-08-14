@@ -42,6 +42,14 @@ class Produkty extends Repository {
         $rows = $result->fetch();
         return $rows;
     }
+    
+    // zobrazi produkt podla ID
+    public function getProductFromId($id_product) {
+        $result = $this->db->query('SELECT * FROM product 
+                 where id = ' . $id_product . '');
+        $rows = $result->fetchAll();
+        return $rows;
+    }    
     // zobrazi produkt podla ID
     public function getIdShop($id) {
         $result = $this->db->query('SELECT id_user FROM product where id = ' . $id . '');
